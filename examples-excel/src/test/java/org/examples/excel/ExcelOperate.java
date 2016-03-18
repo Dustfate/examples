@@ -40,9 +40,8 @@ public class ExcelOperate {
 			}
 			System.out.println();
 		}
-
 	}
-
+	
 	/**
 	 * 读取2003Excel的内容，第一维数组存储的是一行中格列的值，二维数组存储的是多少个行
 	 * 
