@@ -5,10 +5,12 @@
 <head>
 <meta charset="UTF-8">
 <title>蓝色淡雅风格菜单</title>
-
+<%@ include file="../commons/common.jsp"%>
+<link rel="stylesheet" href="../styles/index-menu.css" media="screen" type="text/css" />
 </head>
 <body>
-	<nav>
+<%=request.getContextPath()%>
+	<menu>
 		<ul>
 			<li><a href="#">首页</a></li>
 			<li><a href="#">测试</a></li>
@@ -18,7 +20,7 @@
 			<li><a href="#">测试</a></li>
 			<li><a href="#">关于</a></li>
 		</ul>
-	</nav>
+	</menu>
 	<a href="../examples/buttons.jsp">buttons.jsp</a><br />
 	<a href="../examples/icon.jsp">icon.jsp</a><br />
 	<a href="../examples/search.jsp">search.jsp</a><br />
