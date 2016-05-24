@@ -1,8 +1,10 @@
 package org.examples.spring.dao.user.impl;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
+import org.examples.spring.dao.BaseDao;
 import org.examples.spring.dao.user.UserDao;
 import org.examples.spring.entity.UserEntity;
 import org.slf4j.Logger;
@@ -20,13 +22,20 @@ import org.springframework.stereotype.Repository;
 import com.mongodb.DB;
 
 @Repository
-public class UserDaoImpl implements UserDao {
+public class UserDaoImpl extends BaseDao implements UserDao {
 
-	public static final Logger logger = LoggerFactory
-			.getLogger(UserDaoImpl.class);
+	public static final Logger logger = LoggerFactory.getLogger(UserDaoImpl.class);
 
 	@Autowired
 	private MongoTemplate mongoTemplate;
+	
+	public UserEntity findOne() {
+		List<Map<String,Object>> list = this.getJdbcTemplate().queryForList("select 1 from dual");
+		
+		
+		logger.info("----------------------->:"+list.size());
+		return null;
+	}
 
 	@Override
 	public void _test() {
