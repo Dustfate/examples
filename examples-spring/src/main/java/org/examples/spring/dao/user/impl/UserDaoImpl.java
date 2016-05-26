@@ -1,105 +1,74 @@
 package org.examples.spring.dao.user.impl;
 
 import java.util.List;
-import java.util.Map;
-import java.util.Set;
 
+import org.apache.log4j.Logger;
 import org.examples.spring.dao.BaseDao;
 import org.examples.spring.dao.user.UserDao;
-import org.examples.spring.entity.UserEntity;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.examples.spring.entity.user.UserEntity;
+import org.examples.spring.entity.user.Users;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Sort;
-import org.springframework.data.domain.Sort.Direction;
-import org.springframework.data.domain.Sort.Order;
-import org.springframework.data.mongodb.core.MongoTemplate;
-import org.springframework.data.mongodb.core.query.Criteria;
-import org.springframework.data.mongodb.core.query.Query;
-import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Repository;
 
-import com.mongodb.DB;
-
 @Repository
-public class UserDaoImpl extends BaseDao implements UserDao {
+public class UserDaoImpl implements UserDao {
 
-	public static final Logger logger = LoggerFactory.getLogger(UserDaoImpl.class);
+	private static final Logger logger = Logger.getLogger(UserDaoImpl.class);
 
 	@Autowired
-	private MongoTemplate mongoTemplate;
-	
-	public UserEntity findOne() {
-		List<Map<String,Object>> list = this.getJdbcTemplate().queryForList("select 1 from dual");
-		
-		
-		logger.info("----------------------->:"+list.size());
-		return null;
+	private BaseDao baseDao;
+
+	@Override
+	public boolean register(Users users) {
+		return baseDao.insert(users) > 0 ? true : false;
 	}
 
 	@Override
 	public void _test() {
-		Set<String> colls = this.mongoTemplate.getCollectionNames();
-		for (String coll : colls) {
-			logger.info("CollectionName=" + coll);
-		}
-		DB db = this.mongoTemplate.getDb();
-		logger.info("db=" + db.toString());
+		// TODO Auto-generated method stub
+
 	}
 
 	@Override
 	public void createCollection() {
-		if (!this.mongoTemplate.collectionExists(UserEntity.class)) {
-			this.mongoTemplate.createCollection(UserEntity.class);
-		}
+		// TODO Auto-generated method stub
+
 	}
 
 	@Override
 	public List<UserEntity> findList(int skip, int limit) {
-		Query query = new Query();
-		query.with(new Sort(new Order(Direction.ASC, "_id")));
-		query.skip(skip).limit(limit);
-		return this.mongoTemplate.find(query, UserEntity.class);
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	@Override
 	public List<UserEntity> findListByAge(int age) {
-		Query query = new Query();
-		query.addCriteria(new Criteria("age").is(age));
-		return this.mongoTemplate.find(query, UserEntity.class);
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	@Override
 	public UserEntity findOne(String id) {
-		Query query = new Query();
-		query.addCriteria(new Criteria("_id").is(id));
-		return this.mongoTemplate.findOne(query, UserEntity.class);
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	@Override
 	public UserEntity findOneByUsername(String username) {
-		Query query = new Query();
-		query.addCriteria(new Criteria("name.username").is(username));
-		return this.mongoTemplate.findOne(query, UserEntity.class);
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	@Override
 	public void insert(UserEntity entity) {
-		this.mongoTemplate.insert(entity);
+		// TODO Auto-generated method stub
+
 	}
 
 	@Override
 	public void update(UserEntity entity) {
-		Query query = new Query();
-		query.addCriteria(new Criteria("_id").is(entity.getId()));
-		Update update = new Update();
-		update.set("age", entity.getAge());
-		update.set("password", entity.getPassword());
-		update.set("regionName", entity.getRegionName());
-		update.set("special", entity.getSpecial());
-		update.set("works", entity.getWorks());
-		update.set("name", entity.getName());
-		this.mongoTemplate.updateFirst(query, update, UserEntity.class);
+		// TODO Auto-generated method stub
+
 	}
 
 }

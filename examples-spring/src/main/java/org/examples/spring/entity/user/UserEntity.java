@@ -1,4 +1,4 @@
-package org.examples.spring.entity;
+package org.examples.spring.entity.user;
 
 import java.util.Date;  
 

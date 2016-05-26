@@ -7,8 +7,9 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.examples.spring.manager.LoginService;
-import org.examples.spring.manager.impl.LoginServiceImpl;
+import org.apache.log4j.Logger;
+import org.examples.spring.entity.user.Users;
+import org.examples.spring.manager.login.LoginService;
 import org.examples.spring.support.I18nManager;
 import org.examples.spring.web.RestfulResponse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,10 +18,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.dexcoder.commons.utils.UUIDUtils;
+
 @RestController
 @RequestMapping
 public class LoginController {
 
+	private static final Logger logger = Logger.getLogger(LoginController.class);
+	
 	@Autowired
 	private LoginService loginService;
 
@@ -33,9 +38,15 @@ public class LoginController {
 		}
 		return "hello";
 	}
+
+	@RequestMapping(value = "/register", method = RequestMethod.POST)
+	public void register(Users users){
+		
+		logger.info(users.getUsername());
+	}
 	
 	@RequestMapping("/login")
-	public RestfulResponse getNodeList(String identity) {
+	public RestfulResponse getNodeList(Users users) {
         RestfulResponse restfulResponse = new RestfulResponse();
         List<String> list = new ArrayList<String>();
         list.add("aaaa");
@@ -45,6 +56,12 @@ public class LoginController {
         restfulResponse.setResults(1);
         restfulResponse.setRows(list);
         restfulResponse.setMsg(I18nManager.getMessage("node.dose.not.alive")+"，测试……");
+        
+        logger.info(users.getUsername());
+        users.setUsreId(UUIDUtils.getUUID32());
+        loginService.login(users.getUsername(), users.getPassword());
+
+        loginService.login(users);
         return restfulResponse;
     }
 
@@ -52,7 +69,7 @@ public class LoginController {
 	public ModelAndView login(HttpServletRequest request) {
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("login");
-		mv.addObject("message", "顶顶顶顶");
+		mv.addObject("message", "ss");
 		return mv;
 	}
 
@@ -72,4 +89,5 @@ public class LoginController {
 		return mv;
 	}
 
+	
 }

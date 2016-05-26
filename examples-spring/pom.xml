@@ -8,19 +8,17 @@
 		<artifactId>examples</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
-	<groupId>com.dustfate</groupId>
 	<artifactId>examples-spring</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
 	<name>examples-spring</name>
-	<url>http://mvnrepository.com</url>
+	<url>http://www.mvnrepository.com</url>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<spring.version>4.2.5.RELEASE</spring.version>
 		<hibernate.version>5.1.0.Final</hibernate.version>
 		<struts2.version>2.3.24</struts2.version>
-		<druid-version>1.0.18</druid-version>
+		<druid-version>1.0.20</druid-version>
 	</properties>
 
 	<dependencies>
@@ -251,8 +249,13 @@
 			<artifactId>ojdbc14</artifactId>
 			<version>10.2.0.4.0</version>
 		</dependency>
-		<!-- <dependency> <groupId>com.oracle</groupId> <artifactId>ojdbc6</artifactId> 
-			<version>11.2.0.4</version> </dependency> -->
+		<!-- 
+		<dependency> 
+			<groupId>com.oracle</groupId> 
+			<artifactId>ojdbc6</artifactId> 
+			<version>11.2.0.4</version> 
+		</dependency> 
+		-->
 		<dependency>
 			<groupId>org.springframework.data</groupId>
 			<artifactId>spring-data-mongodb</artifactId>
@@ -280,12 +283,6 @@
 			<artifactId>dom4j</artifactId>
 			<version>1.6.1</version>
 		</dependency>
-
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-api</artifactId>
-			<version>1.7.19</version>
-		</dependency>
 		<dependency>
 			<groupId>log4j</groupId>
 			<artifactId>log4j</artifactId>
@@ -296,6 +293,28 @@
 			<artifactId>log4j-core</artifactId>
 			<version>2.5</version>
 		</dependency>
+
+		<dependency>
+			<groupId>com.dexcoder</groupId>
+			<artifactId>dexcoder-dal</artifactId>
+			<version>2.3.4</version>
+		</dependency>
+		<dependency>
+			<groupId>com.dexcoder</groupId>
+			<artifactId>dexcoder-commons</artifactId>
+			<version>2.3.4</version>
+		</dependency>
+		<dependency>
+			<groupId>com.dexcoder</groupId>
+			<artifactId>dexcoder-dal-spring</artifactId>
+			<version>2.3.4</version>
+		</dependency>
+		<dependency>
+			<groupId>com.dexcoder</groupId>
+			<artifactId>dexcoder-dal-batis</artifactId>
+			<version>2.3.4</version>
+		</dependency>
+		
 
 		<dependency>
 			<groupId>junit</groupId>
@@ -317,7 +336,7 @@
 					<target>1.7</target>
 				</configuration>
 			</plugin>
-			
+
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-war-plugin</artifactId>

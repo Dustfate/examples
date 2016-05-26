@@ -1,10 +1,11 @@
-package org.examples.spring.dao.login;
+package org.examples.spring.manager.login;
 
 import org.examples.spring.entity.user.Users;
 
-public interface LoginDao {
+public interface LoginService {
 	
 	public boolean login(String username, String password);
 	
 	public boolean login(Users user);
+	
 }

@@ -6,8 +6,8 @@ import java.util.List;
 
 import org.examples.spring.dao.user.UserDao;
 import org.examples.spring.dao.user.impl.UserDaoImpl;
-import org.examples.spring.entity.NameEntity;
-import org.examples.spring.entity.UserEntity;
+import org.examples.spring.entity.user.NameEntity;
+import org.examples.spring.entity.user.UserEntity;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 

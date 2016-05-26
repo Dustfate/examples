@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tx="http://www.springframework.org/schema/tx"
 	xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:mvc="http://www.springframework.org/schema/mvc"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans
@@ -13,22 +12,16 @@
 	http://www.springframework.org/schema/mvc
 	http://www.springframework.org/schema/mvc/spring-mvc-4.2.xsd">
 
-	<!-- 
-	<bean id="propertyConfigurer"
-		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
-		<property name="locations">
-			<list>
-				<value>classpath:jdbc.properties</value>
-			</list>
-		</property>
-	</bean>
-	-->
-	
+	<!-- <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"> 
+		<property name="locations"> <list> <value>classpath:jdbc.properties</value> 
+		</list> </property> </bean> -->
+
 	<!-- 引入属性文件 -->
 	<context:property-placeholder location="classpath:config.properties" />
-	
-    <!-- 配置数据源 -->
-	<bean name="dataSource" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close">
+
+	<!-- 配置数据源 -->
+	<bean name="dataSource" class="com.alibaba.druid.pool.DruidDataSource"
+		init-method="init" destroy-method="close">
 		<property name="url" value="${jdbc_url}" />
 		<property name="username" value="${jdbc_username}" />
 		<property name="password" value="${jdbc_password}" />
@@ -44,10 +37,8 @@
 		<!-- 获取连接最大等待时间 -->
 		<property name="maxWait" value="60000" />
 
-		<!--
-		<property name="poolPreparedStatements" value="true" /> 
-		<property name="maxPoolPreparedStatementPerConnectionSize" value="33" /> 
-		-->
+		<!-- <property name="poolPreparedStatements" value="true" /> <property 
+			name="maxPoolPreparedStatementPerConnectionSize" value="33" /> -->
 
 		<property name="validationQuery" value="${validationQuery}" />
 		<property name="testOnBorrow" value="false" />
@@ -70,4 +61,47 @@
 		<!-- <property name="filters" value="stat" /> -->
 		<property name="filters" value="mergeStat" />
 	</bean>
+
+	<!-- JDBC模板 -->
+	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+
+	<bean id="jdbcDaoImpl" class="com.dexcoder.dal.spring.JdbcDaoImpl">
+	    <property name="jdbcTemplate" ref="jdbcTemplate"/>
+	</bean>
+	
+	<bean id="baseDao" class="org.examples.spring.dao.BaseDao">
+		<property name="jdbcTemplate" ref="jdbcTemplate" />
+	</bean>
+
+	<!-- 事务管理器 -->
+	<bean id="transactionManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+	<!-- 用注解来实现事务管理 -->
+	<tx:annotation-driven transaction-manager="transactionManager"
+		proxy-target-class="true" />
+
+	<!--利用了拦截器的原理。 -->
+	<bean id="transactionInterceptor"
+		class="org.springframework.transaction.interceptor.TransactionInterceptor">
+		<property name="transactionManager">
+			<ref bean="transactionManager" />
+		</property>
+		<!-- 配置事务属性 -->
+		<property name="transactionAttributes">
+			<props>
+				<prop key="delete*">PROPAGATION_REQUIRED</prop>
+				<prop key="operate*">PROPAGATION_REQUIRED,-Exception</prop>
+				<prop key="insert*">PROPAGATION_REQUIRED,-Exception</prop>
+				<prop key="update*">PROPAGATION_REQUIRED,-Exception</prop>
+				<prop key="save*">PROPAGATION_REQUIRED</prop>
+				<prop key="find*">PROPAGATION_REQUIRED,readOnly</prop>
+			</props>
+		</property>
+	</bean>
+
+
 </beans>
