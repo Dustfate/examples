@@ -25,17 +25,10 @@ public class LoginDaoImpl implements LoginDao {
 	private JdbcDaoImpl jdbcDaoImpl;
 
 	@Override
-	public boolean login(String username, String password) {
-		List<Map<String, Object>> list = baseDao
-				.search("SELECT ID, CREATEDATE, EMAILADDRESS, PASSWORD, PHONENUMBER, REALNAME, UPDATEDATE, USERNAME FROM USERS");
-		logger.info(list.size() + "");
-		return list.size() > 0 ? true : false;
-	}
-
-	public boolean login(UserInfo user) {
+	public List<Map<String, Object>> login(UserInfo userInfo) {
 		StringBuffer sql = new StringBuffer();
-		sql.append("SELECT COUNT(*) COUNT_NUM FROM USERS WHERE USERNAME = ? AND PASSWORD = ?");
-		Object[] params = new Object[]{user.getUsername(), user.getPassword()};
+		sql.append("SELECT COUNT(*) COUNT_NUM FROM USER_INFO WHERE USER_NAME = ? AND PASS_WORD = ?");
+		Object[] params = new Object[]{userInfo.getUserName(), userInfo.getPassWord()};
 		List<Map<String, Object>> list = null;
 		try {
 			list = jdbcDaoImpl.queryListForSql(sql.toString(), params);
@@ -43,7 +36,23 @@ public class LoginDaoImpl implements LoginDao {
 			e.printStackTrace();
 		}
 		logger.info(list.size());
-		return list.size() > 0 ? true : false;
+		return list;
 	}
 
+	@Override
+	public List<Map<String, Object>> checkUserName(UserInfo userInfo) {
+		StringBuffer sql = new StringBuffer();
+		sql.append("SELECT COUNT(*) COUNT_NUM FROM USER_INFO WHERE USER_NAME = ?");
+		Object[] params = new Object[]{userInfo.getUserName()};
+		List<Map<String, Object>> list = null;
+		try {
+			list = jdbcDaoImpl.queryListForSql(sql.toString(), params);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		logger.info(list.size());
+		return list;
+	}
+
+	
 }

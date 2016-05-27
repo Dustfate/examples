@@ -1,6 +1,7 @@
 package org.examples.spring.web.login;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -21,7 +22,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.dexcoder.commons.utils.UUIDUtils;
 
 @RestController
-@RequestMapping
+@RequestMapping(value = "/login")
 public class LoginController {
 
 	private static final Logger logger = Logger.getLogger(LoginController.class);
@@ -41,8 +42,9 @@ public class LoginController {
 
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
 	public void register(UserInfo userInfo){
-		
-		logger.info(userInfo.getUsername());
+		userInfo.setUsreId(UUIDUtils.getUUID32());
+		userInfo.setCreateDate(new Date());
+		logger.info(userInfo.getUserName());
 	}
 	
 	@RequestMapping("/login")
@@ -59,14 +61,21 @@ public class LoginController {
         
         UserInfo userInfo = new UserInfo();
         userInfo.setUsreId(UUIDUtils.getUUID32());
-        userInfo.setUsername(username);
-        userInfo.setPassword(password);
-        logger.info(userInfo.getUsername());
-        loginService.login(userInfo.getUsername(), userInfo.getPassword());
-
+        userInfo.setUserName(username);
+        userInfo.setPassWord(password);
+        logger.info(userInfo.getUserName());
         loginService.login(userInfo);
         return restfulResponse;
     }
+
+	@RequestMapping(value = "/register/checkUserName", method = RequestMethod.POST)
+	public void checkUserName(String username){
+        UserInfo userInfo = new UserInfo();
+        userInfo.setUserName(username);
+        
+        boolean flag = loginService.checkUserName(userInfo);
+        logger.info(flag);
+	}
 
 	@RequestMapping(value = "/logins", method = RequestMethod.POST)
 	public ModelAndView login(HttpServletRequest request) {

@@ -25,7 +25,7 @@
 	</script>
 </head>
 <body>
-	<form id="mainForm" action="http://localhost:8080/examples-spring/login" method="post">
+	<form id="mainForm" action="http://localhost:8080/examples-spring/login/login" method="post">
 		<input id="username" name="username" placeholder="账号" class="name" required />
 		<input id="password" name="password" placeholder="密码" class="name" required />
 		<input id="confirm_password" name="confirm_password" placeholder="确认密码" class="name" required />
