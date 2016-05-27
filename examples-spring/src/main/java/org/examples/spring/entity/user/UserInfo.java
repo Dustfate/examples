@@ -2,7 +2,7 @@ package org.examples.spring.entity.user;
 
 import org.examples.spring.util.page.Pageable;
 
-public class Users extends Pageable {
+public class UserInfo extends Pageable {
 
 	/**
 	 * 
@@ -44,10 +44,6 @@ public class Users extends Pageable {
 
 	public void setEmail(String email) {
 		this.email = email;
-	}
-
-	public static long getSerialversionuid() {
-		return serialVersionUID;
 	}
 
 }

@@ -6,7 +6,7 @@ import java.util.Map;
 import org.apache.log4j.Logger;
 import org.examples.spring.dao.BaseDao;
 import org.examples.spring.dao.login.LoginDao;
-import org.examples.spring.entity.user.Users;
+import org.examples.spring.entity.user.UserInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -32,7 +32,7 @@ public class LoginDaoImpl implements LoginDao {
 		return list.size() > 0 ? true : false;
 	}
 
-	public boolean login(Users user) {
+	public boolean login(UserInfo user) {
 		StringBuffer sql = new StringBuffer();
 		sql.append("SELECT COUNT(*) COUNT_NUM FROM USERS WHERE USERNAME = ? AND PASSWORD = ?");
 		Object[] params = new Object[]{user.getUsername(), user.getPassword()};
@@ -43,7 +43,7 @@ public class LoginDaoImpl implements LoginDao {
 			e.printStackTrace();
 		}
 		logger.info(list.size());
-		return false;//jdbcDaoImpl.queryCount(user) > 0 ? true : false;
+		return list.size() > 0 ? true : false;
 	}
 
 }

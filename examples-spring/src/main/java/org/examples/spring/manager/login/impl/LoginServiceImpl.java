@@ -1,7 +1,7 @@
 package org.examples.spring.manager.login.impl;
 
 import org.examples.spring.dao.login.LoginDao;
-import org.examples.spring.entity.user.Users;
+import org.examples.spring.entity.user.UserInfo;
 import org.examples.spring.manager.login.LoginService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,8 +18,8 @@ public class LoginServiceImpl implements LoginService {
 	}
 
 	@Override
-	public boolean login(Users user) {
-		return loginDao.login(user);
+	public boolean login(UserInfo userInfo) {
+		return loginDao.login(userInfo);
 	}
 	
 

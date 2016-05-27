@@ -19,8 +19,6 @@ public class MongodbTest {
 		ConfigurableApplicationContext context = new ClassPathXmlApplicationContext("mongodb-context.xml");
 		
 		UserDao userDao = context.getBean(UserDaoImpl.class);
-		userDao._test();
-		
 		NameEntity nameEntity = new NameEntity();
 		nameEntity.setUsername("张三");
 		nameEntity.setNickname("边缘");

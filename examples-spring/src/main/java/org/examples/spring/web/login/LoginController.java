@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
-import org.examples.spring.entity.user.Users;
+import org.examples.spring.entity.user.UserInfo;
 import org.examples.spring.manager.login.LoginService;
 import org.examples.spring.support.I18nManager;
 import org.examples.spring.web.RestfulResponse;
@@ -40,13 +40,13 @@ public class LoginController {
 	}
 
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
-	public void register(Users users){
+	public void register(UserInfo userInfo){
 		
-		logger.info(users.getUsername());
+		logger.info(userInfo.getUsername());
 	}
 	
 	@RequestMapping("/login")
-	public RestfulResponse getNodeList(Users users) {
+	public RestfulResponse getNodeList(String username, String password) {
         RestfulResponse restfulResponse = new RestfulResponse();
         List<String> list = new ArrayList<String>();
         list.add("aaaa");
@@ -57,11 +57,14 @@ public class LoginController {
         restfulResponse.setRows(list);
         restfulResponse.setMsg(I18nManager.getMessage("node.dose.not.alive")+"，测试……");
         
-        logger.info(users.getUsername());
-        users.setUsreId(UUIDUtils.getUUID32());
-        loginService.login(users.getUsername(), users.getPassword());
+        UserInfo userInfo = new UserInfo();
+        userInfo.setUsreId(UUIDUtils.getUUID32());
+        userInfo.setUsername(username);
+        userInfo.setPassword(password);
+        logger.info(userInfo.getUsername());
+        loginService.login(userInfo.getUsername(), userInfo.getPassword());
 
-        loginService.login(users);
+        loginService.login(userInfo);
         return restfulResponse;
     }
 

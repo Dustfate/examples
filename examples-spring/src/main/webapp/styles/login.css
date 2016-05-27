@@ -81,21 +81,21 @@ input.name {
 	background: rgba(255, 255, 255, 0.4)
 		url(http://luismruiz.com/img/gemicon_name.png) no-repeat scroll 16px
 		16px;
-	padding-left: 45px;
+	padding-left: 20px;
 }
 
 input.email {
 	background: rgba(255, 255, 255, 0.4)
 		url(http://luismruiz.com/img/gemicon_email.png) no-repeat scroll 16px
 		20px;
-	padding-left: 45px;
+	padding-left: 20px;
 }
 
 input.message {
 	background: rgba(255, 255, 255, 0.4)
 		url(http://luismruiz.com/img/gemicon_message.png) no-repeat scroll
 		16px 16px;
-	padding-left: 45px;
+	padding-left: 20px;
 }
 
 ::-webkit-input-placeholder {

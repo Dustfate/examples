@@ -11,7 +11,7 @@
 	<artifactId>examples-spring</artifactId>
 	<packaging>war</packaging>
 	<name>examples-spring</name>
-	<url>http://www.mvnrepository.com</url>
+	<url>https://oss.sonatype.org</url>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -294,6 +294,7 @@
 			<version>2.5</version>
 		</dependency>
 
+		<!-- start dexcoder -->
 		<dependency>
 			<groupId>com.dexcoder</groupId>
 			<artifactId>dexcoder-dal</artifactId>
@@ -314,7 +315,7 @@
 			<artifactId>dexcoder-dal-batis</artifactId>
 			<version>2.3.4</version>
 		</dependency>
-		
+		<!-- end -->
 
 		<dependency>
 			<groupId>junit</groupId>

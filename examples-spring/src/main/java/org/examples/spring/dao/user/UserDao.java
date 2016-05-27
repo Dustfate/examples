@@ -3,16 +3,11 @@ package org.examples.spring.dao.user;
 import java.util.List;
 
 import org.examples.spring.entity.user.UserEntity;
-import org.examples.spring.entity.user.Users;
-import org.springframework.transaction.annotation.Transactional;
+import org.examples.spring.entity.user.UserInfo;
 
-@Transactional
 public interface UserDao {
 
-
-	public boolean register(Users users);
-	
-	public abstract void _test();
+	public boolean register(UserInfo userInfo);
 
 	public abstract void createCollection();
 

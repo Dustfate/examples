@@ -6,11 +6,13 @@ import org.apache.log4j.Logger;
 import org.examples.spring.dao.BaseDao;
 import org.examples.spring.dao.user.UserDao;
 import org.examples.spring.entity.user.UserEntity;
-import org.examples.spring.entity.user.Users;
+import org.examples.spring.entity.user.UserInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 @Repository
+@Transactional
 public class UserDaoImpl implements UserDao {
 
 	private static final Logger logger = Logger.getLogger(UserDaoImpl.class);
@@ -19,14 +21,8 @@ public class UserDaoImpl implements UserDao {
 	private BaseDao baseDao;
 
 	@Override
-	public boolean register(Users users) {
-		return baseDao.insert(users) > 0 ? true : false;
-	}
-
-	@Override
-	public void _test() {
-		// TODO Auto-generated method stub
-
+	public boolean register(UserInfo userInfo) {
+		return baseDao.insert(userInfo) > 0 ? true : false;
 	}
 
 	@Override

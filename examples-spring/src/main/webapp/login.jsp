@@ -22,15 +22,13 @@
 		        }
 		    });
 		}
-		
-		
 	</script>
 </head>
 <body>
 	<form id="mainForm" action="http://localhost:8080/examples-spring/login" method="post">
-		<input id="username" name="Users.username" placeholder="账号" class="name" required />
-		<input id="password" name="Users.password" placeholder="密码" class="name" required />
-		<input name="password" placeholder="确认密码" class="name" required />
+		<input id="username" name="username" placeholder="账号" class="name" required />
+		<input id="password" name="password" placeholder="密码" class="name" required />
+		<input id="confirm_password" name="confirm_password" placeholder="确认密码" class="name" required />
 		<textarea rows="3" cols="10" name="subject" placeholder="Please enter your message" class="message" required></textarea>
 		<input name="submit" class="btn" type="submit" value="注册"/>
 	</form>
