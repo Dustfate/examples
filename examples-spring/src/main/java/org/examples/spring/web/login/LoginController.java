@@ -69,9 +69,9 @@ public class LoginController {
     }
 
 	@RequestMapping(value = "/register/checkUserName", method = RequestMethod.POST)
-	public void checkUserName(String username){
+	public void checkUserName(String userName){
         UserInfo userInfo = new UserInfo();
-        userInfo.setUserName(username);
+        userInfo.setUserName(userName);
         
         boolean flag = loginService.checkUserName(userInfo);
         logger.info(flag);
