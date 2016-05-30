@@ -1,18 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="commons/taglibs.jsp"%>
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>注册验证实例</title>
 <%@ include file="commons/common.jsp"%>
-<script type="text/javascript" src="js/registerCheck.js"></script>
+<script type="text/javascript" src="${ctx }/js/registerCheck.js"></script>
 </head>
 <body>
 	<div id="reg">
-		<form name="formUser" action="http://localhost:8080/examples-spring/register/successed" method=post>
+		<form name="formUser" action="${ctx }/register/successed" method=post>
 			<br>
-			<table width="100%" align=center border=0>
+			<table style="width: 100%; text-align: center;">
 				<tbody>
 					<tr>
 						<td align=right width="15%"><strong>用户名:</strong></td>
@@ -33,7 +33,7 @@
 						<td>
 							<table cellspacing=0 cellpadding=1 width=145 border=0>
 								<tbody>
-									<tr align=middle>
+									<tr valign="middle">
 										<td id=pwd_lower width="33%">弱</td>
 										<td id=pwd_middle width="33%">中</td>
 										<td id=pwd_high width="33%">强</td>
