@@ -11,6 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.dexcoder.dal.spring.JdbcDaoImpl;
+
 @Repository
 @Transactional
 public class UserDaoImpl implements UserDao {
@@ -19,10 +21,20 @@ public class UserDaoImpl implements UserDao {
 
 	@Autowired
 	private BaseDao baseDao;
+	@Autowired
+	private JdbcDaoImpl jdbcDaoImpl;
 
 	@Override
-	public boolean register(UserInfo userInfo) {
-		return baseDao.insert(userInfo) > 0 ? true : false;
+	public Long register(UserInfo userInfo) {
+		Long count = 0L;
+		try {
+			jdbcDaoImpl.save(userInfo);
+			count = 1L;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return count;
+		}
+		return count;
 	}
 
 	@Override

@@ -11,7 +11,7 @@ public class UserInfo extends Pageable {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	private String usreId;
+	private String userId;
 	private String userName;
 	private String passWord;
 	private String emailAddress;
@@ -20,12 +20,12 @@ public class UserInfo extends Pageable {
 	private Date createDate;
 	private Date updateDate;
 
-	public String getUsreId() {
-		return usreId;
+	public String getUserId() {
+		return userId;
 	}
 
-	public void setUsreId(String usreId) {
-		this.usreId = usreId;
+	public void setUserId(String userId) {
+		this.userId = userId;
 	}
 
 	public String getUserName() {

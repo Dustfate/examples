@@ -1,9 +1,7 @@
 package org.examples.spring.web.login;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -12,11 +10,12 @@ import org.apache.log4j.Logger;
 import org.apache.struts2.ServletActionContext;
 import org.examples.spring.entity.user.UserInfo;
 import org.examples.spring.manager.login.LoginService;
-import org.examples.spring.support.I18nManager;
-import org.examples.spring.web.RestfulResponse;
+import org.examples.spring.manager.user.UserService;
+import org.examples.spring.util.EncryptUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -27,9 +26,12 @@ import com.dexcoder.commons.utils.UUIDUtils;
 @RequestMapping(value = "/login")
 public class LoginController {
 	private static final Logger logger = Logger.getLogger(LoginController.class);
+	private UserInfo userInfo;
 
 	@Autowired
 	private LoginService loginService;
+	@Autowired
+	private UserService userService;
 
 	public void writeJson(Object object) {
 		try {
@@ -55,16 +57,19 @@ public class LoginController {
 	}
 
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
-	public void register(UserInfo userInfo) {
-		userInfo.setUsreId(UUIDUtils.getUUID32());
+	public JSON register(UserInfo userInfo) {
+		userInfo.setUserId(UUIDUtils.getUUID32());
 		userInfo.setCreateDate(new Date());
+		userInfo.setPassWord(EncryptUtils.getMD5(userInfo.getPassWord()));
 		logger.info(userInfo.getUserName());
+		boolean flag = userService.register(userInfo);
+		return JSON.parseObject("{'flag':"+flag+"}");
 	}
 
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public ModelAndView login(UserInfo userInfo) {
 		ModelAndView mv = new ModelAndView();
-
+		userInfo.setPassWord(EncryptUtils.getMD5(userInfo.getPassWord()));
 		boolean isLogin = loginService.login(userInfo);
 		logger.info(isLogin);
 		if (isLogin) {
@@ -76,34 +81,26 @@ public class LoginController {
 		return mv;
 	}
 
-	@RequestMapping("/loginss")
-	public RestfulResponse getNodeList(String username, String password) {
-		RestfulResponse restfulResponse = new RestfulResponse();
-		List<String> list = new ArrayList<String>();
-		list.add("aaaa");
-		list.add("bbbb");
-
-		restfulResponse.setSuccess(true);
-		restfulResponse.setResults(1);
-		restfulResponse.setRows(list);
-		restfulResponse.setMsg(I18nManager.getMessage("node.dose.not.alive") + "，测试……");
-
-		UserInfo userInfo = new UserInfo();
-		userInfo.setUsreId(UUIDUtils.getUUID32());
-		userInfo.setUserName(username);
-		userInfo.setPassWord(password);
-		logger.info(userInfo.getUserName());
-		loginService.login(userInfo);
-		return restfulResponse;
-	}
-
+	@ResponseBody
 	@RequestMapping(value = "/register/checkUserName", method = RequestMethod.POST)
-	public void checkUserName(String userName) {
+	public JSON checkUserName(String userName) {
 		UserInfo userInfo = new UserInfo();
 		userInfo.setUserName(userName);
 
-		boolean flag = loginService.checkUserName(userInfo);
+		boolean flag = loginService.checkUserName(userInfo, "userName");
 		logger.info(flag);
+		return JSON.parseObject("{'flag':"+flag+"}");
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/register/checkEmail", method = RequestMethod.POST)
+	public JSON checkEmail(String emailAddress) {
+		UserInfo userInfo = new UserInfo();
+		userInfo.setEmailAddress(emailAddress);
+
+		boolean flag = loginService.checkUserName(userInfo, "emailAddress");
+		logger.info(flag);
+		return JSON.parseObject("{'flag':"+flag+"}");
 	}
 
 	@RequestMapping(value = "/logins", method = RequestMethod.POST)
@@ -130,4 +127,12 @@ public class LoginController {
 		return mv;
 	}
 
+	public UserInfo getUserInfo() {
+		return userInfo;
+	}
+
+	public void setUserInfo(UserInfo userInfo) {
+		this.userInfo = userInfo;
+	}
+	
 }

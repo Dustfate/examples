@@ -1,31 +1,25 @@
 <%@ page language="java" pageEncoding="UTF-8"%>
 <%@ include file="../commons/taglibs.jsp"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
+<html>
 <head>
 <meta charset="UTF-8">
-<title>蓝色淡雅风格菜单</title>
-<%@ include file="../commons/common.jsp"%>
+<title>首页</title>
 <link rel="stylesheet" href="../styles/index-menu.css" media="screen" type="text/css" />
 </head>
 <body>
-<%=request.getContextPath()%>
-	<menu>
+	<nav>
 		<ul>
-			<li><a href="#">首页</a></li>
-			<li><a href="#">测试</a></li>
-			<li><a href="#">测试</a></li>
-			<li><a href="#">测试</a></li>
-			<li><a href="#">测试</a></li>
-			<li><a href="#">测试</a></li>
-			<li><a href="#">关于</a></li>
+			<li><a href="#">Home</a></li>
+			<li><a href="#">About</a></li>
+			<li><a href="#">Services</a></li>
+			<li><a href="#">Contact</a></li>
 		</ul>
-	</menu>
-	<a href="../examples/buttons.jsp">buttons.jsp</a><br />
-	<a href="../examples/icon.jsp">icon.jsp</a><br />
-	<a href="../examples/search.jsp">search.jsp</a><br />
-	<a href="../examples/menu.jsp">menu.jsp</a><br />
-	<a href="../examples/login.jsp">login.jsp</a><br />
-	
+	</nav>
+
+	<div style="text-align: center; clear: both">
+		sss
+	</div>
 </body>
+
 </html>

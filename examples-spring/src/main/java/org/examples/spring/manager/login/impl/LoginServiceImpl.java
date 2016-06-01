@@ -27,13 +27,13 @@ public class LoginServiceImpl implements LoginService {
 	}
 
 	@Override
-	public boolean checkUserName(UserInfo userInfo) {
-		List<Map<String, Object>> list = loginDao.checkUserName(userInfo);
+	public boolean checkUserName(UserInfo userInfo, String checkType) {
+		List<Map<String, Object>> list = loginDao.checkUserInfo(userInfo, checkType);
 		Integer count = 0;
 		if (null != list && list.size() > 0) {
 			count = Integer.parseInt(list.get(0).get("COUNT_NUM").toString());
 		}
-		return count > 0 ? true : false;
+		return count <= 0 ? true : false;
 	}
 
 }

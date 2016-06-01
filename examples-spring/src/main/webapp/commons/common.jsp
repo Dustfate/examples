@@ -20,7 +20,9 @@
 <!-- CSS -->
 <!-- bootstrap css -->
 <link href="${ctx }/js/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+
 <link href="${ctx }/js/bootstrap-3.3.5/css/bootstrap-theme.min.css" rel="stylesheet" type="text/css" />
+
 <link href="${ctx }/js/bootstrap-select-1.10.0/css/bootstrap-select.min.css" rel="stylesheet" type="text/css" />
 
 

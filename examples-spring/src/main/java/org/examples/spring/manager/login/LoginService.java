@@ -6,5 +6,6 @@ public interface LoginService {
 	
 	public boolean login(UserInfo userInfo);
 
-	public boolean checkUserName(UserInfo userInfo);
+	public boolean checkUserName(UserInfo userInfo, String checkType);
+	
 }

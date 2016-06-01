@@ -9,6 +9,6 @@ public interface LoginDao {
 
 	public List<Map<String, Object>> login(UserInfo userInfo);
 	
-	public List<Map<String, Object>> checkUserName(UserInfo userInfo);
+	public List<Map<String, Object>> checkUserInfo(UserInfo userInfo, String checkType);
 	
 }

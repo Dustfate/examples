@@ -7,7 +7,7 @@ import org.examples.spring.entity.user.UserInfo;
 
 public interface UserDao {
 
-	public boolean register(UserInfo userInfo);
+	public Long register(UserInfo userInfo);
 
 	public abstract void createCollection();
 

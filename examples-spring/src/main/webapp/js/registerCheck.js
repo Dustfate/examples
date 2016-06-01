@@ -1,22 +1,22 @@
 var process_request = "<img src='loading.gif' width='16' height='16' border='0' align='absmiddle'>正在数据处理中...";
-var username_empty = "<span style='COLOR:#ff0000'>  × 用户名不能为空!</span>";
-var username_shorter = "<span style='COLOR:#ff0000'> × 用户名长度不能少于 3 个字符。</span>";
-var username_longer = "<span style='COLOR:#ff0000'> × 用户名长度不能大于 30个字符。</span>";
-var username_invalid = "- 用户名只能是由字母数字以及下划线组成。";
-var username_have_register = "<span style='COLOR:#ff0000'> × 用户名已经存在,请重新输入!</span>";
-var username_can_register = "<span style='COLOR:#006600'> √ 恭喜您！该用户名可以注册!</span>";
-var password_empty = "<span style='COLOR:#ff0000'> × 登录密码不能为空。</span>";
-var password_shorter_s = "<span style='COLOR:#ff0000'> × 登录密码不能少于 6 个字符。</span>";
-var password_shorter_m = "<span style='COLOR:#ff0000'> × 登录密码不能多于 30 个字符。</span>";
-var confirm_password_invalid = "<span style='COLOR:#ff0000'> × 两次输入密码不一致!</span>";
-var email_empty = "<span style='COLOR:#ff0000'> × 邮箱不能为空！</span>";
-var email_invalid = "<span style='COLOR:#ff0000'> × 邮箱格式出错！</span>";
-var email_have_register = "<span style='COLOR:#ff0000'> × 该邮箱已被注册！ </span>";
-var email_can_register = "<span style='COLOR:#006600'> √ 邮箱可以注册!</span>";
-var agreement_no = "<span style='COLOR:#ff0000'> × 您没有接受协议</span>";
-var agreement_yes = "<span style='COLOR:#006600'> √ 已经接受协议</span>";
-var info_can = "<span style='COLOR:#006600'> √ 可以注册!</span>";
-var info_right = "<span style='COLOR:#006600'> √ 填写正确!</span>";
+var username_empty = "用户名不能为空！";
+var username_shorter = "用户名长度不能少于 3 个字符！";
+var username_longer = "用户名长度不能大于 30个字符！";
+var username_invalid = "用户名只能是由字母数字以及下划线组成！";
+var username_have_register = "用户名已经存在,请重新输入！";
+var username_can_register = "恭喜您！该用户名可以注册！";
+var password_empty = "登录密码不能为空！";
+var password_shorter_s = "登录密码不能少于 6 个字符！";
+var password_shorter_m = "登录密码不能多于 30 个字符！";
+var confirm_password_invalid = "两次输入密码不一致！";
+var email_empty = "邮箱不能为空！";
+var email_invalid = "邮箱格式出错！";
+var email_have_register = "该邮箱已被注册！";
+var email_can_register = "邮箱可以注册！";
+var agreement_no = "您没有接受协议！";
+var agreement_yes = "已经接受协议！";
+var info_can = "可以注册！";
+var info_right = "填写正确！";
 var name_flag = false;
 var email_flag = false;
 var password_flag = false;
@@ -30,27 +30,17 @@ $(function() {
 });
 
 /*
- * 获取工程的路径
- */
-function getRootPath() {
-	var pathName = window.location.pathname.substring(1);
-	var webName = pathName == '' ? '' : pathName.substring(0, pathName
-			.indexOf('/'));
-	return window.location.protocol + '//' + window.location.host + '/'
-			+ webName + '/';
-}
-/*
  * 用户名检测
  */
 function checkUserName(obj) {
 	if (checks(obj.value) == false) {
-		showInfo("username_notice", username_invalid);
+		showInfo("userName", username_invalid);
 	} else if (obj.value.length < 1) {
-		showInfo("username_notice", username_empty);
+		showInfo("userName", username_empty);
 	} else if (obj.value.length < 3) {
-		showInfo("username_notice", username_shorter);
+		showInfo("userName", username_shorter);
 	} else if (obj.value.length > 30) {
-		showInfo("username_notice", username_longer);
+		showInfo("userName", username_longer);
 	} else {
 		// 调用Ajax函数,向服务器端发送查询
 		$.ajax({ // 一个Ajax过程
@@ -59,10 +49,10 @@ function checkUserName(obj) {
 			dataType : 'json',// 返回的值以 JSON方式 解释
 			data : 'userName=' + obj.value, // 发给的数据
 			success : function(json) {// 如果调用成功
-				if (json.flag) {
-					showInfo("username_notice", username_have_register);
+				if (!json.flag) {
+					showInfo("userName", username_have_register);
 				} else {
-					showInfo("username_notice", username_can_register);
+					//showInfo("userName", username_can_register);
 					name_flag = true;
 					change_submit();
 					return;
@@ -91,22 +81,22 @@ function checks(t) {
 function checkEmail(email) {
 	var re = /^(\w-*\.*)+@(\w-?)+(\.\w{2,})+$/
 	if (email.value.length < 1) {
-		showInfo("email_notice", email_empty);
+		showInfo("emailAddress", email_empty);
 	} else if (!re.test(email.value)) {
 		email.className = "FrameDivWarn";
-		showInfo("email_notice", email_invalid);
+		showInfo("emailAddress", email_invalid);
 	} else {
 		// 调用Ajax函数,向服务器端发送查询
 		$.ajax({ // 一个Ajax过程
 			type : "post", // 以post方式与后台沟通
-			url : getRootPath() + "/register/checkEmail", // 与此页面沟通
+			url : "http://localhost:8080/examples-spring/login/register/checkEmail", // 与此页面沟通
 			dataType : 'json',// 返回的值以 JSON方式 解释
-			data : 'email=' + email.value, // 发给的数据
+			data : 'emailAddress=' + email.value, // 发给的数据
 			success : function(json) {// 如果调用成功
-				if (json.flag) {
-					showInfo("email_notice", email_have_register);
+				if (!json.flag) {
+					showInfo("emailAddress", email_have_register);
 				} else {
-					showInfo("email_notice", email_can_register);
+					//showInfo("emailAddress", email_can_register);
 					email_flag = true;
 					change_submit();
 					return;
@@ -124,15 +114,15 @@ function checkEmail(email) {
 function checkPassword(password) {
 	if (password.value.length < 1) {
 		password_flag = false;
-		showInfo("password_notice", password_empty);
+		showInfo("passWord", password_empty);
 	} else if (password.value.length < 6) {
 		password_flag = false;
-		showInfo("password_notice", password_shorter_s);
+		showInfo("passWord", password_shorter_s);
 	} else if (password.value.length > 30) {
 		password_flag = false;
-		showInfo("password_notice", password_shorter_m);
+		showInfo("passWord", password_shorter_m);
 	} else {
-		showInfo("password_notice", info_right);
+		//showInfo("passWord", info_right);
 	}
 	change_submit();
 }
@@ -141,14 +131,14 @@ function checkPassword(password) {
  * 密码确认检测
  */
 function checkConformPassword(conform_password) {
-	password = $("#password").val();
+	password = $("#passWord").val();
 	if (password.length < 1) {
-		showInfo("conform_password_notice", password_empty);
+		showInfo("conform_password", password_empty);
 
 	} else if (conform_password.value != password) {
-		showInfo("conform_password_notice", confirm_password_invalid);
+		showInfo("conform_password", confirm_password_invalid);
 	} else {
-		showInfo("conform_password_notice", info_right);
+		//showInfo("conform_password", info_right);
 		password_flag = true;
 		change_submit();
 		return;
@@ -240,16 +230,38 @@ function checkAgreement(obj) {
  */
 function change_submit() {
 	if (name_flag && email_flag && password_flag && accept_flag) {
-		document.forms['formUser'].elements['Submit1'].disabled = '';
+		$("#sbumit").removeAttr("disabled");
 	} else {
-		document.forms['formUser'].elements['Submit1'].disabled = 'disabled';
+		$("#sbumit").attr("disabled","disabled");
 	}
 }
+
+/**
+ * 提交表单
+ */
+function form_submit(){
+	// 调用Ajax函数,向服务器端发送查询
+	$.ajax({ // 一个Ajax过程
+		type : "post", // 以post方式与后台沟通
+		url : "http://localhost:8080/examples-spring/login/register", // 与此页面沟通
+		dataType : "json",// 返回的值以 JSON方式 解释
+		data : $("#formUser").serialize(), // 发给的数据
+		success : function(json) {// 如果调用成功
+			if(json.flag){
+				Ewin.alert({ message: "注册成功！" });
+			}else{
+				Ewin.alert({ message: "注册失败！请稍后重试……" });
+			}
+		}
+	});
+}
+
 /*
  * 公用程序
  */
 function showInfo(target, Infos) {
-	document.getElementById(target).innerHTML = Infos;
+	$("#"+target).attr("data-content",Infos);
+	$('#'+target).popover('show');
 }
 function showclass(target, Infos) {
 	document.getElementById(target).className = Infos;

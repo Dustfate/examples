@@ -40,9 +40,14 @@ public class LoginDaoImpl implements LoginDao {
 	}
 
 	@Override
-	public List<Map<String, Object>> checkUserName(UserInfo userInfo) {
+	public List<Map<String, Object>> checkUserInfo(UserInfo userInfo,
+			String checkType) {
 		StringBuffer sql = new StringBuffer();
-		sql.append("SELECT COUNT(*) COUNT_NUM FROM USER_INFO WHERE USER_NAME = ?");
+		sql.append("SELECT COUNT(*) COUNT_NUM FROM USER_INFO WHERE 1=1 ");
+		if("userName".equals(checkType))
+			sql.append(" AND USER_NAME = ? ");
+		if("emailAddress".equals(checkType))
+			sql.append(" AND EMAIL_ADDRESS = ? ");
 		Object[] params = new Object[]{userInfo.getUserName()};
 		List<Map<String, Object>> list = null;
 		try {
@@ -53,6 +58,9 @@ public class LoginDaoImpl implements LoginDao {
 		logger.info(list.size());
 		return list;
 	}
+
+	
+
 
 	
 }
