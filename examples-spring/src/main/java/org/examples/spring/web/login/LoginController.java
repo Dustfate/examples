@@ -25,7 +25,8 @@ import com.dexcoder.commons.utils.UUIDUtils;
 @RestController
 @RequestMapping(value = "/login")
 public class LoginController {
-	private static final Logger logger = Logger.getLogger(LoginController.class);
+	private static final Logger logger = Logger
+			.getLogger(LoginController.class);
 	private UserInfo userInfo;
 
 	@Autowired
@@ -36,8 +37,10 @@ public class LoginController {
 	public void writeJson(Object object) {
 		try {
 
-			String json = JSON.toJSONStringWithDateFormat(object, "yyyy-MM-dd HH:mm:ss");
-			ServletActionContext.getResponse().setContentType("text/html;charset=utf-8");
+			String json = JSON.toJSONStringWithDateFormat(object,
+					"yyyy-MM-dd HH:mm:ss");
+			ServletActionContext.getResponse().setContentType(
+					"text/html;charset=utf-8");
 			ServletActionContext.getResponse().getWriter().write(json);
 			ServletActionContext.getResponse().getWriter().flush();
 			ServletActionContext.getResponse().getWriter().close();
@@ -63,7 +66,7 @@ public class LoginController {
 		userInfo.setPassWord(EncryptUtils.getMD5(userInfo.getPassWord()));
 		logger.info(userInfo.getUserName());
 		boolean flag = userService.register(userInfo);
-		return JSON.parseObject("{'flag':"+flag+"}");
+		return JSON.parseObject("{'flag':" + flag + "}");
 	}
 
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
@@ -89,9 +92,9 @@ public class LoginController {
 
 		boolean flag = loginService.checkUserName(userInfo, "userName");
 		logger.info(flag);
-		return JSON.parseObject("{'flag':"+flag+"}");
+		return JSON.parseObject("{'flag':" + flag + "}");
 	}
-	
+
 	@ResponseBody
 	@RequestMapping(value = "/register/checkEmail", method = RequestMethod.POST)
 	public JSON checkEmail(String emailAddress) {
@@ -100,7 +103,7 @@ public class LoginController {
 
 		boolean flag = loginService.checkUserName(userInfo, "emailAddress");
 		logger.info(flag);
-		return JSON.parseObject("{'flag':"+flag+"}");
+		return JSON.parseObject("{'flag':" + flag + "}");
 	}
 
 	@RequestMapping(value = "/logins", method = RequestMethod.POST)
@@ -112,16 +115,18 @@ public class LoginController {
 	}
 
 	// @RequestMapping(value="/login", method=RequestMethod.GET)
-	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) throws Exception {
+	public ModelAndView handleRequest(HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
 		ModelAndView mv = new ModelAndView();
 
-//		List<Map<String, Object>> result = null;// loginService.search();
+		// List<Map<String, Object>> result = null;// loginService.search();
 
 		String message = "";
-//		for (Map<String, Object> map : result) {
-//			message += map.get("JOBNAME") == null ? "" : map.get("JOBNAME").toString();
-//			message += " ;";
-//		}
+		// for (Map<String, Object> map : result) {
+		// message += map.get("JOBNAME") == null ? "" :
+		// map.get("JOBNAME").toString();
+		// message += " ;";
+		// }
 		mv.addObject("message", message);
 		mv.setViewName("hello");
 		return mv;
@@ -134,5 +139,5 @@ public class LoginController {
 	public void setUserInfo(UserInfo userInfo) {
 		this.userInfo = userInfo;
 	}
-	
+
 }
