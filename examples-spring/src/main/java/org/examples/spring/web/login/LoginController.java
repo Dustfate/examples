@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
 import org.apache.struts2.ServletActionContext;
-import org.examples.spring.entity.user.UserInfo;
+import org.examples.spring.entity.user.SysUserInfo;
 import org.examples.spring.manager.login.LoginService;
 import org.examples.spring.manager.user.UserService;
 import org.examples.spring.util.EncryptUtils;
@@ -27,7 +27,7 @@ import com.dexcoder.commons.utils.UUIDUtils;
 public class LoginController {
 	private static final Logger logger = Logger
 			.getLogger(LoginController.class);
-	private UserInfo userInfo;
+	private SysUserInfo userInfo;
 
 	@Autowired
 	private LoginService loginService;
@@ -60,7 +60,7 @@ public class LoginController {
 	}
 
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
-	public JSON register(UserInfo userInfo) {
+	public JSON register(SysUserInfo userInfo) {
 		userInfo.setUserId(UUIDUtils.getUUID32());
 		userInfo.setCreateDate(new Date());
 		userInfo.setPassWord(EncryptUtils.getMD5(userInfo.getPassWord()));
@@ -70,7 +70,7 @@ public class LoginController {
 	}
 
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public ModelAndView login(UserInfo userInfo) {
+	public ModelAndView login(SysUserInfo userInfo) {
 		ModelAndView mv = new ModelAndView();
 		userInfo.setPassWord(EncryptUtils.getMD5(userInfo.getPassWord()));
 		boolean isLogin = loginService.login(userInfo);
@@ -87,7 +87,7 @@ public class LoginController {
 	@ResponseBody
 	@RequestMapping(value = "/register/checkUserName", method = RequestMethod.POST)
 	public JSON checkUserName(String userName) {
-		UserInfo userInfo = new UserInfo();
+		SysUserInfo userInfo = new SysUserInfo();
 		userInfo.setUserName(userName);
 
 		boolean flag = loginService.checkUserName(userInfo, "userName");
@@ -98,7 +98,7 @@ public class LoginController {
 	@ResponseBody
 	@RequestMapping(value = "/register/checkEmail", method = RequestMethod.POST)
 	public JSON checkEmail(String emailAddress) {
-		UserInfo userInfo = new UserInfo();
+		SysUserInfo userInfo = new SysUserInfo();
 		userInfo.setEmailAddress(emailAddress);
 
 		boolean flag = loginService.checkUserName(userInfo, "emailAddress");
@@ -132,11 +132,11 @@ public class LoginController {
 		return mv;
 	}
 
-	public UserInfo getUserInfo() {
+	public SysUserInfo getUserInfo() {
 		return userInfo;
 	}
 
-	public void setUserInfo(UserInfo userInfo) {
+	public void setUserInfo(SysUserInfo userInfo) {
 		this.userInfo = userInfo;
 	}
 

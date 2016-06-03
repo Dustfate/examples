@@ -2,12 +2,12 @@ package org.examples.spring.dao.user;
 
 import java.util.List;
 
+import org.examples.spring.entity.user.SysUserInfo;
 import org.examples.spring.entity.user.UserEntity;
-import org.examples.spring.entity.user.UserInfo;
 
 public interface UserDao {
 
-	public Long register(UserInfo userInfo);
+	public Long register(SysUserInfo userInfo);
 
 	public abstract void createCollection();
 

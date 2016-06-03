@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.examples.spring.dao.login.LoginDao;
-import org.examples.spring.entity.user.UserInfo;
+import org.examples.spring.entity.user.SysUserInfo;
 import org.examples.spring.manager.login.LoginService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,7 +16,7 @@ public class LoginServiceImpl implements LoginService {
 	private LoginDao loginDao;
 
 	@Override
-	public boolean login(UserInfo userInfo) {
+	public boolean login(SysUserInfo userInfo) {
 		List<Map<String, Object>> list = loginDao.login(userInfo);
 
 		Integer count = 0;
@@ -27,7 +27,7 @@ public class LoginServiceImpl implements LoginService {
 	}
 
 	@Override
-	public boolean checkUserName(UserInfo userInfo, String checkType) {
+	public boolean checkUserName(SysUserInfo userInfo, String checkType) {
 		List<Map<String, Object>> list = loginDao.checkUserInfo(userInfo, checkType);
 		Integer count = 0;
 		if (null != list && list.size() > 0) {

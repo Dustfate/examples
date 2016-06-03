@@ -1,6 +1,6 @@
 package org.examples.spring.manager.user;
 
-import org.examples.spring.entity.user.UserInfo;
+import org.examples.spring.entity.user.SysUserInfo;
 
 public interface UserService {
 	
@@ -9,6 +9,6 @@ public interface UserService {
 	 * @param userInfo
 	 * @return
 	 */
-	public boolean register(UserInfo userInfo);
+	public boolean register(SysUserInfo userInfo);
 	
 }

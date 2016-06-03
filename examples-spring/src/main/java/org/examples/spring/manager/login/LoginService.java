@@ -1,11 +1,11 @@
 package org.examples.spring.manager.login;
 
-import org.examples.spring.entity.user.UserInfo;
+import org.examples.spring.entity.user.SysUserInfo;
 
 public interface LoginService {
 	
-	public boolean login(UserInfo userInfo);
+	public boolean login(SysUserInfo userInfo);
 
-	public boolean checkUserName(UserInfo userInfo, String checkType);
+	public boolean checkUserName(SysUserInfo userInfo, String checkType);
 	
 }

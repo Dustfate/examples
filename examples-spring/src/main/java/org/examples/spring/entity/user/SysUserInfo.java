@@ -2,9 +2,9 @@ package org.examples.spring.entity.user;
 
 import java.util.Date;
 
-import org.examples.spring.util.page.Pageable;
+import com.dexcoder.commons.pager.Pageable;
 
-public class UserInfo extends Pageable {
+public class SysUserInfo extends Pageable {
 
 	/**
 	 * 

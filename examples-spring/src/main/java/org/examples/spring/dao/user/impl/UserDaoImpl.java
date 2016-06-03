@@ -5,8 +5,8 @@ import java.util.List;
 import org.apache.log4j.Logger;
 import org.examples.spring.dao.BaseDao;
 import org.examples.spring.dao.user.UserDao;
+import org.examples.spring.entity.user.SysUserInfo;
 import org.examples.spring.entity.user.UserEntity;
-import org.examples.spring.entity.user.UserInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -25,7 +25,7 @@ public class UserDaoImpl implements UserDao {
 	private JdbcDaoImpl jdbcDaoImpl;
 
 	@Override
-	public Long register(UserInfo userInfo) {
+	public Long register(SysUserInfo userInfo) {
 		Long count = 0L;
 		try {
 			jdbcDaoImpl.save(userInfo);
