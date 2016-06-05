@@ -25,13 +25,14 @@ public class LoginDaoImpl implements LoginDao {
 	private JdbcDaoImpl jdbcDaoImpl;
 
 	@Override
-	public List<Map<String, Object>> login(SysUserInfo userInfo) {
+	public List<SysUserInfo> login(SysUserInfo userInfo) {
 		StringBuffer sql = new StringBuffer();
-		sql.append("SELECT COUNT(*) COUNT_NUM FROM SYS_USER_INFO WHERE USER_NAME = ? AND PASS_WORD = ?");
+		sql.append("SELECT USER_ID, USER_NAME, PASS_WORD, EMAIL_ADDRESS, PHONE_NUMBER, REAL_NAME, CREATE_DATE, UPDATE_DATE ");
+		sql.append(" FROM SYS_USER_INFO WHERE USER_NAME = ? AND PASS_WORD = ? ");
 		Object[] params = new Object[]{userInfo.getUserName(), userInfo.getPassWord()};
-		List<Map<String, Object>> list = null;
+		List<SysUserInfo> list = null;
 		try {
-			list = jdbcDaoImpl.queryListForSql(sql.toString(), params);
+			list = jdbcDaoImpl.queryListForSql(sql.toString(), params, SysUserInfo.class);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

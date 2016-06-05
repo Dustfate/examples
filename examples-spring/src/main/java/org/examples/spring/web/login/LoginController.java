@@ -2,6 +2,7 @@ package org.examples.spring.web.login;
 
 import java.io.IOException;
 import java.util.Date;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -69,17 +70,26 @@ public class LoginController {
 		return JSON.parseObject("{'flag':" + flag + "}");
 	}
 
+	@RequestMapping(value = "/to_login", method = RequestMethod.GET)
+	public ModelAndView toLogin() {
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("/system/login/login");
+		return mv;
+	}
+	
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public ModelAndView login(SysUserInfo userInfo) {
 		ModelAndView mv = new ModelAndView();
 		userInfo.setPassWord(EncryptUtils.getMD5(userInfo.getPassWord()));
-		boolean isLogin = loginService.login(userInfo);
-		logger.info(isLogin);
-		if (isLogin) {
-			mv.setViewName("/index");
+		List<SysUserInfo> result = loginService.login(userInfo);
+		logger.info(result.size());
+		if (result.size() > 0) {
+			mv.addObject("userInfo", result.get(0));
+			mv.setViewName("/system/login/index");
 			mv.addObject("message", "登录成功！");
 		} else {
-			mv.addObject("message", "登录失败！");
+			mv.setViewName("/system/login/login");
+			mv.addObject("message", "账号或密码错误！");
 		}
 		return mv;
 	}

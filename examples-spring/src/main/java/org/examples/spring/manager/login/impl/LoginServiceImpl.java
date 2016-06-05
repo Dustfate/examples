@@ -16,14 +16,9 @@ public class LoginServiceImpl implements LoginService {
 	private LoginDao loginDao;
 
 	@Override
-	public boolean login(SysUserInfo userInfo) {
-		List<Map<String, Object>> list = loginDao.login(userInfo);
-
-		Integer count = 0;
-		if (null != list && list.size() > 0) {
-			count = Integer.parseInt(list.get(0).get("COUNT_NUM").toString());
-		}
-		return count > 0 ? true : false;
+	public List<SysUserInfo> login(SysUserInfo userInfo) {
+		
+		return loginDao.login(userInfo);
 	}
 
 	@Override

@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.log4j.Logger;
 import org.examples.spring.entity.menu.SysMenuInfo;
 import org.examples.spring.manager.menu.SysMenuInfoService;
+import org.examples.spring.web.DataTablesOptions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -12,41 +13,52 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.dexcoder.commons.pager.Pager;
-import com.dexcoder.dal.spring.page.PageControl;
 
 @RestController
 @RequestMapping(value = "/menu")
 public class SysMenuInfoController {
 	private static final Logger logger = Logger.getLogger(SysMenuInfoController.class);
 	private SysMenuInfo menuInfo;
-	private Pager pager = new Pager();
+	private String curPageNumber;
+	private Pager pager;
 	
 	@Autowired
 	private SysMenuInfoService sysMenuInfoService;
 
-	@RequestMapping(value = "/menu_list", method = RequestMethod.GET)
-	public ModelAndView login(SysMenuInfo menuInfo) {
+	@RequestMapping(value = "/to_menu_list")
+	public ModelAndView toMenuList() {
 		ModelAndView mv = new ModelAndView();
-		pager.setCurPage(1);
-		pager.setItemsPerPage(10);
 		try {
-			List<SysMenuInfo> menuList = sysMenuInfoService.findPageList(menuInfo, pager);
-			mv.addObject("menuList", menuList);
 			mv.setViewName("/system/menu/menu_list");
 		} catch (Exception e) {
 			logger.error(e.toString(), e);
 		}
-		
 		return mv;
 	}
-
+	
 	@ResponseBody
-	@RequestMapping(value = "/register/checkUserName", method = RequestMethod.POST)
-	public JSON checkUserName(String userName) {
-
-		return JSON.parseObject("{'flag': false }");
+	@RequestMapping(value = "/get_menu_list", method = {RequestMethod.POST, RequestMethod.GET})
+	public Object getMenuList(SysMenuInfo menuInfo, DataTablesOptions<SysMenuInfo> dataTablesOptions) {
+		// For sortable
+//		String sortOrder = request.getParameter("order[0][column]");
+//		String sortDir = request.getParameter("order[0][dir]");
+//		System.out.println("sortOrder: " + sortOrder);
+//		System.out.println("sortDir: " + sortDir);
+		// For search
+//		String searchValue = request.getParameter("search[value]");
+		//results = dao.loadDataList(pageSize, startRecord, columnsName[Integer.parseInt(sortOrder)], sortDir, searchValue);
+		List<SysMenuInfo> menuList = sysMenuInfoService.findPageList(menuInfo, dataTablesOptions);
+		int count = sysMenuInfoService.getCount(menuInfo);
+		
+		DataTablesOptions<SysMenuInfo> result = new DataTablesOptions<SysMenuInfo>();
+		result.setDraw(dataTablesOptions.getDraw());
+		result.setData(menuList);
+		result.setRecordsTotal(count);
+		result.setRecordsFiltered(count);
+		Object json = JSONObject.toJSON(result);
+		return json;
 	}
 
 	public SysMenuInfo getMenuInfo() {
@@ -63,6 +75,14 @@ public class SysMenuInfoController {
 
 	public void setPager(Pager pager) {
 		this.pager = pager;
+	}
+
+	public String getCurPageNumber() {
+		return curPageNumber;
+	}
+
+	public void setCurPageNumber(String curPageNumber) {
+		this.curPageNumber = curPageNumber;
 	}
 	
 }

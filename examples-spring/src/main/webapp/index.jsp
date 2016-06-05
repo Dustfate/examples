@@ -1,6 +1,9 @@
 <%@ page language="java" pageEncoding="UTF-8"%>
 <%@ include file="commons/taglibs.jsp"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
+<script type="text/javascript">
+	window.location.href = "${ctx }/login/to_login";
+</script>
 <html>
 <body>
 	<a href="${ctx }/druid">druid</a>

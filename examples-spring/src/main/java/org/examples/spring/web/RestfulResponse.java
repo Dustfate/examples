@@ -1,11 +1,7 @@
 package org.examples.spring.web;
 
 import java.io.Serializable;
-import java.util.List;
 
-/**
- * restful response Robert HG (254963746@qq.com) on 6/5/15.
- */
 public class RestfulResponse implements Serializable {
 
 	private static final long serialVersionUID = -5795089018013798231L;
@@ -15,14 +11,11 @@ public class RestfulResponse implements Serializable {
 	private String code;
 
 	private String msg;
+
 	/**
 	 * total recorded
 	 */
-	private int results;
-	/**
-	 * rows
-	 */
-	private List<?> rows;
+	private int result;
 
 	public boolean isSuccess() {
 		return success;
@@ -48,19 +41,12 @@ public class RestfulResponse implements Serializable {
 		this.msg = msg;
 	}
 
-	public int getResults() {
-		return results;
+	public int getResult() {
+		return result;
 	}
 
-	public void setResults(int results) {
-		this.results = results;
+	public void setResult(int result) {
+		this.result = result;
 	}
 
-	public List<?> getRows() {
-		return rows;
-	}
-
-	public void setRows(List<?> rows) {
-		this.rows = rows;
-	}
 }
