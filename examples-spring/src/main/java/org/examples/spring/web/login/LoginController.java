@@ -3,14 +3,17 @@ package org.examples.spring.web.login;
 import java.io.IOException;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
 import org.apache.struts2.ServletActionContext;
+import org.examples.spring.entity.menu.SysMenuInfo;
 import org.examples.spring.entity.user.SysUserInfo;
 import org.examples.spring.manager.login.LoginService;
+import org.examples.spring.manager.menu.SysMenuInfoService;
 import org.examples.spring.manager.user.UserService;
 import org.examples.spring.util.EncryptUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,22 +29,21 @@ import com.dexcoder.commons.utils.UUIDUtils;
 @RestController
 @RequestMapping(value = "/login")
 public class LoginController {
-	private static final Logger logger = Logger
-			.getLogger(LoginController.class);
+	private static final Logger logger = Logger.getLogger(LoginController.class);
 	private SysUserInfo userInfo;
 
 	@Autowired
 	private LoginService loginService;
 	@Autowired
 	private UserService userService;
+	@Autowired
+	private SysMenuInfoService sysMenuInfoService;
 
 	public void writeJson(Object object) {
 		try {
 
-			String json = JSON.toJSONStringWithDateFormat(object,
-					"yyyy-MM-dd HH:mm:ss");
-			ServletActionContext.getResponse().setContentType(
-					"text/html;charset=utf-8");
+			String json = JSON.toJSONStringWithDateFormat(object, "yyyy-MM-dd HH:mm:ss");
+			ServletActionContext.getResponse().setContentType("text/html;charset=utf-8");
 			ServletActionContext.getResponse().getWriter().write(json);
 			ServletActionContext.getResponse().getWriter().flush();
 			ServletActionContext.getResponse().getWriter().close();
@@ -84,7 +86,14 @@ public class LoginController {
 		List<SysUserInfo> result = loginService.login(userInfo);
 		logger.info(result.size());
 		if (result.size() > 0) {
+			SysMenuInfo menuInfo = new SysMenuInfo();
+			menuInfo.setIsEnable("1");
+			menuInfo.setParentId("0");
+			List<SysMenuInfo> menuList = sysMenuInfoService.findMenuInfoTreeList(menuInfo);
+			
+			
 			mv.addObject("userInfo", result.get(0));
+			mv.addObject("menuList", menuList);
 			mv.setViewName("/system/login/index");
 			mv.addObject("message", "登录成功！");
 		} else {

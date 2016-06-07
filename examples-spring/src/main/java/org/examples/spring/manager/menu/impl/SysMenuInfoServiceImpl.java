@@ -1,7 +1,7 @@
 package org.examples.spring.manager.menu.impl;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import org.examples.spring.dao.menu.SysMenuInfoDao;
 import org.examples.spring.entity.menu.SysMenuInfo;
@@ -17,10 +17,10 @@ public class SysMenuInfoServiceImpl implements SysMenuInfoService {
 	private SysMenuInfoDao sysMenuInfoDao;
 
 	@Override
-	public Long save(SysMenuInfo menuInfo) {
+	public Long saveMenuInfo(SysMenuInfo menuInfo) {
 		Long count = 0L;
 		try {
-			count = sysMenuInfoDao.save(menuInfo);
+			count = sysMenuInfoDao.saveMenuInfo(menuInfo);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -28,7 +28,7 @@ public class SysMenuInfoServiceImpl implements SysMenuInfoService {
 	}
 
 	@Override
-	public Long insert(SysMenuInfo menuInfo) {
+	public Long insertMenuInfo(SysMenuInfo menuInfo) {
 
 		return null;
 	}
@@ -45,10 +45,10 @@ public class SysMenuInfoServiceImpl implements SysMenuInfoService {
 	}
 
 	@Override
-	public int update(SysMenuInfo menuInfo) {
+	public int updateMenuInfo(SysMenuInfo menuInfo) {
 		int count = 0;
 		try {
-			count = sysMenuInfoDao.update(menuInfo);
+			count = sysMenuInfoDao.updateMenuInfo(menuInfo);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -56,10 +56,14 @@ public class SysMenuInfoServiceImpl implements SysMenuInfoService {
 	}
 
 	@Override
-	public List<Map<String, Object>> findList(SysMenuInfo menuInfo) {
-		List<Map<String, Object>> result = null;
+	public List<SysMenuInfo> findMenuInfoTreeList(SysMenuInfo menuInfo){
+		List<SysMenuInfo> result = null;
 		try {
-			result = sysMenuInfoDao.findList(menuInfo);
+			result = sysMenuInfoDao.findMenuInfoList(menuInfo);
+			
+			
+			
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -67,10 +71,24 @@ public class SysMenuInfoServiceImpl implements SysMenuInfoService {
 	}
 
 	@Override
-	public List<SysMenuInfo> findPageList(SysMenuInfo menuInfo, DataTablesOptions<SysMenuInfo> dataTablesOptions) {
+	public List<SysMenuInfo> findMenuInfoList(SysMenuInfo menuInfo) {
 		List<SysMenuInfo> result = null;
 		try {
-			result = sysMenuInfoDao.findPageList(menuInfo, dataTablesOptions);
+			result = sysMenuInfoDao.findMenuInfoList(menuInfo);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+
+	@Override
+	public List<SysMenuInfo> findMenuInfoPageList(SysMenuInfo menuInfo,
+			DataTablesOptions<SysMenuInfo> dataTablesOptions,
+			String columnName, String sortDir) {
+		List<SysMenuInfo> result = null;
+		try {
+			result = sysMenuInfoDao.findMenuInfoPageList(menuInfo, dataTablesOptions,
+					columnName, sortDir);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -89,7 +107,5 @@ public class SysMenuInfoServiceImpl implements SysMenuInfoService {
 
 		return result;
 	}
-	
-	
 
 }

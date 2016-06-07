@@ -11313,7 +11313,7 @@
 			 *      } );
 			 *    } );
 			 */
-			"sLengthMenu": "显示 _MENU_ 条",
+			"sLengthMenu": "Show _MENU_ entries",
 	
 	
 			/**

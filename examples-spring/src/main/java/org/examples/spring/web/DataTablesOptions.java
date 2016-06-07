@@ -47,6 +47,8 @@ public class DataTablesOptions<T> {
 	 * ajax.dataSrcOption columns.dataSrc 1不定时一讲 columns.dataSrc 2不定时一讲 控制
 	 */
 	private List<T> data;
+	
+	//private String searchValue;
 
 	/**
 	 * 可选。你可以定义一个错误来描述服务器出了问题后的友好提示
@@ -173,5 +175,4 @@ public class DataTablesOptions<T> {
 	public void setDT_RowAttr(Object dT_RowAttr) {
 		DT_RowAttr = dT_RowAttr;
 	}
-
 }

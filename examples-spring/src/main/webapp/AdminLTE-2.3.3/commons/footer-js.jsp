@@ -4,10 +4,6 @@
 <script src="${ctx }/AdminLTE-2.3.3/plugins/jQuery/jQuery-2.2.0.min.js"></script>
 <!-- jQuery UI 1.11.4 -->
 <script src="${ctx }/js/jquery-ui-1.11.4/jquery-ui.min.js"></script>
-<!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
-<script>
-	$.widget.bridge('uibutton', $.ui.button);
-</script>
 <!-- Bootstrap 3.3.6 -->
 <script src="${ctx }/AdminLTE-2.3.3/bootstrap/js/bootstrap.min.js"></script>
 	

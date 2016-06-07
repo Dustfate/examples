@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
-<div class="content-wrapper">
 	<!-- Content Header (Page header) -->
 	<section class="content-header">
 		<h1>
@@ -211,5 +210,3 @@
 
 	</section>
 	<!-- /.content -->
-</div>
-<!-- /.content-wrapper -->

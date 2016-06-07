@@ -39,7 +39,7 @@ public class SysMenuInfoDaoImpl implements SysMenuInfoDao {
 	private PageControl pageControl;
 
 	@Override
-	public Long save(SysMenuInfo menuInfo) {
+	public Long saveMenuInfo(SysMenuInfo menuInfo) {
 		Long count = 0L;
 		try {
 			jdbcDaoImpl.save(menuInfo);
@@ -52,7 +52,7 @@ public class SysMenuInfoDaoImpl implements SysMenuInfoDao {
 	}
 
 	@Override
-	public Long insert(SysMenuInfo menuInfo) throws Exception {
+	public Long insertMenuInfo(SysMenuInfo menuInfo) throws Exception {
 
 		return null;
 	}
@@ -63,41 +63,80 @@ public class SysMenuInfoDaoImpl implements SysMenuInfoDao {
 	}
 
 	@Override
-	public int update(SysMenuInfo menuInfo) throws Exception {
+	public int updateMenuInfo(SysMenuInfo menuInfo) throws Exception {
 		return jdbcDaoImpl.update(menuInfo);
 	}
 
 	@Override
-	public List<Map<String, Object>> findList(SysMenuInfo menuInfo) throws Exception {
+	public List<SysMenuInfo> findMenuInfoList(SysMenuInfo menuInfo)
+			throws Exception {
 		List<Object> params = new ArrayList<Object>();
 		StringBuffer sql = new StringBuffer();
-		sql.append("SELECT MENU_ID, MENU_NAME, PARENT_ID, MENU_URL, MENU_ORDER, MENU_ICON, MENU_TYPE, ISENABLE, CREATE_TIME, UPDATE_TIME ");
+		sql.append("SELECT MENU_ID, MENU_NAME, PARENT_ID, MENU_URL, MENU_ORDER, MENU_ICON, MENU_TYPE, IS_ENABLE, CREATE_TIME, UPDATE_TIME ");
 		sql.append(" FROM SYS_MENU_INFO ");
 		sql.append(" where 1=1");
 
-		if (StringUtil.isEmpty(menuInfo.getMenuName())) {
+		if (!StringUtil.isEmpty(menuInfo.getMenuName())) {
 			sql.append(" AND MENU_NAME LIKE ? ");
 			params.add("'%" + menuInfo.getMenuName() + "%'");
 		}
 
-		if (StringUtil.isEmpty(menuInfo.getIsEnable())) {
-			sql.append(" AND ISENABLE = ? ");
+		if (!StringUtil.isEmpty(menuInfo.getIsEnable())) {
+			sql.append(" AND IS_ENABLE = ? ");
 			params.add(menuInfo.getIsEnable());
 		}
+		
+		if (!StringUtil.isEmpty(menuInfo.getParentId())) {
+			sql.append(" AND PARENT_ID = ? ");
+			params.add(menuInfo.getParentId());
+		}
 
-		List<Map<String, Object>> list = null;
+		List<SysMenuInfo> list = null;
 		try {
-			list = jdbcDaoImpl.queryListForSql(sql.toString(), params.toArray());
+			list = jdbcDaoImpl
+					.queryListForSql(sql.toString(), params.toArray(), SysMenuInfo.class);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		logger.info(list.size());
 		return list;
 	}
-	
-	public List<SysMenuInfo> findPageList(SysMenuInfo menuInfo, DataTablesOptions<SysMenuInfo> dataTablesOptions) throws Exception{
-		//直接传入页码和每页条数
+
+	public List<SysMenuInfo> findMenuInfoPageList(SysMenuInfo menuInfo,
+			DataTablesOptions<SysMenuInfo> dataTablesOptions,
+			String columnName, String sortDir)
+			throws Exception {
+		// 直接传入页码和每页条数
 		pageControl.performPage(dataTablesOptions.getPageNumber(), dataTablesOptions.getLength());
+		List<Object> params = new ArrayList<Object>();
+		StringBuffer sql = new StringBuffer();
+		sql.append("SELECT MENU_ID, MENU_NAME, PARENT_ID, MENU_URL, MENU_ORDER, MENU_ICON, MENU_TYPE, IS_ENABLE, CREATE_TIME, UPDATE_TIME ");
+		sql.append(" FROM SYS_MENU_INFO ");
+		sql.append(" where 1=1");
+		
+		if (!StringUtil.isEmpty(menuInfo.getMenuName())) {
+			sql.append(" AND MENU_NAME LIKE ? ");
+			params.add("'%" + menuInfo.getMenuName() + "%'");
+		}
+
+		if (!StringUtil.isEmpty(menuInfo.getIsEnable())) {
+			sql.append(" AND IS_ENABLE = ? ");
+			params.add(menuInfo.getIsEnable());
+		}
+		
+		if(!StringUtil.isEmpty(columnName))
+			sql.append(" order by ").append(columnName).append(" ").append(sortDir);
+		
+		List<SysMenuInfo> list = null;
+		jdbcDaoImpl.queryListForSql(sql.toString(), SysMenuInfo.class);
+		Pager pager = PageControl.getPager();
+		list = (List<SysMenuInfo>) pager.getList(SysMenuInfo.class);
+
+		return list;
+	}
+
+	public List<SysMenuInfo> getCount(SysMenuInfo menuInfo) throws Exception {
+		// 直接传入页码和每页条数
 		List<Object> params = new ArrayList<Object>();
 		StringBuffer sql = new StringBuffer();
 		sql.append("SELECT MENU_ID, MENU_NAME, PARENT_ID, MENU_URL, MENU_ORDER, MENU_ICON, MENU_TYPE, IS_ENABLE, CREATE_TIME, UPDATE_TIME ");
@@ -113,33 +152,8 @@ public class SysMenuInfoDaoImpl implements SysMenuInfoDao {
 			params.add(menuInfo.getIsEnable());
 		}
 
-		List<SysMenuInfo> list = null;
-		jdbcDaoImpl.queryListForSql(sql.toString(), SysMenuInfo.class);
-		Pager pager = PageControl.getPager();
-		list = (List<SysMenuInfo>) pager.getList(SysMenuInfo.class);
-		
-		return list;
-	}
-	
-	public List<SysMenuInfo> getCount(SysMenuInfo menuInfo) throws Exception {
-		// 直接传入页码和每页条数
-		List<Object> params = new ArrayList<Object>();
-		StringBuffer sql = new StringBuffer();
-		sql.append(
-				"SELECT MENU_ID, MENU_NAME, PARENT_ID, MENU_URL, MENU_ORDER, MENU_ICON, MENU_TYPE, IS_ENABLE, CREATE_TIME, UPDATE_TIME ");
-		sql.append(" FROM SYS_MENU_INFO ");
-		sql.append(" where 1=1");
-		if (!StringUtil.isEmpty(menuInfo.getMenuName())) {
-			sql.append(" AND MENU_NAME LIKE ? ");
-			params.add("'%" + menuInfo.getMenuName() + "%'");
-		}
-
-		if (!StringUtil.isEmpty(menuInfo.getIsEnable())) {
-			sql.append(" AND ISENABLE = ? ");
-			params.add(menuInfo.getIsEnable());
-		}
-
-		List<SysMenuInfo> list = jdbcDaoImpl.queryListForSql(sql.toString(), SysMenuInfo.class);
+		List<SysMenuInfo> list = jdbcDaoImpl.queryListForSql(sql.toString(),
+				SysMenuInfo.class);
 
 		return list;
 	}

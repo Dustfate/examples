@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
-<!-- Left side column. contains the logo and sidebar -->
 <aside class="main-sidebar">
 	<!-- sidebar: style can be found in sidebar.less -->
 	<section class="sidebar">
@@ -32,12 +31,31 @@
 		<!-- sidebar menu: : style can be found in sidebar.less -->
 		<ul class="sidebar-menu">
 			<li class="header">主导航</li>
+			
+			<c:forEach items="${menuList}" var="menu" varStatus="vs">
+				<c:if test="${vs.index == 0}">
+					<li class="active treeview">
+						<a href="#">
+							<i class="fa fa-laptop"></i> <span>${menu.menuName }</span> <i class="fa fa-angle-left pull-right"></i>
+						</a>
+					</li>
+				</c:if>
+				<c:if test="${vs.index > 0}">
+					<li class="treeview">
+						<a href="#">
+							<i class="fa fa-laptop"></i> <span>${menu.menuName }</span> <i class="fa fa-angle-left pull-right"></i>
+						</a>
+					</li>
+				</c:if>
+			</c:forEach>
+			
+			<!-- 
 			<li class="active treeview">
 				<a href="#">
 					<i class="fa fa-laptop"></i> <span>系统管理</span> <i class="fa fa-angle-left pull-right"></i>
 				</a>
 				<ul class="treeview-menu">
-					<li class="active"><a href="#" onclick="openMenu('${ctx }/menu/to_menu_list');"><i class="fa fa-arrow-right"></i> 菜单管理 </a></li>
+					<li><a href="#" onclick="openMenu('${ctx }/menu/to_menu_list');"><i class="fa fa-arrow-right"></i> 菜单管理 </a></li>
 				</ul>
 			</li>
 			
@@ -48,15 +66,9 @@
 					<small class="label pull-right bg-green">new</small>
 				</a>
 			</li>
-			
+			-->
+			 
 		</ul>
 	</section>
 	<!-- /.sidebar -->
 </aside>
-
-
-<script type="text/javascript">
-	function openMenu(url) {
-		parent.parent.setIframeUrl(url);
-	}
-</script>

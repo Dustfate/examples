@@ -2,9 +2,12 @@ package org.examples.spring.web.menu;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.apache.log4j.Logger;
 import org.examples.spring.entity.menu.SysMenuInfo;
 import org.examples.spring.manager.menu.SysMenuInfoService;
+import org.examples.spring.util.StringUtil;
 import org.examples.spring.web.DataTablesOptions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,6 +29,8 @@ public class SysMenuInfoController {
 	
 	@Autowired
 	private SysMenuInfoService sysMenuInfoService;
+	@Autowired
+	private  HttpServletRequest request;
 
 	@RequestMapping(value = "/to_menu_list")
 	public ModelAndView toMenuList() {
@@ -35,21 +40,21 @@ public class SysMenuInfoController {
 		} catch (Exception e) {
 			logger.error(e.toString(), e);
 		}
+		logger.info("跳转到菜单列表页。。。");
 		return mv;
 	}
 	
 	@ResponseBody
 	@RequestMapping(value = "/get_menu_list", method = {RequestMethod.POST, RequestMethod.GET})
 	public Object getMenuList(SysMenuInfo menuInfo, DataTablesOptions<SysMenuInfo> dataTablesOptions) {
-		// For sortable
-//		String sortOrder = request.getParameter("order[0][column]");
-//		String sortDir = request.getParameter("order[0][dir]");
-//		System.out.println("sortOrder: " + sortOrder);
-//		System.out.println("sortDir: " + sortDir);
-		// For search
-//		String searchValue = request.getParameter("search[value]");
-		//results = dao.loadDataList(pageSize, startRecord, columnsName[Integer.parseInt(sortOrder)], sortDir, searchValue);
-		List<SysMenuInfo> menuList = sysMenuInfoService.findPageList(menuInfo, dataTablesOptions);
+		String sortOrder = request.getParameter("order[0][column]");
+		//排序方式
+		String sortDir = request.getParameter("order[0][dir]");
+		//排序字段
+		String columnName = StringUtil.underscoreName(request.getParameter("columns["+sortOrder+"][data]"));
+		logger.info("排序字段："+columnName);
+		logger.info("排序方式："+sortDir);
+		List<SysMenuInfo> menuList = sysMenuInfoService.findMenuInfoPageList(menuInfo, dataTablesOptions, columnName, sortDir);
 		int count = sysMenuInfoService.getCount(menuInfo);
 		
 		DataTablesOptions<SysMenuInfo> result = new DataTablesOptions<SysMenuInfo>();
@@ -57,7 +62,16 @@ public class SysMenuInfoController {
 		result.setData(menuList);
 		result.setRecordsTotal(count);
 		result.setRecordsFiltered(count);
-		Object json = JSONObject.toJSON(result);
+		Object json = null;
+		try {
+			json = JSONObject.toJSON(result);
+		} catch (Exception e) {
+			result.setError(e.getMessage());
+			e.printStackTrace();
+			json = JSONObject.toJSON(result);
+		}
+		
+		logger.info("执行菜单列表页。。。");
 		return json;
 	}
 
@@ -84,5 +98,6 @@ public class SysMenuInfoController {
 	public void setCurPageNumber(String curPageNumber) {
 		this.curPageNumber = curPageNumber;
 	}
+
 	
 }
