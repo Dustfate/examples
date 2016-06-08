@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!--浏览器兼容性设置-->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta charset="utf-8"/>
+    <title>Empty Page - Ace Admin</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
+
+    <!-- bootstrap & fontawesome -->
+    <link rel="stylesheet" href="../assets/css/bootstrap.css"/>
+    <link rel="stylesheet" href="../components/font-awesome/css/font-awesome.css"/>
+
+    <!-- page plugin css -->
+    <link rel="stylesheet" href="../components/_mod/jquery-ui/jquery-ui.css" />
+
+    <!-- ace styles -->
+    <link rel="stylesheet" href="../assets/css/ace.css" class="ace-main-stylesheet" id="main-ace-style"/>
+
+    <!--[if lte IE 9]>
+    <link rel="stylesheet" href="../assets/css/ace-part2.css" class="ace-main-stylesheet"/>
+    <![endif]-->
+    <link rel="stylesheet" href="../assets/css/ace-skins.css"/>
+
+    <!--[if lte IE 9]>
+    <link rel="stylesheet" href="../assets/css/ace-ie.css"/>
+    <![endif]-->
+
+    <!--THS CSS 插件-->
+    <link rel="stylesheet" href="../assets/css/ths.css"/>
+
+    <!-- 自己写的CSS，请放在这里 -->
+    <style type="text/css">
+
+    </style>
+
+    <!-- HTML5shiv and Respond.js for IE8 to support HTML5 elements and media queries -->
+
+    <!--[if lte IE 8]>
+    <script src="../components/html5shiv/dist/html5shiv.min.js"></script>
+    <script src="../components/respond/dest/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body class="no-skin">
+
+<div class="main-container" id="main-container">
+    <div class="main-content">
+        <div class="main-content-inner fixed-page-header fixed-82">
+            <div id="breadcrumbs" class="breadcrumbs">
+                <ul class="breadcrumb">
+                    <li class="active"><i class="fa fa-arrow-right"></i> 各种Dialog</li>
+                </ul><!-- /.breadcrumb -->
+
+            </div>
+            <div class="page-toolbar align-right">
+                <button type="button" class="btn btn-xs btn-inverse btn-xs-ths" id="btn1">
+                    <i class="ace-icon fa fa-hand-o-right"></i>
+                    Confirm
+                </button>
+                <button type="button" class="btn btn-xs btn-info btn-xs-ths" id="btn2">
+                    <i class="ace-icon fa fa-hand-o-right"></i>
+                    Info
+                </button>
+                <button type="button" class="btn btn-xs btn-success btn-xs-ths" id="btn3">
+                    <i class="ace-icon fa fa-hand-o-right"></i>
+                    弹出表单iframe
+                </button>
+                <button type="button" class="btn btn-xs btn-yellow btn-xs-ths" id="btn5">
+                    <i class="ace-icon fa fa-hand-o-right"></i>
+                    选择部门/角色/人
+                </button>
+
+            </div>
+        </div>
+        <div class="main-content-inner padding-page-content">
+            <div class="page-content">
+                <div class="space-4"></div>
+                <div class="row ">
+                    <div class="col-xs-12">
+                        <form class="form-horizontal" role="form" id="form1" action="index.html" method="post">
+
+                            <div class="alert alert-block alert-warning">
+                                <ul class="list-inline blue">
+                                    <li><i class="ace-icon fa fa-question-circle blue"></i>
+                                        jQueryUI Dialog: 1.11.4</li>
+                                    <li><i class="ace-icon fa fa-hand-o-right"></i><a href="http://api.jqueryui.com/dialog/" target="_blank">API文档</a>
+                                    </li>
+
+                                </ul>
+                                <hr>
+                                <ul class="list-unstyled">
+                                    <li>
+                                <i class="ace-icon fa fa-info-circle red"></i>
+                                <span class="text-warning">HTML页面已引入<a href="../components/jquery-ui/jquery-ui.js" target="_blank">../components/jquery-ui/jquery-ui.js</a>总包，所有jQueryUI相关组件不在需要单独引入JS文件。</span>
+                                    </li>
+                                    <li><i class="ace-icon fa fa-info-circle blue"></i>
+                                <span class="text-warning">
+                                    关于弹出iFrame的Dialog，如果iFrame中子页面需要和父页面做js交互，请参考博文<a href="http://www.cnblogs.com/xyicheng/archive/2010/02/26/1674017.html" target="_blank">http://www.cnblogs.com/xyicheng/archive/2010/02/26/1674017.html</a>
+                                   </span>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-1 control-label no-padding-right" for="txtBirthday">
+                                    <i class="ace-icon fa fa-asterisk red smaller-70"> </i>
+                                    生日
+                                </label>
+                                <div class="col-sm-3">
+                                    <div class="input-group" id="divBirthday">
+                                        <input type="text" class="form-control" data-validation-engine="validate[required,custom[date]]" placeholder="" id="txtBirthday" readonly="readonly"/>
+                                    <span class="input-group-btn">
+                                        <button type="button" class="btn btn-white btn-default" id="btnBirthday">
+                                            <i class="ace-icon fa fa-calendar"></i>
+                                        </button>
+                                    </span>
+                                    </div>
+                                </div>
+                                <label class="col-sm-1 control-label no-padding-right" for="form-field-221">所属部门</label>
+                                <div class="col-sm-3">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" placeholder="" id="form-field-221"
+                                               readonly="readonly"/>
+                                    <span class="input-group-btn">
+                                    <button type="button" class="btn btn-white btn-default">
+                                        <i class="ace-icon fa fa-search"></i>
+                                        选择
+                                    </button>
+                                        <button type="button" class="btn btn-white btn-default">
+                                            <i class="ace-icon fa fa-remove"></i>
+                                        </button>
+                                    </span>
+                                    </div>
+                                </div>
+                                <label class="col-sm-1 control-label no-padding-right" for="form-field-16">序列号</label>
+                                <div class="col-sm-3">
+                                    <input type="text" class="form-control" placeholder="" id="form-field-16"
+                                           disabled="disabled"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-1 control-label no-padding-right"
+                                       for="form-field-select-1">
+                                    职位
+                                </label>
+                                <div class="col-sm-3">
+                                    <select class="form-control" id="form-field-select-1" >
+                                        <option value="">-请选择-</option>
+                                        <option value="1">科员</option>
+                                        <option value="2">科长</option>
+                                        <option value="3">处长</option>
+                                        <option value="4">局长</option>
+                                    </select>
+                                </div>
+                                <label class="col-sm-1 control-label no-padding-right" for="form-field-8">职别</label>
+                                <div class="col-sm-3">
+                                    <input type="text" class="form-control" placeholder="" id="form-field-8"/>
+                                </div>
+                                <label class="col-sm-1 control-label no-padding-right">简历</label>
+                                <div class="col-sm-3">
+                                    <!-- #section:custom/file-input -->
+                                    <label class="ace-file-input">
+                                        <input type="file"  id="id-input-file-2" >
+                                            <span class="ace-file-container" data-title="浏览 ..">
+                                                <span class="ace-file-name" data-title="选择文件...">
+                                                    <i class=" ace-icon fa fa-upload"></i>
+                                                </span>
+                                            </span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div>
+                                <i class="ace-icon fa fa-exclamation-triangle red"></i>
+                                <span class="red">这里放置了各种隐藏的Dialog Div代码，请查看源文件。</span>
+                                <!--dialog hide css-->
+                                <div id="dialog-confirm" class="hide">
+                                    <div class="alert alert-warning">
+                                        确实要删除这个用户吗？
+                                    </div>
+                                </div>
+                                <div id="dialog-info" class="hide">
+                                    <div class="alert alert-info">
+                                        当前网络已断开，您的所有操作将不会修改任何数据！
+                                    </div>
+                                </div>
+                                <div id="dialog-iframe" class="hide">
+                                    <iframe src="formDialog-iframe1.html" style="width: 100%;border: none;"></iframe>
+                                </div>
+
+                            </div>
+                        </form>
+                    </div>
+                    </div><!-- /.row -->
+            </div>
+        </div><!--/.main-content-inner-->
+    </div><!-- /.main-content -->
+</div><!-- /.main-container -->
+
+<!-- basic scripts -->
+
+<!--[if !IE]> -->
+<script src="../components/jquery/dist/jquery.js"></script>
+<!-- <![endif]-->
+
+<!--[if IE]>
+<script src="../components/jquery.1x/dist/jquery.js"></script>
+<![endif]-->
+<script type="text/javascript">
+    if ('ontouchstart' in document.documentElement) document.write("<script src='../components/_mod/jquery.mobile.custom/jquery.mobile.custom.js'>" + "<" + "/script>");
+</script>
+<script src="../components/bootstrap/dist/js/bootstrap.js"></script>
+
+<!-- page specific plugin scripts -->
+<script src="../components/jquery-ui/jquery-ui.js"></script>
+<script src="../components/jqueryui-touch-punch/jquery.ui.touch-punch.js"></script>
+
+<!--ace script-->
+<script src="../assets/js/src/ace.js"></script>
+<!--THS script-->
+<script src="../assets/js/ths.js"></script>
+
+<!-- 自己写的JS，请放在这里 -->
+<script type="text/javascript">
+    jQuery(function ($) {
+        //confirm 对话框
+        $( "#btn1" ).on(ace.click_event, function(e) {
+            e.preventDefault();
+            $.thsDialog("提示","确实要删除这个用户吗？",
+                [
+                    {
+                        text: "取消",
+                        "class" : "btn btn-xs btn-danger btn-xs-ths",
+                        click: function() {
+                            $(this).dialog( "close" );
+                        }
+                    },
+                    {
+                        text: "确定",
+                        "class" : "btn btn-xs btn-success btn-xs-ths",
+                        click: function() {
+                            $( this ).dialog( "close" );
+                        }
+                    }
+                ]);
+        });
+
+        //info 对话框
+        $( "#btn2" ).on(ace.click_event, function(e) {
+            e.preventDefault();
+            $.thsDialog(
+                    "信息",
+                    "当前网络已断开，您的所有操作将不会修改任何数据！",
+                    [],
+                    "fa-exclamation-triangle"
+            );
+        });
+
+        $( "#btn3" ).on(ace.click_event, function(e) {
+            e.preventDefault();
+            $( "#dialog-iframe" ).removeClass('hide').dialog({
+                width:500>document.documentElement.clientWidth?document.documentElement.clientWidth:500,
+                height:600>document.documentElement.clientHeight?document.documentElement.clientHeight:600,
+                modal: true,
+                position:{my:"center center",at:"center center-50" },
+                iconCss:"fa-check",
+                title: "IFRAME套页面",
+                buttons: [
+                 /*
+                 {
+                    text: "确定",
+                    "class" : "btn btn-xs btn-success btn-xs-ths",
+                    click: function() {
+                        $( this ).dialog( "close" );
+                    }
+                 }
+                 */
+                ]
+            });
+        });
+
+
+    });
+</script>
+</body>
+</html>

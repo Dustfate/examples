@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!--浏览器兼容性设置-->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta charset="utf-8"/>
+    <title></title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
+
+    <!-- bootstrap & fontawesome -->
+    <link rel="stylesheet" href="../assets/css/bootstrap.css"/>
+    <link rel="stylesheet" href="../components/font-awesome/css/font-awesome.css"/>
+
+    <!-- page plugin css -->
+    <link rel="stylesheet" href="../components/_mod/jQuery-Validation-Engine/validationEngine.jquery.css"/>
+    <link rel="stylesheet" href="../components/_mod/jQuery-Validation-Engine/template.css"/>
+
+    <!-- ace styles -->
+    <link rel="stylesheet" href="../assets/css/ace.css" class="ace-main-stylesheet" id="main-ace-style"/>
+
+    <!--[if lte IE 9]>
+    <link rel="stylesheet" href="../assets/css/ace-part2.css" class="ace-main-stylesheet"/>
+    <![endif]-->
+    <link rel="stylesheet" href="../assets/css/ace-skins.css"/>
+
+    <!--[if lte IE 9]>
+    <link rel="stylesheet" href="../assets/css/ace-ie.css"/>
+    <![endif]-->
+
+    <!--THS CSS 插件-->
+    <link rel="stylesheet" href="../assets/css/ths.css"/>
+
+    <!-- 自己写的CSS，请放在这里 -->
+    <style type="text/css">
+        .divMenuShow{ display:none}
+    </style>
+
+    <!-- HTML5shiv and Respond.js for IE8 to support HTML5 elements and media queries -->
+
+    <!--[if lte IE 8]>
+    <script src="../components/html5shiv/dist/html5shiv.min.js"></script>
+    <script src="../components/respond/dest/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body class="no-skin">
+
+<div class="main-container" id="main-container">
+    <div class="main-content">
+        <div class="main-content-inner fixed-page-header fixed-40">
+
+            <div class="page-toolbar align-right">
+
+                <button type="button" class="btn btn-xs btn-primary btn-xs-ths" id="btnSave">
+                    <i class="ace-icon fa fa-save"></i>
+                    保存
+                </button>
+                <!--
+                <button type="button" class="btn btn-xs btn-success btn-xs-ths" id="btnSubmit">
+                    <i class="ace-icon fa fa-check"></i>
+                    提交
+                </button>
+                <button type="button" class="btn btn-xs btn-danger btn-xs-ths" id="btnDelete">
+                    <i class="ace-icon fa fa-trash-o"></i>
+                    删除
+                </button>
+                -->
+                <button type="button" class="btn btn-xs btn-danger btn-xs-ths" id="btnReturn">
+                    <i class="ace-icon fa fa-reply"></i>
+                    返回
+                </button>
+
+            </div>
+
+        </div>
+        <div class="main-content-inner padding-page-content">
+            <div class="page-content">
+                <div class="space-4"></div>
+                <div class="row">
+                    <div class=" col-xs-12">
+                        <form class="form-horizontal" role="form" id="form1" action="index.html" method="post">
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label no-padding-right">
+                                    <i class="ace-icon fa fa-asterisk red smaller-70"></i>
+                                    类型
+                                </label>
+                                <div class="col-sm-4">
+                                    <select class="form-control" id="selectType">
+                                        <option value="0">应用</option>
+                                        <option value="10">功能</option>
+                                        <!--
+                                        <option value="20">操作</option>
+                                        -->
+                                    </select>
+                                </div>
+                                <label class="col-sm-2 control-label no-padding-right" >
+                                    <label class="pos-rel">
+                                        <input type="checkbox" class="ace" id="ckRef"/>
+                                        <span class="lbl">来自引用</span>
+                                    </label>
+                                </label>
+                                <div class="col-sm-4" style="display: none" id="divCkRef">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" placeholder="" readonly="readonly"/>
+                                    <span class="input-group-btn">
+                                    <button type="button" class="btn btn-white btn-default">
+                                        <i class="ace-icon fa fa-search"></i>
+                                        选择
+                                    </button>
+
+                                    </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label no-padding-right" >
+                                    <i class="ace-icon fa fa-asterisk red smaller-70"></i>
+                                    <span id="lblRes">资源名称</span></label>
+                                <div class="col-sm-4">
+                                    <span class="input-icon width-100">
+                                        <input type="text" class="form-control"
+                                               data-validation-engine="validate[required]" placeholder="20个汉字以内"
+                                               id="txtName" maxlength="20"/>
+                                        <i class="ace-icon fa fa-link"> </i>
+                                   </span>
+                                </div>
+                                <label class="col-sm-2 control-label no-padding-right">
+                                    父节点
+                                </label>
+                                <div class="col-sm-4">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" placeholder="" readonly="readonly"/>
+                                    <span class="input-group-btn">
+                                    <button type="button" class="btn btn-white btn-default">
+                                        <i class="ace-icon fa fa-search"></i>
+                                        选择
+                                    </button>
+                                        <button type="button" class="btn btn-white btn-default">
+                                            <i class="ace-icon fa fa-remove"></i>
+                                        </button>
+                                    </span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+
+                                <label class="col-sm-2 control-label no-padding-right" >菜单显示</label>
+                                <div class="col-sm-4">
+                                    <label style="margin-top: 5px; ">
+                                        <input type="checkbox" checked id="switchMenu" class="ace ace-switch ace-switch-4 btn-empty" />
+                                        <span class="lbl"></span>
+                                    </label>
+                                </div>
+                                <label class="col-sm-2 control-label no-padding-right" >排序</label>
+                                <div class="col-sm-4">
+                                    <input type="text" class="form-control" data-validation-engine="validate[custom[integer]]" placeholder="" />
+                                </div>
+                                <!--
+                                <label class="col-sm-2 control-label no-padding-right divFunc" >功能类型</label>
+                                <div class="col-sm-4 divFunc">
+                                    <select class="form-control" id="selectFuncType">
+                                        <option value="1">页面URL</option>
+                                        <option value="2">Portlet</option>
+                                        <option value="0">其它</option>
+                                    </select>
+                                </div>
+                                -->
+                            </div>
+                            <div class="form-group divMenuShow">
+                            <label class="col-sm-2 control-label no-padding-right " id="lblCode" >
+                                菜单URL
+                            </label>
+                            <div class="col-sm-4">
+                                <input type="text" class="form-control" placeholder="请填写完整地址，没有可不填" maxlength="20"/>
+                            </div>
+                                <label class="col-sm-2 control-label no-padding-right" id="s">URL Target</label>
+                                <div class="col-sm-4">
+                                    <input type="text" class="form-control" placeholder="" maxlength="20"/>
+                                </div>
+                        </div>
+                            <div class="form-group divMenuShow">
+                                <label class="col-sm-2 control-label no-padding-right" >菜单图标</label>
+                                <div class="col-sm-4">
+                                    <div class="input-group">
+                                        <span class="input-group-btn">
+                                    <button type="button" class="btn btn-white btn-default">
+                                        <i class="ace-icon fa fa-arrow-circle-right"></i>
+                                    </button>
+
+                                    </span>
+                                        <input type="text" class="form-control" placeholder="fa-arrow-circle-right"/>
+                                    <span class="input-group-btn">
+                                    <button type="button" class="btn btn-white btn-default">
+                                        <i class="ace-icon fa fa-search"></i>
+                                        选择
+                                    </button>
+
+                                    </span>
+                                    </div>
+                                </div>
+
+                                <label class="col-sm-2 control-label no-padding-right" >隐藏左菜单</label>
+                                <div class="col-sm-4">
+                                    <label style="margin-top: 5px; ">
+                                        <input type="checkbox"  id="switchHideMenu" class="ace ace-switch ace-switch-4 btn-empty" />
+                                        <span class="lbl"></span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label no-padding-right" >
+                                    <!--
+                                    <i class="ace-icon fa fa-question-circle text-info" data-rel="tooltip"
+                                       data-container="body" data-toggle="tooltip" data-placement="bottom" title="如果是URL，请输入http://{ip}:{port}/{context}之后的值，请勿输入URL参数，示例/User/xxAction.action!list"></i>
+                                    -->
+                                    URL权限代码</label>
+                                <div class="col-sm-4">
+                                    <input type="text" class="form-control" placeholder="如:Portal.OU.List" />
+                                </div>
+
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 hidden-xs control-label no-padding-right">
+                                    &nbsp;
+                                </label>
+                                <div class="col-sm-10">
+                                    <div class="alert alert-block alert-info">
+                                        <h4 class="blue">
+                                            <i class="ace-icon fa fa-question-circle"></i>
+                                            帮助 - URL权限代码
+                                        </h4>
+                                        <p><i class="ace-icon fa fa-code"></i>
+                                            对于实际的URL地址，请填写http://{ip}:{port}/{context}之后的信息，并且不包含任何URL参数，如/user/userAction.action!list；<br>
+                                            </p>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <hr>
+
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label no-padding-right">
+                                    扩展1
+                                </label>
+                                <div class="col-sm-4">
+                                    <input type="text" class="form-control"/>
+                                </div>
+                                <label class="col-sm-2 control-label no-padding-right ">
+                                    扩展2</label>
+
+                                <div class="col-sm-4">
+                                    <input type="text" class="form-control"/>
+                                </div>
+
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label no-padding-right">
+                                    扩展3
+                                </label>
+                                <div class="col-sm-4">
+                                    <input type="text" class="form-control"/>
+                                </div>
+                                <label class="col-sm-2 control-label no-padding-right ">
+                                    扩展4</label>
+
+                                <div class="col-sm-4">
+                                    <input type="text" class="form-control"/>
+                                </div>
+
+                            </div>
+                        </form>
+                    </div>
+                </div><!-- /.row -->
+            </div>
+        </div><!--/.main-content-inner-->
+    </div><!-- /.main-content -->
+</div><!-- /.main-container -->
+
+<!-- basic scripts -->
+
+<!--[if !IE]> -->
+<script src="../components/jquery/dist/jquery.js"></script>
+<!-- <![endif]-->
+
+<!--[if IE]>
+<script src="../components/jquery.1x/dist/jquery.js"></script>
+<![endif]-->
+<script type="text/javascript">
+    if ('ontouchstart' in document.documentElement) document.write("<script src='../components/_mod/jquery.mobile.custom/jquery.mobile.custom.js'>" + "<" + "/script>");
+</script>
+<script src="../components/bootstrap/dist/js/bootstrap.js"></script>
+
+<!-- page specific plugin scripts -->
+
+<!--表单验证jquery.validationEngine-->
+<script src="../components/_mod/jQuery-Validation-Engine/jquery.validationEngine-zh_CN.js" type="text/javascript"
+        charset="utf-8"></script>
+<script src="../components/_mod/jQuery-Validation-Engine/jquery.validationEngine.js" type="text/javascript"
+        charset="utf-8"></script>
+<!--日期控件-->
+<script src="../components/My97DatePicker/WdatePicker.js"></script>
+
+
+<!--ace script-->
+<script src="../assets/js/src/ace.js"></script>
+<script src="../assets/js/ace-elements.js"></script>
+
+
+<!-- 自己写的JS，请放在这里 -->
+<script type="text/javascript">
+    jQuery(function ($) {
+
+        //表单验证组件初始化，详细文档请参考http://code.ciaoca.com/jquery/validation-engine/ 或官网文档http://posabsolute.github.io/jQuery-Validation-Engine/
+        $("#form1").validationEngine({
+            scrollOffset: 98,//必须设置，因为Toolbar position为Fixed
+            promptPosition: 'bottomLeft',
+            autoHidePrompt: true
+        });
+        $("#btnSave").on(ace.click_event, function () {
+            //console.log("validate begin..");
+            //console.log($('#form1').validationEngine('validate'));
+            if ($('#form1').validationEngine('validate')) {
+                //submit
+            }
+        });
+        $("#btnReturn").on(ace.click_event, function () {
+            location.href="rolelist.html";
+        });
+
+        function checkRef() {
+            if($("#ckRef")[0].checked)
+            {
+                $("#divCkRef").show();
+                $("#lblRes").text("别名");
+                $("#liOp",window.parent.document).hide();
+                $("#tapOp",window.parent.document).hide();
+            }
+            else {
+                $("#divCkRef").hide();
+                $("#lblRes").text("资源名称");
+                $("#liOp",window.parent.document).show();
+                $("#tapOp",window.parent.document).show();
+            }
+        }
+        $("#ckRef").on(ace.click_event,function () {
+            checkRef();
+        });
+        function checkMenuShow()
+        {
+            if($("#switchMenu").attr("checked"))
+            {
+                $(".divMenuShow").slideDown();
+            }
+            else{
+                $(".divMenuShow").slideUp();
+            }
+        }
+
+        $("#switchMenu").on(ace.click_event, function (e) {
+            $("#switchMenu").attr("checked")?$("#switchMenu").removeAttr('checked'):$("#switchMenu").attr("checked","checked");
+            checkMenuShow();
+        });
+
+        checkRef();
+        checkMenuShow();
+        //$('[data-rel=tooltip]').tooltip({container:'body'});
+    });
+</script>
+</body>
+</html>

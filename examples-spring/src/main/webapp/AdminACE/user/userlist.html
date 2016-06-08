@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!--浏览器兼容性设置-->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta charset="utf-8"/>
+    <title></title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
+
+    <!-- bootstrap & fontawesome -->
+    <link rel="stylesheet" href="../assets/css/bootstrap.css"/>
+    <link rel="stylesheet" href="../components/font-awesome/css/font-awesome.css"/>
+
+    <!-- page plugin css -->
+    <link rel="stylesheet" href="../components/_mod/jquery-ui/jquery-ui.css" />
+
+    <!-- ace styles -->
+    <link rel="stylesheet" href="../assets/css/ace.css" class="ace-main-stylesheet" id="main-ace-style"/>
+
+    <!--[if lte IE 9]>
+    <link rel="stylesheet" href="../assets/css/ace-part2.css" class="ace-main-stylesheet"/>
+    <![endif]-->
+    <link rel="stylesheet" href="../assets/css/ace-skins.css"/>
+
+    <!--[if lte IE 9]>
+    <link rel="stylesheet" href="../assets/css/ace-ie.css"/>
+    <![endif]-->
+
+    <!--THS CSS 插件-->
+    <link rel="stylesheet" href="../assets/css/ths.css"/>
+
+    <!-- 自己写的CSS，请放在这里 -->
+    <style type="text/css">
+
+    </style>
+
+    <!-- HTML5shiv and Respond.js for IE8 to support HTML5 elements and media queries -->
+
+    <!--[if lte IE 8]>
+    <script src="../components/html5shiv/dist/html5shiv.min.js"></script>
+    <script src="../components/respond/dest/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body class="no-skin">
+
+<div class="main-container" id="main-container">
+    <div class="main-content">
+        <div class="main-content-inner padding-page-content">
+            <div class="page-content">
+                <div class="space-4"></div>
+                <div class="row">
+                    <div class="col-xs-12">
+                        <form class="form-horizontal" role="form" id="form1" action="index.html" method="post">
+
+                            <div class="form-group">
+                                <label class="col-sm-1 hidden-xs control-label no-padding-right" for="txtName">
+                                    姓名
+                                </label>
+                                <div class="col-sm-3 col-xs-8">
+                                    <span class="input-icon width-100">
+                                        <input type="text" class="form-control" placeholder="姓名/用户名"
+                                               id="txtName"/>
+                                        <i class="ace-icon fa fa-user"> </i>
+                                   </span>
+
+                                </div>
+
+
+                                <label class="col-sm-1 control-label no-padding-right hidden-xs"
+                                       for="form-field-select-1">
+                                   状态
+                                </label>
+                                <div class="col-sm-3 hidden-xs">
+                                    <select class="form-control" id="form-field-select-1">
+                                        <option value="1">启用</option>
+                                        <option value="2">停用</option>
+                                    </select>
+                                </div>
+
+                                <div class="col-sm-4 col-xs-4 align-right">
+                                    <button type="button" class="btn btn-info btn-default-ths" id="btnSearch">
+                                        <i class="ace-icon fa fa-search"></i>
+                                        搜索
+                                    </button>
+
+                                </div>
+                            </div>
+                            <hr class="no-margin">
+                            <div class="page-toolbar align-right list-toolbar">
+                                <button type="button" class="btn btn-xs btn-primary btn-xs-ths" id="btnAdd" data-ths-href="useredit.html">
+                                    <i class="ace-icon fa fa-plus"></i>
+                                    添加
+                                </button>
+                                <button type="button" class="btn btn-xs btn-danger btn-xs-ths" id="btnDelete">
+                                    <i class="ace-icon fa fa-minus-circle"></i>
+                                    停用
+                                </button>
+                                <!--
+                                <button type="button" class="btn btn-xs btn-purple btn-xs-ths" id="btnImport">
+                                    <i class="ace-icon fa fa-download"></i>
+                                    导入
+                                </button>
+                                <button type="button" class="btn btn-xs btn-inverse btn-xs-ths" id="btnExport">
+                                    <i class="ace-icon fa fa-upload"></i>
+                                    导出
+                                </button>
+                                -->
+                            </div>
+                            <table id="simple-table" class="table  table-bordered table-hover">
+                                <thead>
+                                <tr>
+                                    <th class="center">
+                                        <label class="pos-rel">
+                                            <input type="checkbox" class="ace"/>
+                                            <span class="lbl"></span>
+                                        </label>
+                                    </th>
+                                    <th class=""><i class="ace-icon fa fa-user"></i>
+                                        姓名
+                                    </th>
+                                    <th><i class="ace-icon fa fa-credit-card"></i>
+                                        用户名
+                                    </th>
+                                    <th>
+                                        <i class="ace-icon fa fa-sitemap"></i>
+                                        主部门
+                                        <i class="ace-icon fa fa-sort blue pull-right"></i>
+                                    </th>
+                                    <th class="hidden-xs hidden-sm align-right">
+                                        排序
+                                    </th>
+
+                                    <th class="align-center hidden-xs hidden-sm">
+                                        状态
+                                        <i class="ace-icon fa fa-sort-desc blue pull-right"></i></th>
+                                    <th class="align-center"><i class="ace-icon fa fa-wrench"></i>
+                                        操作
+                                    </th>
+                                </tr>
+                                </thead>
+
+                                <tbody>
+                                <tr>
+                                    <td class="center">
+                                        <label class="pos-rel">
+                                            <input type="checkbox" class="ace"/>
+                                            <span class="lbl"></span>
+                                        </label>
+                                    </td>
+
+                                    <td class="">
+                                        <a href="userdetail.html?id=2"> 老王</a>
+                                    </td>
+                                    <td>wangml</td>
+                                    <td>信息中心</td>
+                                    <td class="hidden-xs hidden-sm align-right">10</td>
+                                    <td class="align-center hidden-xs hidden-sm">
+                                            <span class="label label-sm label-warning arrowed-in-right min-width-75">
+                                                <i class="ace-icon fa fa-minus-circle"></i>
+                                                停用 </span>
+                                    </td>
+                                    <td class=" align-center col-op-ths">
+                                        <button type="button"  class="btn btn-sm btn-white btn-info btn-op-ths" data-ths-href="useredit.html" title="编辑">
+                                            <i class="ace-icon fa fa-edit"></i>
+                                        </button>
+                                        <button type="button"  class="btn btn-sm btn-white btn-success btn-op-ths btnGroup"  title="群组">
+                                            <i class="ace-icon fa fa-users"></i>
+                                        </button>
+                                        <!--
+                                        <button type="button"  class="btn btn-sm btn-white btn-default  btn-op-ths btnPosi"  title="岗位">
+                                            <i class="ace-icon fa fa-suitcase"></i>
+                                        </button>
+                                        -->
+                                        <button type="button"  class="btn btn-sm btn-white btn-purple  btn-op-ths btnRole"  title="角色">
+                                            <i class="ace-icon fa fa-registered"></i>
+                                        </button>
+                                        <button type="button"  class="btn btn-sm btn-white btn-inverse  btn-op-ths"  title="查看权限">
+                                            <i class="ace-icon fa fa-search"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td class="center">
+                                        <label class="pos-rel">
+                                            <input type="checkbox" class="ace"/>
+                                            <span class="lbl"></span>
+                                        </label>
+                                    </td>
+
+                                    <td class="">
+                                        白凯南
+                                    </td>
+                                    <td> baikainan</td>
+                                    <td>信息中心</td>
+                                    <td class="hidden-xs hidden-sm align-right">10</td>
+                                    <td class="align-center hidden-xs hidden-sm">
+                                            <span class="label label-sm label-success arrowed-in-right min-width-75">
+                                                <i class="ace-icon fa fa-check-circle"></i>
+                                                启用 </span>
+                                    </td>
+                                    <td class=" align-center col-op-ths">
+                                        <button type="button"  class="btn btn-sm btn-white btn-info btn-op-ths" data-ths-href="useredit.html" title="编辑">
+                                            <i class="ace-icon fa fa-edit"></i>
+                                        </button>
+                                        <button type="button"  class="btn btn-sm btn-white btn-success btn-op-ths"  title="群组">
+                                            <i class="ace-icon fa fa-users"></i>
+                                        </button>
+                                        <!--
+                                        <button type="button"  class="btn btn-sm btn-white btn-default  btn-op-ths"  title="岗位">
+                                            <i class="ace-icon fa fa-suitcase"></i>
+                                        </button>
+                                        -->
+                                        <button type="button"  class="btn btn-sm btn-white btn-purple  btn-op-ths" title="角色">
+                                            <i class="ace-icon fa fa-registered"></i>
+                                        </button>
+                                        <button type="button"  class="btn btn-sm btn-white btn-inverse  btn-op-ths"  title="查看权限">
+                                            <i class="ace-icon fa fa-search"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="center">
+                                        <label class="pos-rel">
+                                            <input type="checkbox" class="ace"/>
+                                            <span class="lbl"></span>
+                                        </label>
+                                    </td>
+
+                                    <td class="">
+                                        <a href="userdetail.html?id=2"> 老王</a>
+                                    </td>
+                                    <td>wangml</td>
+                                    <td>信息中心</td>
+                                    <td class="hidden-xs hidden-sm align-right">10</td>
+                                    <td class="align-center hidden-xs hidden-sm">
+                                            <span class="label label-sm label-warning arrowed-in-right min-width-75">
+                                                <i class="ace-icon fa fa-minus-circle"></i>
+                                                停用 </span>
+                                    </td>
+                                    <td class=" align-center col-op-ths">
+                                        <button type="button"  class="btn btn-sm btn-white btn-info btn-op-ths" data-ths-href="useredit.html" title="编辑">
+                                            <i class="ace-icon fa fa-edit"></i>
+                                        </button>
+                                        <button type="button"  class="btn btn-sm btn-white btn-success btn-op-ths"  title="群组">
+                                            <i class="ace-icon fa fa-users"></i>
+                                        </button>
+                                        <!--
+                                       <button type="button"  class="btn btn-sm btn-white btn-default  btn-op-ths"  title="岗位">
+                                           <i class="ace-icon fa fa-suitcase"></i>
+                                       </button>
+                                       -->
+                                       <button type="button"  class="btn btn-sm btn-white btn-purple  btn-op-ths" title="角色">
+                                           <i class="ace-icon fa fa-registered"></i>
+                                       </button>
+                                       <button type="button"  class="btn btn-sm btn-white btn-inverse  btn-op-ths"  title="查看权限">
+                                           <i class="ace-icon fa fa-search"></i>
+                                       </button>
+                                   </td>
+                               </tr>
+
+                               <tr>
+                                   <td class="center">
+                                       <label class="pos-rel">
+                                           <input type="checkbox" class="ace"/>
+                                           <span class="lbl"></span>
+                                       </label>
+                                   </td>
+
+                                   <td class="">
+                                       白凯南
+                                   </td>
+                                   <td> baikainan</td>
+                                   <td>信息中心</td>
+                                   <td class="hidden-xs hidden-sm align-right">10</td>
+                                   <td class="align-center hidden-xs hidden-sm">
+                                           <span class="label label-sm label-success arrowed-in-right min-width-75">
+                                               <i class="ace-icon fa fa-check-circle"></i>
+                                               启用 </span>
+                                   </td>
+                                   <td class=" align-center col-op-ths">
+                                       <button type="button"  class="btn btn-sm btn-white btn-info btn-op-ths" data-ths-href="useredit.html" title="编辑">
+                                           <i class="ace-icon fa fa-edit"></i>
+                                       </button>
+                                       <button type="button"  class="btn btn-sm btn-white btn-success btn-op-ths"  title="群组">
+                                           <i class="ace-icon fa fa-users"></i>
+                                       </button>
+                                       <!--
+                                      <button type="button"  class="btn btn-sm btn-white btn-default  btn-op-ths"  title="岗位">
+                                          <i class="ace-icon fa fa-suitcase"></i>
+                                      </button>
+                                      -->
+                                      <button type="button"  class="btn btn-sm btn-white btn-purple  btn-op-ths" title="角色">
+                                          <i class="ace-icon fa fa-registered"></i>
+                                      </button>
+                                      <button type="button"  class="btn btn-sm btn-white btn-inverse  btn-op-ths"  title="查看权限">
+                                          <i class="ace-icon fa fa-search"></i>
+                                      </button>
+                                  </td>
+                              </tr>
+                              <tr>
+                                  <td class="center">
+                                      <label class="pos-rel">
+                                          <input type="checkbox" class="ace"/>
+                                          <span class="lbl"></span>
+                                      </label>
+                                  </td>
+
+                                  <td class="">
+                                      <a href="userdetail.html?id=2"> 老王</a>
+                                  </td>
+                                  <td>wangml</td>
+                                  <td>信息中心</td>
+                                  <td class="hidden-xs hidden-sm align-right">10</td>
+                                  <td class="align-center hidden-xs hidden-sm">
+                                          <span class="label label-sm label-warning arrowed-in-right min-width-75">
+                                              <i class="ace-icon fa fa-minus-circle"></i>
+                                              停用 </span>
+                                  </td>
+                                  <td class=" align-center col-op-ths">
+                                      <button type="button"  class="btn btn-sm btn-white btn-info btn-op-ths" data-ths-href="useredit.html" title="编辑">
+                                          <i class="ace-icon fa fa-edit"></i>
+                                      </button>
+                                      <button type="button"  class="btn btn-sm btn-white btn-success btn-op-ths"  title="群组">
+                                          <i class="ace-icon fa fa-users"></i>
+                                      </button>
+                                      <!--
+                                     <button type="button"  class="btn btn-sm btn-white btn-default  btn-op-ths"  title="岗位">
+                                         <i class="ace-icon fa fa-suitcase"></i>
+                                     </button>
+                                     -->
+                                     <button type="button"  class="btn btn-sm btn-white btn-purple  btn-op-ths" title="角色">
+                                         <i class="ace-icon fa fa-registered"></i>
+                                     </button>
+                                     <button type="button"  class="btn btn-sm btn-white btn-inverse  btn-op-ths"  title="查看权限">
+                                         <i class="ace-icon fa fa-search"></i>
+                                     </button>
+                                 </td>
+                             </tr>
+
+                             <tr>
+                                 <td class="center">
+                                     <label class="pos-rel">
+                                         <input type="checkbox" class="ace"/>
+                                         <span class="lbl"></span>
+                                     </label>
+                                 </td>
+
+                                 <td class="">
+                                     白凯南
+                                 </td>
+                                 <td> baikainan</td>
+                                 <td>信息中心</td>
+                                 <td class="hidden-xs hidden-sm align-right">10</td>
+                                 <td class="align-center hidden-xs hidden-sm">
+                                         <span class="label label-sm label-success arrowed-in-right min-width-75">
+                                             <i class="ace-icon fa fa-check-circle"></i>
+                                             启用 </span>
+                                 </td>
+                                 <td class=" align-center col-op-ths">
+                                     <button type="button"  class="btn btn-sm btn-white btn-info btn-op-ths" data-ths-href="useredit.html" title="编辑">
+                                         <i class="ace-icon fa fa-edit"></i>
+                                     </button>
+                                     <button type="button"  class="btn btn-sm btn-white btn-success btn-op-ths"  title="群组">
+                                         <i class="ace-icon fa fa-users"></i>
+                                     </button>
+                                     <!--
+                                    <button type="button"  class="btn btn-sm btn-white btn-default  btn-op-ths"  title="岗位">
+                                        <i class="ace-icon fa fa-suitcase"></i>
+                                    </button>
+                                    -->
+                                    <button type="button"  class="btn btn-sm btn-white btn-purple  btn-op-ths" title="角色">
+                                        <i class="ace-icon fa fa-registered"></i>
+                                    </button>
+                                    <button type="button"  class="btn btn-sm btn-white btn-inverse  btn-op-ths"  title="查看权限">
+                                        <i class="ace-icon fa fa-search"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="center">
+                                    <label class="pos-rel">
+                                        <input type="checkbox" class="ace"/>
+                                        <span class="lbl"></span>
+                                    </label>
+                                </td>
+
+                                <td class="">
+                                    <a href="userdetail.html?id=2"> 老王</a>
+                                </td>
+                                <td>wangml</td>
+                                <td>信息中心</td>
+                                <td class="hidden-xs hidden-sm align-right">10</td>
+                                <td class="align-center hidden-xs hidden-sm">
+                                        <span class="label label-sm label-warning arrowed-in-right min-width-75">
+                                            <i class="ace-icon fa fa-minus-circle"></i>
+                                            停用 </span>
+                                </td>
+                                <td class=" align-center col-op-ths">
+                                    <button type="button"  class="btn btn-sm btn-white btn-info btn-op-ths" data-ths-href="useredit.html" title="编辑">
+                                        <i class="ace-icon fa fa-edit"></i>
+                                    </button>
+                                    <button type="button"  class="btn btn-sm btn-white btn-success btn-op-ths"  title="群组">
+                                        <i class="ace-icon fa fa-users"></i>
+                                    </button>
+                                    <!--
+                                   <button type="button"  class="btn btn-sm btn-white btn-default  btn-op-ths"  title="岗位">
+                                       <i class="ace-icon fa fa-suitcase"></i>
+                                   </button>
+                                   -->
+                                   <button type="button"  class="btn btn-sm btn-white btn-purple  btn-op-ths" title="角色">
+                                       <i class="ace-icon fa fa-registered"></i>
+                                   </button>
+                                   <button type="button"  class="btn btn-sm btn-white btn-inverse  btn-op-ths"  title="查看权限">
+                                       <i class="ace-icon fa fa-search"></i>
+                                   </button>
+                               </td>
+                           </tr>
+
+                           <tr>
+                               <td class="center">
+                                   <label class="pos-rel">
+                                       <input type="checkbox" class="ace"/>
+                                       <span class="lbl"></span>
+                                   </label>
+                               </td>
+
+                               <td class="">
+                                   白凯南
+                               </td>
+                               <td> baikainan</td>
+                               <td>信息中心</td>
+                               <td class="hidden-xs hidden-sm align-right">10</td>
+                               <td class="align-center hidden-xs hidden-sm">
+                                       <span class="label label-sm label-success arrowed-in-right min-width-75">
+                                           <i class="ace-icon fa fa-check-circle"></i>
+                                           启用 </span>
+                               </td>
+                               <td class=" align-center col-op-ths">
+                                   <button type="button"  class="btn btn-sm btn-white btn-info btn-op-ths" data-ths-href="useredit.html" title="编辑">
+                                       <i class="ace-icon fa fa-edit"></i>
+                                   </button>
+                                   <button type="button"  class="btn btn-sm btn-white btn-success btn-op-ths"  title="群组">
+                                       <i class="ace-icon fa fa-users"></i>
+                                   </button>
+                                   <!--
+                                  <button type="button"  class="btn btn-sm btn-white btn-default  btn-op-ths"  title="岗位">
+                                      <i class="ace-icon fa fa-suitcase"></i>
+                                  </button>
+                                  -->
+                                  <button type="button"  class="btn btn-sm btn-white btn-purple  btn-op-ths" title="角色">
+                                      <i class="ace-icon fa fa-registered"></i>
+                                  </button>
+                                  <button type="button"  class="btn btn-sm btn-white btn-inverse  btn-op-ths"  title="查看权限">
+                                      <i class="ace-icon fa fa-search"></i>
+                                  </button>
+                              </td>
+                          </tr>
+                          <tr>
+                              <td class="center">
+                                  <label class="pos-rel">
+                                      <input type="checkbox" class="ace"/>
+                                      <span class="lbl"></span>
+                                  </label>
+                              </td>
+
+                              <td class="">
+                                  <a href="userdetail.html?id=2"> 老王</a>
+                              </td>
+                              <td>wangml</td>
+                              <td>信息中心</td>
+                              <td class="hidden-xs hidden-sm align-right">10</td>
+                              <td class="align-center hidden-xs hidden-sm">
+                                      <span class="label label-sm label-warning arrowed-in-right min-width-75">
+                                          <i class="ace-icon fa fa-minus-circle"></i>
+                                          停用 </span>
+                              </td>
+                              <td class=" align-center col-op-ths">
+                                  <button type="button"  class="btn btn-sm btn-white btn-info btn-op-ths" data-ths-href="useredit.html" title="编辑">
+                                      <i class="ace-icon fa fa-edit"></i>
+                                  </button>
+                                  <button type="button"  class="btn btn-sm btn-white btn-success btn-op-ths"  title="群组">
+                                      <i class="ace-icon fa fa-users"></i>
+                                  </button>
+                                  <!--
+                                 <button type="button"  class="btn btn-sm btn-white btn-default  btn-op-ths"  title="岗位">
+                                     <i class="ace-icon fa fa-suitcase"></i>
+                                 </button>
+                                 -->
+                                 <button type="button"  class="btn btn-sm btn-white btn-purple  btn-op-ths" title="角色">
+                                     <i class="ace-icon fa fa-registered"></i>
+                                 </button>
+                                 <button type="button"  class="btn btn-sm btn-white btn-inverse  btn-op-ths"  title="查看权限">
+                                     <i class="ace-icon fa fa-search"></i>
+                                 </button>
+                             </td>
+                         </tr>
+
+                         <tr>
+                             <td class="center">
+                                 <label class="pos-rel">
+                                     <input type="checkbox" class="ace"/>
+                                     <span class="lbl"></span>
+                                 </label>
+                             </td>
+
+                             <td class="">
+                                 白凯南
+                             </td>
+                             <td> baikainan</td>
+                             <td>信息中心</td>
+                             <td class="hidden-xs hidden-sm align-right">10</td>
+                             <td class="align-center hidden-xs hidden-sm">
+                                     <span class="label label-sm label-success arrowed-in-right min-width-75">
+                                         <i class="ace-icon fa fa-check-circle"></i>
+                                         启用 </span>
+                             </td>
+                             <td class=" align-center col-op-ths">
+                                 <button type="button"  class="btn btn-sm btn-white btn-info btn-op-ths" data-ths-href="useredit.html" title="编辑">
+                                     <i class="ace-icon fa fa-edit"></i>
+                                 </button>
+                                 <button type="button"  class="btn btn-sm btn-white btn-success btn-op-ths"  title="群组">
+                                     <i class="ace-icon fa fa-users"></i>
+                                 </button>
+                                 <!--
+                                <button type="button"  class="btn btn-sm btn-white btn-default  btn-op-ths"  title="岗位">
+                                    <i class="ace-icon fa fa-suitcase"></i>
+                                </button>
+                                -->
+                                <button type="button"  class="btn btn-sm btn-white btn-purple  btn-op-ths" title="角色">
+                                    <i class="ace-icon fa fa-registered"></i>
+                                </button>
+                                <button type="button"  class="btn btn-sm btn-white btn-inverse  btn-op-ths"  title="查看权限">
+                                    <i class="ace-icon fa fa-search"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <div class="form-group">
+                        <div class="hidden-xs pull-left" style="margin-left: 12px" >
+                            <div class="space-4"></div>
+                            总记录数：100条，每页10条，共15页。
+                        </div>
+                        <ul class="pagination pull-right" >
+                            <li class="disabled">
+                                <a href="#">
+                                    <i class="ace-icon fa fa-angle-double-left"></i>
+                                </a>
+                            </li>
+                            <li class="disabled">
+                                <a href="#">
+                                    <i class="ace-icon fa fa-angle-left"></i>
+                                </a>
+                            </li>
+
+                            <li class="active">
+                                <a href="#">1</a>
+                            </li>
+
+                            <li>
+                                <a href="#">2</a>
+                            </li>
+                            <li>
+                                <a href="#">3</a>
+                            </li>
+
+                            <li>
+                                <a href="javascript:" class="min-width-75 align-center">...</a>
+                            </li>
+                            <li>
+                                <a href="#">13</a>
+                            </li>
+                            <li>
+                                <a href="#">14</a>
+                            </li>
+
+                            <li>
+                                <a href="#">15</a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <i class="ace-icon fa fa-angle-right"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <i class="ace-icon fa fa-angle-double-right"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div id="dialog-iframe-role" class="hide">
+                        <iframe src="formDialog-iframe1.html" style="width: 100%;border: none; height: 500px"></iframe>
+                    </div>
+                    <div id="dialog-iframe-group" class="hide">
+                        <iframe src="formDialog-iframe1.html" style="width: 100%;border: none; height: 500px"></iframe>
+                    </div>
+                    <div id="dialog-iframe-posi" class="hide">
+                        <iframe src="formDialog-iframe1.html" style="width: 100%;border: none; height: 500px"></iframe>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div><!--/.main-content-inner-->
+    </div><!-- /.main-content -->
+</div><!-- /.main-container -->
+
+<!-- basic scripts -->
+
+<!--[if !IE]> -->
+<script src="../components/jquery/dist/jquery.js"></script>
+<!-- <![endif]-->
+
+<!--[if IE]>
+<script src="../components/jquery.1x/dist/jquery.js"></script>
+<![endif]-->
+<script type="text/javascript">
+    if ('ontouchstart' in document.documentElement) document.write("<script src='../components/_mod/jquery.mobile.custom/jquery.mobile.custom.js'>" + "<" + "/script>");
+</script>
+<script src="../components/bootstrap/dist/js/bootstrap.js"></script>
+
+<!-- page specific plugin scripts -->
+<script src="../components/jquery-ui/jquery-ui.js"></script>
+<script src="../components/jqueryui-touch-punch/jquery.ui.touch-punch.js"></script>
+
+<!--ace script-->
+<script src="../assets/js/src/ace.js"></script>
+
+<!--THS script-->
+<script src="../assets/js/ths.js"></script>
+
+<!-- 自己写的JS，请放在这里 -->
+<script type="text/javascript">
+
+    jQuery(function ($) {
+        //为工具条添加点击事件
+        $(".page-toolbar>button").on(ace.click_event,function (e) {
+            if($(this).data("ths-href"))
+            {
+                window.location.href = ($(this).data("ths-href"));
+            }
+        });
+
+        //为表格操作列添加点击事件
+        $(".col-op-ths>button").on(ace.click_event,function(e){
+            if($(this).data("ths-href"))
+            {
+                window.location.href = ($(this).data("ths-href"));
+            }
+        });
+
+        //为表格添加排序事件
+        $("#simple-table>thead>tr>th").on(ace.click_event, function (e) {
+            $(this).find("i").each(function () {
+                var $i = $(this);
+                if ($i.hasClass("fa-sort")) {
+                    $i.removeClass("fa-sort").addClass("fa-sort-asc");
+                }
+                else if ($i.hasClass("fa-sort-asc")) {
+                    $i.removeClass("fa-sort-asc").addClass("fa-sort-desc");
+                }
+                else if ($i.hasClass("fa-sort-desc")) {
+                    $i.removeClass("fa-sort-desc").addClass("fa-sort-asc");
+                }
+            })
+        })
+
+        //select/deselect all rows according to table header checkbox
+        var active_class = 'active';
+        $('#simple-table > thead > tr > th input[type=checkbox]').eq(0).on(ace.click_event, function(){
+            var th_checked = this.checked;//checkbox inside "TH" table header
+
+            $(this).closest('table').find('tbody > tr').each(function(){
+                var row = this;
+                if(th_checked) $(row).addClass(active_class).find('input[type=checkbox]').eq(0).prop('checked', true);
+                else $(row).removeClass(active_class).find('input[type=checkbox]').eq(0).prop('checked', false);
+            });
+        });
+
+        //select/deselect a row when the checkbox is checked/unchecked
+        $('#simple-table').on(ace.click_event, 'td input[type=checkbox]' , function(){
+            var $row = $(this).closest('tr');
+            if(this.checked) $row.addClass(active_class);
+            else $row.removeClass(active_class);
+        });
+        
+        function showDialog(dialogId,dialogTitle) {
+            $( "#"+dialogId ).removeClass('hide').dialog({
+                width:400>document.documentElement.clientWidth?document.documentElement.clientWidth:400,
+                height:600>document.documentElement.clientHeight?document.documentElement.clientHeight:600,
+                modal: true,
+                position:{my:"center center",at:"center center-50" },
+                iconCss:"fa-exclamation-circle",
+                title: dialogTitle,
+                buttons: [
+                ]
+            });
+        }
+
+        $( ".btnGroup" ).on(ace.click_event, function(e) {
+            e.preventDefault();
+            showDialog("dialog-iframe-group","用户组");
+        });
+        $( ".btnPosi" ).on(ace.click_event, function(e) {
+            e.preventDefault();
+            showDialog("dialog-iframe-group","岗位");
+        });
+        $( ".btnRole" ).on(ace.click_event, function(e) {
+            e.preventDefault();
+            showDialog("dialog-iframe-group","角色");
+        });
+
+        $("#btnDelete").on(ace.click_event,function (e) {
+            e.preventDefault();
+            $.thsDialog("提示","确实要停用选中用户吗?",
+                    [
+                        {
+                            text: "取消",
+                            "class" : "btn btn-xs btn-danger btn-xs-ths",
+                            click: function() {
+                                $(this).dialog( "close" );
+                            }
+                        },
+                        {
+                            text: "确定",
+                            "class" : "btn btn-xs btn-success btn-xs-ths",
+                            click: function() {
+                                $( this ).dialog( "close" );
+                            }
+                        }
+                    ]);
+        });
+    });
+</script>
+</body>
+</html>

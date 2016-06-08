@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!--浏览器兼容性设置-->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta charset="utf-8"/>
+    <title>Empty Page - Ace Admin</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
+
+    <!-- bootstrap & fontawesome -->
+    <link rel="stylesheet" href="../assets/css/bootstrap.css"/>
+    <link rel="stylesheet" href="../components/font-awesome/css/font-awesome.css"/>
+
+    <!-- page plugin css -->
+    <!--zTree-->
+    <link rel="stylesheet" href="../components/zTree/css/metroStyle/metroStyle.css"/>
+
+    <!-- ace styles -->
+    <link rel="stylesheet" href="../assets/css/ace.css" class="ace-main-stylesheet" id="main-ace-style"/>
+
+    <!--[if lte IE 9]>
+    <link rel="stylesheet" href="../assets/css/ace-part2.css" class="ace-main-stylesheet"/>
+    <![endif]-->
+    <link rel="stylesheet" href="../assets/css/ace-skins.css"/>
+
+    <!--[if lte IE 9]>
+    <link rel="stylesheet" href="../assets/css/ace-ie.css"/>
+    <![endif]-->
+
+    <!--THS CSS 插件-->
+    <link rel="stylesheet" href="../assets/css/ths.css"/>
+
+    <!-- 自己写的CSS，请放在这里 -->
+    <style type="text/css">
+       /*新增2016-5-5*/
+      .ztree li a{ line-height: 22px; color: #4D6878 !important;}
+      .ztree li a.curSelectedNode{ background: #fff;}
+      .ztree li a.curSelectedNode .node_name{ color: #2a8bcb; font-weight: normal;}
+      .ztree *{ font-family: "微软雅黑";}
+      .ztree li{ line-height: 20px !important;}
+    </style>
+
+    <!-- HTML5shiv and Respond.js for IE8 to support HTML5 elements and media queries -->
+
+    <!--[if lte IE 8]>
+    <script src="../components/html5shiv/dist/html5shiv.min.js"></script>
+    <script src="../components/respond/dest/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body class="no-skin">
+
+<div class="main-container" id="main-container">
+    <div class="main-content">
+        <div class="main-content-inner fixed-page-header fixed-40">
+            <div id="breadcrumbs" class="breadcrumbs">
+                <ul class="breadcrumb">
+                    <li class="active"><i class="fa fa-arrow-right"></i> 高级元素之zTree</li>
+                </ul><!-- /.breadcrumb -->
+
+            </div>
+        </div>
+        <div class="main-content-inner padding-page-content">
+            <div class="page-content">
+                <div class="space-4"></div>
+                <div class="row ">
+                    <div class="col-xs-12">
+                        <form class="form-horizontal" role="form" id="form1" action="index.html" method="post">
+                            <div class="alert alert-block alert-warning col-sm-12">
+                                <i class="ace-icon fa fa-question-circle blue"></i>
+                                zTree version: 3.5.23
+                                <hr>
+                                <ul class="list-inline blue">
+                                    <li><i class="ace-icon fa fa-hand-o-right"></i><a href="http://www.ztree.me/v3/api.php" target="_blank">API文档</a></li>
+                                    <li><i class="ace-icon fa fa-hand-o-right"></i><a href="http://www.ztree.me/v3/faq.php#_206" target="_blank">入门指南</a></li>
+                                    <li><i class="ace-icon fa fa-hand-o-right"></i><a href="http://www.ztree.me/v3/demo.php#_101" target="_blank">示例Demo</a></li>
+                                </ul>
+
+                            </div>
+                            <div class="col-sm-4">
+                                <ul id="treeDemo1" class="ztree"></ul>
+                            </div>
+                            <div class="col-sm-4">
+                                <ul id="treeDemo2" class="ztree"></ul>
+                            </div>
+                            <div class="col-sm-4">
+                                <ul id="treeDemo3" class="ztree"></ul>
+                            </div>
+                            
+                           
+                        </form>
+                    </div>
+                </div><!-- /.row -->
+            </div>
+        </div><!--/.main-content-inner-->
+    </div><!-- /.main-content -->
+</div><!-- /.main-container -->
+
+<!-- basic scripts -->
+
+<!--[if !IE]> -->
+<script src="../components/jquery/dist/jquery.js"></script>
+<!-- <![endif]-->
+
+<!--[if IE]>
+<script src="../components/jquery.1x/dist/jquery.js"></script>
+<![endif]-->
+<script type="text/javascript">
+    if ('ontouchstart' in document.documentElement) document.write("<script src='../components/_mod/jquery.mobile.custom/jquery.mobile.custom.js'>" + "<" + "/script>");
+</script>
+<script src="../components/bootstrap/dist/js/bootstrap.js"></script>
+
+<!-- page specific plugin scripts -->
+<!--zTree-->
+<script src="../components/zTree/js/jquery.ztree.all.min.js"></script>
+
+<!--ace script-->
+<script src="../assets/js/src/ace.js"></script>
+
+<!-- 自己写的JS，请放在这里 -->
+<script type="text/javascript">
+    jQuery(function ($) {
+        var zTreeObj;
+        // zTree 的参数配置，深入使用请参考 API 文档（setting 配置详解）
+        var setting = {};
+        // zTree 的数据属性，深入使用请参考 API 文档（zTreeNode 节点数据详解）
+        var zNodes =[
+            { name:"父节点1 - 展开", open:true,
+                children: [
+                    { name:"父节点11 - 折叠", open:true,
+                        children: [
+                            { name:"叶子节点111"},
+                            { name:"叶子节点112"},
+                            { name:"叶子节点113"},
+                            { name:"叶子节点114"}
+                        ]},
+                    { name:"父节点12 - 折叠",open:true,
+                        children: [
+                            { name:"叶子节点121"},
+                            { name:"叶子节点122"},
+                            { name:"叶子节点123"},
+                            { name:"叶子节点124"}
+                        ]},
+                    { name:"父节点13 - 没有子节点", isParent:true}
+                ]},
+            { name:"父节点2 - 折叠",
+                children: [
+                    { name:"父节点21 - 展开", open:true,
+                        children: [
+                            { name:"叶子节点211"},
+                            { name:"叶子节点212"},
+                            { name:"叶子节点213"},
+                            { name:"叶子节点214"}
+                        ]},
+                    { name:"父节点22 - 折叠",open:true,
+                        children: [
+                            { name:"叶子节点221"},
+                            { name:"叶子节点222"},
+                            { name:"叶子节点223"},
+                            { name:"叶子节点224"}
+                        ]},
+                    { name:"父节点23 - 折叠",open:true,
+                        children: [
+                            { name:"叶子节点231"},
+                            { name:"叶子节点232"},
+                            { name:"叶子节点233"},
+                            { name:"叶子节点234"}
+                        ]}
+                ]},
+            { name:"父节点3 - 没有子节点", isParent:true}
+
+        ];
+        $(document).ready(function(){
+            zTreeObj = $.fn.zTree.init($("#treeDemo1"), setting, zNodes);
+            $.fn.zTree.init($("#treeDemo2"), {check: {
+                            enable: true
+                        },
+                        data: {
+                            simpleData: {
+                                enable: true
+                            }
+                        },
+                        view: {
+                            txtSelectedEnable: true
+                        }
+            },
+
+                    zNodes);
+            $.fn.zTree.init($("#treeDemo3"), {check: {
+                        enable: true,
+                        chkStyle: "radio",
+                        radioType: "all"
+                    },
+                        data: {
+                            simpleData: {
+                                enable: true
+                            }
+                        }},
+                    zNodes);
+           
+        });
+    });
+</script>
+</body>
+</html>

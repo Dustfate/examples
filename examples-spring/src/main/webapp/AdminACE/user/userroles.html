@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!--浏览器兼容性设置-->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta charset="utf-8"/>
+    <title></title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
+
+    <!-- bootstrap & fontawesome -->
+    <link rel="stylesheet" href="../assets/css/bootstrap.css"/>
+    <link rel="stylesheet" href="../components/font-awesome/css/font-awesome.css"/>
+
+    <!-- page plugin css -->
+    <link rel="stylesheet" href="../components/_mod/jquery-ui/jquery-ui.css"/>
+
+    <!-- ace styles -->
+    <link rel="stylesheet" href="../assets/css/ace.css" class="ace-main-stylesheet" id="main-ace-style"/>
+
+    <!--[if lte IE 9]>
+    <link rel="stylesheet" href="../assets/css/ace-part2.css" class="ace-main-stylesheet"/>
+    <![endif]-->
+    <link rel="stylesheet" href="../assets/css/ace-skins.css"/>
+
+    <!--[if lte IE 9]>
+    <link rel="stylesheet" href="../assets/css/ace-ie.css"/>
+    <![endif]-->
+
+    <!--THS CSS 插件-->
+    <link rel="stylesheet" href="../assets/css/ths.css"/>
+
+    <!-- 自己写的CSS，请放在这里 -->
+    <style type="text/css">
+
+    </style>
+
+    <!-- HTML5shiv and Respond.js for IE8 to support HTML5 elements and media queries -->
+
+    <!--[if lte IE 8]>
+    <script src="../components/html5shiv/dist/html5shiv.min.js"></script>
+    <script src="../components/respond/dest/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body class="no-skin">
+
+<div class="main-container" id="main-container">
+    <div class="main-content">
+        <div class="main-content-inner fixed-page-header fixed-82">
+            <div id="breadcrumbs" class="breadcrumbs">
+                <ul class="breadcrumb">
+                    <li class="active"><i class="fa fa-user"></i> <span class="text-danger">蒋欣</span>的角色</li>
+                </ul><!-- /.breadcrumb -->
+
+            </div>
+
+            <div class="page-toolbar align-right">
+                <button type="button" class="btn btn-xs btn-primary btn-xs-ths" id="btnAdd"
+                        data-ths-href="form1.html">
+                    <i class="ace-icon fa fa-plus"></i>
+                    添加
+                </button>
+                <button type="button" class="btn btn-xs btn-purple btn-xs-ths" id="btnSelectAll">
+                    <i class="ace-icon fa fa-check-circle-o"></i>
+                    全选
+                </button>
+                <button type="button" class="btn btn-xs btn-default btn-xs-ths" id="btnSelectRev">
+                    <i class="ace-icon fa fa-circle-o"></i>
+                    反选
+                </button>
+                <button type="button" class="btn btn-xs btn-danger btn-xs-ths" id="btnDelete">
+                    <i class="ace-icon fa fa-trash-o"></i>
+                    移除
+                </button>
+                <button type="button" class="btn btn-xs btn-danger btn-xs-ths" id="btnReturn">
+                    <i class="ace-icon fa fa-reply"></i>
+                    返回
+                </button>
+            </div>
+        </div>
+        <div class="main-content-inner padding-page-content">
+            <div class="page-content">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <form class="form-horizontal" role="form" id="form1" action="index.html" method="post">
+
+
+                            <table id="simple-table" class="table  table-bordered table-hover">
+                                <thead>
+                                <tr>
+                                    <th><i class="ace-icon fa fa-registered"></i>
+                                        角色
+                                    </th>
+                                    <th><i class="ace-icon fa fa-registered"></i>
+                                        角色
+                                    </th>
+                                    <th><i class="ace-icon fa fa-registered"></i>
+                                        角色
+                                    </th>
+                                </tr>
+                                </thead>
+
+                                <tbody>
+                                <tr>
+                                     <td>
+                                        <label class="pos-rel">
+                                            <input type="checkbox" class="ace"/>
+                                            <span class="lbl">三同时审批员</span>
+                                        </label>
+                                    </td>
+                                    <td>
+                                        <label class="pos-rel">
+                                            <input type="checkbox" class="ace"/>
+                                            <span class="lbl">考勤管理员</span>
+                                        </label>
+                                    </td>
+                                    <td>
+                                        <label class="pos-rel">
+                                            <input type="checkbox" class="ace"/>
+                                            <span class="lbl"> OA普通用户</span>
+                                        </label>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label class="pos-rel">
+                                            <input type="checkbox" class="ace"/>
+                                            <span class="lbl">三同时审批员</span>
+                                        </label>
+                                    </td>
+                                    <td>
+                                        <label class="pos-rel">
+                                            <input type="checkbox" class="ace"/>
+                                            <span class="lbl">考勤管理员</span>
+                                        </label>
+                                    </td>
+                                    <td>
+                                        <label class="pos-rel">
+                                            <input type="checkbox" class="ace"/>
+                                            <span class="lbl"> OA普通用户</span>
+                                        </label>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label class="pos-rel">
+                                            <input type="checkbox" class="ace"/>
+                                            <span class="lbl">三同时审批员</span>
+                                        </label>
+                                    </td>
+                                    <td>
+                                        <label class="pos-rel">
+                                            <input type="checkbox" class="ace"/>
+                                            <span class="lbl">考勤管理员</span>
+                                        </label>
+                                    </td>
+                                    <td>
+                                        <label class="pos-rel">
+                                            <input type="checkbox" class="ace"/>
+                                            <span class="lbl"> OA普通用户</span>
+                                        </label>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label class="pos-rel">
+                                            <input type="checkbox" class="ace"/>
+                                            <span class="lbl">三同时审批员</span>
+                                        </label>
+                                    </td>
+                                    <td>
+                                        <label class="pos-rel">
+                                            <input type="checkbox" class="ace"/>
+                                            <span class="lbl">考勤管理员</span>
+                                        </label>
+                                    </td>
+                                    <td>
+                                        <label class="pos-rel">
+                                            <input type="checkbox" class="ace"/>
+                                            <span class="lbl"> OA普通用户</span>
+                                        </label>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label class="pos-rel">
+                                            <input type="checkbox" class="ace"/>
+                                            <span class="lbl">三同时审批员</span>
+                                        </label>
+                                    </td>
+                                    <td>
+                                        <label class="pos-rel">
+                                            <input type="checkbox" class="ace"/>
+                                            <span class="lbl">考勤管理员</span>
+                                        </label>
+                                    </td>
+                                    <td>
+                                        <label class="pos-rel">
+                                            <input type="checkbox" class="ace"/>
+                                            <span class="lbl"> OA普通用户</span>
+                                        </label>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label class="pos-rel">
+                                            <input type="checkbox" class="ace"/>
+                                            <span class="lbl">三同时审批员</span>
+                                        </label>
+                                    </td>
+                                    <td>
+                                        <label class="pos-rel">
+                                            <input type="checkbox" class="ace"/>
+                                            <span class="lbl">考勤管理员</span>
+                                        </label>
+                                    </td>
+                                    <td>
+                                        <label class="pos-rel">
+                                            <input type="checkbox" class="ace"/>
+                                            <span class="lbl"> OA普通用户</span>
+                                        </label>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label class="pos-rel">
+                                            <input type="checkbox" class="ace"/>
+                                            <span class="lbl">三同时审批员</span>
+                                        </label>
+                                    </td>
+                                    <td>
+                                        <label class="pos-rel">
+                                            <input type="checkbox" class="ace"/>
+                                            <span class="lbl">考勤管理员</span>
+                                        </label>
+                                    </td>
+                                    <td>
+                                        <label class="pos-rel">
+                                            <input type="checkbox" class="ace"/>
+                                            <span class="lbl"> OA普通用户</span>
+                                        </label>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="3" class="center text-warning">
+                                         暂无数据!
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div><!--/.main-content-inner-->
+    </div><!-- /.main-content -->
+</div><!-- /.main-container -->
+
+<!-- basic scripts -->
+
+<!--[if !IE]> -->
+<script src="../components/jquery/dist/jquery.js"></script>
+<!-- <![endif]-->
+
+<!--[if IE]>
+<script src="../components/jquery.1x/dist/jquery.js"></script>
+<![endif]-->
+<script type="text/javascript">
+    if ('ontouchstart' in document.documentElement) document.write("<script src='../components/_mod/jquery.mobile.custom/jquery.mobile.custom.js'>" + "<" + "/script>");
+</script>
+<script src="../components/bootstrap/dist/js/bootstrap.js"></script>
+
+<!-- page specific plugin scripts -->
+<script src="../components/jquery-ui/jquery-ui.js"></script>
+<script src="../components/jqueryui-touch-punch/jquery.ui.touch-punch.js"></script>
+
+<!--ace script-->
+<script src="../assets/js/src/ace.js"></script>
+
+<!--THS script-->
+<script src="../assets/js/ths.js"></script>
+
+<!-- 自己写的JS，请放在这里 -->
+<script type="text/javascript">
+
+    jQuery(function ($) {
+        //为工具条添加点击事件
+        $(".page-toolbar>button").on(ace.click_event, function (e) {
+            if ($(this).data("ths-href")) {
+                window.location.href = ($(this).data("ths-href"));
+            }
+        });
+
+        $("#btnReturn").on(ace.click_event, function () {
+            window.history.go(-1);
+        });
+    });
+</script>
+</body>
+</html>

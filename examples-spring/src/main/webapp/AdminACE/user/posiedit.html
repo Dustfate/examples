@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!--浏览器兼容性设置-->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta charset="utf-8"/>
+    <title></title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
+
+    <!-- bootstrap & fontawesome -->
+    <link rel="stylesheet" href="../assets/css/bootstrap.css"/>
+    <link rel="stylesheet" href="../components/font-awesome/css/font-awesome.css"/>
+
+    <!-- page plugin css -->
+    <link rel="stylesheet" href="../components/_mod/jQuery-Validation-Engine/validationEngine.jquery.css"/>
+    <link rel="stylesheet" href="../components/_mod/jQuery-Validation-Engine/template.css"/>
+    <link rel="stylesheet" href="../components/chosen/chosen.css"/>
+
+    <!-- ace styles -->
+    <link rel="stylesheet" href="../assets/css/ace.css" class="ace-main-stylesheet" id="main-ace-style"/>
+
+    <!--[if lte IE 9]>
+    <link rel="stylesheet" href="../assets/css/ace-part2.css" class="ace-main-stylesheet"/>
+    <![endif]-->
+    <link rel="stylesheet" href="../assets/css/ace-skins.css"/>
+
+    <!--[if lte IE 9]>
+    <link rel="stylesheet" href="../assets/css/ace-ie.css"/>
+    <![endif]-->
+
+    <!--THS CSS 插件-->
+    <link rel="stylesheet" href="../assets/css/ths.css"/>
+
+    <!-- 自己写的CSS，请放在这里 -->
+    <style type="text/css">
+
+    </style>
+
+    <!-- HTML5shiv and Respond.js for IE8 to support HTML5 elements and media queries -->
+
+    <!--[if lte IE 8]>
+    <script src="../components/html5shiv/dist/html5shiv.min.js"></script>
+    <script src="../components/respond/dest/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body class="no-skin">
+
+
+<div class="main-container" id="main-container">
+    <div class="main-content">
+        <div class="main-content-inner fixed-page-header fixed-40">
+
+            <div class="page-toolbar align-right">
+
+                <button type="button" class="btn btn-xs btn-primary btn-xs-ths" id="btnSave">
+                    <i class="ace-icon fa fa-save"></i>
+                    保存
+                </button>
+                <!--
+                <button type="button" class="btn btn-xs btn-success btn-xs-ths" id="btnSubmit">
+                    <i class="ace-icon fa fa-check"></i>
+                    提交
+                </button>
+                <button type="button" class="btn btn-xs btn-danger btn-xs-ths" id="btnDelete">
+                    <i class="ace-icon fa fa-trash-o"></i>
+                    删除
+                </button>
+                -->
+                <button type="button" class="btn btn-xs btn-danger btn-xs-ths" id="btnReturn">
+                    <i class="ace-icon fa fa-reply"></i>
+                    返回
+                </button>
+
+            </div>
+
+        </div>
+        <div class="main-content-inner padding-page-content">
+            <div class="page-content">
+                <div class="space-4"></div>
+                <div class="row">
+                    <div class=" col-xs-12">
+                        <form class="form-horizontal" role="form" id="form1" action="index.html" method="post">
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label no-padding-right">
+                                    <i class="ace-icon fa fa-asterisk red smaller-70"></i>
+                                    部门
+                                </label>
+                                <div class="col-sm-4">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" placeholder="" id="form-field-221"
+                                               readonly="readonly"/>
+                                    <span class="input-group-btn">
+                                    <button type="button" class="btn btn-white btn-default">
+                                        <i class="ace-icon fa fa-search"></i>
+                                        选择
+                                    </button>
+                                        <button type="button" class="btn btn-white btn-default">
+                                            <i class="ace-icon fa fa-remove"></i>
+                                        </button>
+                                    </span>
+                                    </div>
+                                </div>
+
+
+                                <label class="col-sm-2 control-label no-padding-right" >
+                                    <i class="ace-icon fa fa-asterisk red smaller-70"></i>
+                                    岗位
+                                </label>
+                                <div class="col-sm-4">
+                                    <select class="form-control">
+                                        <option value="1">-请选择-</option>
+                                        <option value="1">局长</option>
+                                        <option value="1">副局长</option>
+                                        <option value="1">局长</option>
+                                    </select>
+
+                                </div>
+
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label no-padding-right">
+                                    岗位人员</label>
+                                <div class="col-sm-8">
+                                    <div class="chosen-container chosen-container-multi width-100" style="border: solid 1px #D5D5D5; min-height: 62px ">
+                                        <ul class="chosen-choices"  style="border: none">
+                                            <li class="search-choice"><span>白凯南</span>
+                                                <a class="search-choice-close" onclick="$(this).parent().remove();"></a>
+                                            </li>
+
+                                            <li class="search-choice"><span>贾琳</span>
+                                                <a class="search-choice-close"></a>
+                                            </li>
+                                            <li class="search-choice"><span>白凯南</span>
+                                                <a class="search-choice-close"></a>
+                                            </li>
+
+                                            <li class="search-choice"><span>贾琳</span>
+                                                <a class="search-choice-close"></a>
+                                            </li>
+                                            <li class="search-choice"><span>白凯南</span>
+                                                <a class="search-choice-close"></a>
+                                            </li>
+
+                                            <li class="search-choice"><span>贾琳</span>
+                                                <a class="search-choice-close"></a>
+                                            </li>
+                                            <li class="search-choice"><span>白凯南</span>
+                                                <a class="search-choice-close"></a>
+                                            </li>
+
+                                        </ul>
+
+                                    </div>
+
+                                </div>
+                                <div class="col-sm-2">
+                                    <button type="button" class="btn btn-xs btn-default btn-white btn-xs-ths"  title="选择">
+                                        <i class="ace-icon fa fa-user-plus"></i>
+                                        添加
+                                    </button>
+                                    <div class="space-4 hidden-xs"></div>
+                                    <button type="button" class="btn btn-xs btn-default btn-white btn-xs-ths" title="清空">
+                                        <i class="ace-icon fa fa-trash"></i>
+                                        清空
+                                    </button>
+                                </div>
+                            </div>
+
+                            <hr>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label no-padding-right">
+                                    扩展1
+                                </label>
+                                <div class="col-sm-4">
+                                    <input type="text" class="form-control"/>
+                                </div>
+                                <label class="col-sm-2 control-label no-padding-right ">
+                                    扩展2</label>
+
+                                <div class="col-sm-4">
+                                    <input type="text" class="form-control"/>
+                                </div>
+
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label no-padding-right">
+                                    扩展3
+                                </label>
+                                <div class="col-sm-4">
+                                    <input type="text" class="form-control"/>
+                                </div>
+                                <label class="col-sm-2 control-label no-padding-right ">
+                                    扩展4</label>
+
+                                <div class="col-sm-4">
+                                    <input type="text" class="form-control"/>
+                                </div>
+
+                            </div>
+                            <div class="form-group">
+                                <div class="alert alert-block alert-warning">
+                                    <h4 class="blue">
+                                        <i class="ace-icon fa fa-question-circle"></i>
+                                       开发备注
+                                    </h4>
+                                    <p>
+                                        选择部门和岗位有Ajax联动，部门变化，则列出本部门未定岗的岗位。
+                                    </p>
+                                    <p>
+                                        编辑时，岗位、部门不可修改。
+                                    </p>
+
+                                </div>
+                            </div>
+
+                        </form>
+                    </div>
+                </div><!-- /.row -->
+            </div>
+        </div><!--/.main-content-inner-->
+    </div><!-- /.main-content -->
+</div><!-- /.main-container -->
+
+<!-- basic scripts -->
+
+<!--[if !IE]> -->
+<script src="../components/jquery/dist/jquery.js"></script>
+<!-- <![endif]-->
+
+<!--[if IE]>
+<script src="../components/jquery.1x/dist/jquery.js"></script>
+<![endif]-->
+<script type="text/javascript">
+    if ('ontouchstart' in document.documentElement) document.write("<script src='../components/_mod/jquery.mobile.custom/jquery.mobile.custom.js'>" + "<" + "/script>");
+</script>
+<script src="../components/bootstrap/dist/js/bootstrap.js"></script>
+
+<!-- page specific plugin scripts -->
+
+<!--表单验证jquery.validationEngine-->
+<script src="../components/_mod/jQuery-Validation-Engine/jquery.validationEngine-zh_CN.js" type="text/javascript"
+        charset="utf-8"></script>
+<script src="../components/_mod/jQuery-Validation-Engine/jquery.validationEngine.js" type="text/javascript"
+        charset="utf-8"></script>
+<!--日期控件-->
+<script src="../components/My97DatePicker/WdatePicker.js"></script>
+
+
+<!--ace script-->
+<script src="../assets/js/src/ace.js"></script>
+<script src="../assets/js/ace-elements.js"></script>
+
+
+<!-- 自己写的JS，请放在这里 -->
+<script type="text/javascript">
+    jQuery(function ($) {
+        //日期控件使用示例，详细文档请参考http://www.my97.net/dp/demo/index.htm
+        $("#divBirthday").on(ace.click_event, function () {
+            WdatePicker({el: 'txtBirthday'});
+        });
+
+        //表单验证组件初始化，详细文档请参考http://code.ciaoca.com/jquery/validation-engine/ 或官网文档http://posabsolute.github.io/jQuery-Validation-Engine/
+        $("#form1").validationEngine({
+            scrollOffset: 98,//必须设置，因为Toolbar position为Fixed
+            promptPosition: 'bottomLeft',
+            autoHidePrompt: true
+        });
+
+        $("#btnSubmit").on(ace.click_event, function () {
+            //console.log("validate begin..");
+            //console.log($('#form1').validationEngine('validate'));
+            if ($('#form1').validationEngine('validate')) {
+                //submit
+            }
+        });
+        $("#btnSave").on(ace.click_event, function () {
+            //console.log("validate begin..");
+            //console.log($('#form1').validationEngine('validate'));
+            if ($('#form1').validationEngine('validate')) {
+                //submit
+            }
+        });
+        $("#btnReturn").on(ace.click_event, function () {
+            location.href = "userlist.html";
+        });
+    });
+</script>
+</body>
+</html>

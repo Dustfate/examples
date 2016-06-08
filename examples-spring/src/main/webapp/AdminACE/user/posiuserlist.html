@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!--浏览器兼容性设置-->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta charset="utf-8"/>
+    <title></title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
+
+    <!-- bootstrap & fontawesome -->
+    <link rel="stylesheet" href="../assets/css/bootstrap.css"/>
+    <link rel="stylesheet" href="../components/font-awesome/css/font-awesome.css"/>
+
+    <!-- page plugin css -->
+    <link rel="stylesheet" href="../components/_mod/jquery-ui/jquery-ui.css"/>
+
+    <!-- ace styles -->
+    <link rel="stylesheet" href="../assets/css/ace.css" class="ace-main-stylesheet" id="main-ace-style"/>
+
+    <!--[if lte IE 9]>
+    <link rel="stylesheet" href="../assets/css/ace-part2.css" class="ace-main-stylesheet"/>
+    <![endif]-->
+    <link rel="stylesheet" href="../assets/css/ace-skins.css"/>
+
+    <!--[if lte IE 9]>
+    <link rel="stylesheet" href="../assets/css/ace-ie.css"/>
+    <![endif]-->
+
+    <!--THS CSS 插件-->
+    <link rel="stylesheet" href="../assets/css/ths.css"/>
+
+    <!-- 自己写的CSS，请放在这里 -->
+    <style type="text/css">
+
+    </style>
+
+    <!-- HTML5shiv and Respond.js for IE8 to support HTML5 elements and media queries -->
+
+    <!--[if lte IE 8]>
+    <script src="../components/html5shiv/dist/html5shiv.min.js"></script>
+    <script src="../components/respond/dest/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body class="no-skin">
+
+<div class="main-container" id="main-container">
+    <div class="main-content">
+        <div class="main-content-inner padding-page-content">
+            <div class="page-content">
+                <div class="space-4"></div>
+                <div class="row">
+                    <div class="col-xs-12">
+                        <form class="form-horizontal" role="form" id="form1" action="index.html" method="post">
+
+                            <div class="form-group">
+                                <label class="col-sm-1 hidden-xs control-label no-padding-right" for="txtName">
+                                    岗位
+                                </label>
+                                <div class="col-sm-3 col-xs-8">
+
+                                    <input type="text" class="form-control" placeholder="关键字"
+                                           id="txtName"/>
+
+                                </div>
+
+
+                                <div class="col-sm-8 col-xs-4 align-right">
+                                    <button type="button" class="btn btn-info btn-default-ths" id="btnSearch">
+                                        <i class="ace-icon fa fa-search"></i>
+                                        搜索
+                                    </button>
+
+                                </div>
+                            </div>
+                            <hr class="no-margin">
+                            <div class="page-toolbar align-right list-toolbar">
+                                <button type="button" class="btn btn-xs btn-primary btn-xs-ths" id="btnAdd"
+                                        data-ths-href="posiedit.html">
+                                    <i class="ace-icon fa fa-plus"></i>
+                                    添加
+                                </button>
+                                <button type="button" class="btn btn-xs btn-danger btn-xs-ths" id="btnDelete">
+                                    <i class="ace-icon fa fa-trash-o"></i>
+                                    删除
+                                </button>
+
+                            </div>
+                            <table id="simple-table" class="table  table-bordered table-hover">
+                                <thead>
+                                <tr>
+                                    <th class="center col-sm-1">
+                                        <label class="pos-rel">
+                                            <input type="checkbox" class="ace"/>
+                                            <span class="lbl"></span>
+                                        </label>
+                                    </th>
+                                    <th class=""><i class="ace-icon fa fa-suitcase"></i>
+                                        岗位
+
+                                        <i class="ace-icon fa fa-sort blue pull-right"></i>
+                                    </th>
+                                    <th class="hidden-xs hidden-sm">
+                                        代码
+                                    </th>
+                                    <th>
+                                        <i class="ace-icon fa fa-user"></i>
+                                        岗位人员
+
+                                    </th>
+
+                                    <th class="align-center col-sm-1"><i class="ace-icon fa fa-wrench"></i>
+                                        编辑
+                                    </th>
+                                </tr>
+                                </thead>
+
+                                <tbody>
+                                <tr>
+                                    <td class="center">
+                                        <label class="pos-rel">
+                                            <input type="checkbox" class="ace"/>
+                                            <span class="lbl"></span>
+                                        </label>
+                                    </td>
+
+                                    <td>
+                                        <a href="userdetail.html?id=2"> 局长</a>
+                                    </td>
+                                    <td class="hidden-xs hidden-sm">jz</td>
+                                    <td style="word-break: break-all; max-width: 400px">
+                                        赵四;李三;白凯南;李三;白凯南;李三;白凯南;李三;白凯南;李三;白凯南
+                                    </td>
+                                    <td class=" align-center col-op-ths">
+                                        <button type="button" class="btn btn-sm btn-white btn-info btn-op-ths"
+                                                data-ths-href="posiedit.html" title="编辑">
+                                            <i class="ace-icon fa fa-edit"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="center" colspan="5">
+                                             <span class="grey">部门<span class="text-info">【北京市环境保护局】</span>下
+                                            <br>
+                                            暂无岗位信息!
+                                            </span>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                            <div class="form-group">
+                                <div class="hidden-xs pull-left" style="margin-left: 12px">
+                                    <div class="space-4"></div>
+                                    总记录数：100条，每页10条，共15页。
+                                </div>
+                                <ul class="pagination pull-right">
+                                    <li class="disabled">
+                                        <a href="#">
+                                            <i class="ace-icon fa fa-angle-double-left"></i>
+                                        </a>
+                                    </li>
+                                    <li class="disabled">
+                                        <a href="#">
+                                            <i class="ace-icon fa fa-angle-left"></i>
+                                        </a>
+                                    </li>
+
+                                    <li class="active">
+                                        <a href="#">1</a>
+                                    </li>
+
+                                    <li>
+                                        <a href="#">2</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">3</a>
+                                    </li>
+
+                                    <li>
+                                        <a href="javascript:" class="min-width-75 align-center">...</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">13</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">14</a>
+                                    </li>
+
+                                    <li>
+                                        <a href="#">15</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <i class="ace-icon fa fa-angle-right"></i>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <i class="ace-icon fa fa-angle-double-right"></i>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div><!--/.main-content-inner-->
+    </div><!-- /.main-content -->
+</div><!-- /.main-container -->
+
+<!-- basic scripts -->
+
+<!--[if !IE]> -->
+<script src="../components/jquery/dist/jquery.js"></script>
+<!-- <![endif]-->
+
+<!--[if IE]>
+<script src="../components/jquery.1x/dist/jquery.js"></script>
+<![endif]-->
+<script type="text/javascript">
+    if ('ontouchstart' in document.documentElement) document.write("<script src='../components/_mod/jquery.mobile.custom/jquery.mobile.custom.js'>" + "<" + "/script>");
+</script>
+<script src="../components/bootstrap/dist/js/bootstrap.js"></script>
+
+<!-- page specific plugin scripts -->
+<script src="../components/jquery-ui/jquery-ui.js"></script>
+<script src="../components/jqueryui-touch-punch/jquery.ui.touch-punch.js"></script>
+
+<!--ace script-->
+<script src="../assets/js/src/ace.js"></script>
+
+<!--THS script-->
+<script src="../assets/js/ths.js"></script>
+
+<!-- 自己写的JS，请放在这里 -->
+<script type="text/javascript">
+
+    jQuery(function ($) {
+        //为工具条添加点击事件
+        $(".page-toolbar>button").on(ace.click_event, function (e) {
+            if ($(this).data("ths-href")) {
+                window.location.href = ($(this).data("ths-href"));
+            }
+        });
+
+        //为表格操作列添加点击事件
+        $(".col-op-ths>button").on(ace.click_event, function (e) {
+            if ($(this).data("ths-href")) {
+                window.location.href = ($(this).data("ths-href"));
+            }
+        });
+
+        //为表格添加排序事件
+        $("#simple-table>thead>tr>th").on(ace.click_event, function (e) {
+            $(this).find("i").each(function () {
+                var $i = $(this);
+                if ($i.hasClass("fa-sort")) {
+                    $i.removeClass("fa-sort").addClass("fa-sort-asc");
+                }
+                else if ($i.hasClass("fa-sort-asc")) {
+                    $i.removeClass("fa-sort-asc").addClass("fa-sort-desc");
+                }
+                else if ($i.hasClass("fa-sort-desc")) {
+                    $i.removeClass("fa-sort-desc").addClass("fa-sort-asc");
+                }
+            })
+        })
+
+        //select/deselect all rows according to table header checkbox
+        var active_class = 'active';
+        $('#simple-table > thead > tr > th input[type=checkbox]').eq(0).on(ace.click_event, function () {
+            var th_checked = this.checked;//checkbox inside "TH" table header
+
+            $(this).closest('table').find('tbody > tr').each(function () {
+                var row = this;
+                if (th_checked) $(row).addClass(active_class).find('input[type=checkbox]').eq(0).prop('checked', true);
+                else $(row).removeClass(active_class).find('input[type=checkbox]').eq(0).prop('checked', false);
+            });
+        });
+
+        //select/deselect a row when the checkbox is checked/unchecked
+        $('#simple-table').on(ace.click_event, 'td input[type=checkbox]', function () {
+            var $row = $(this).closest('tr');
+            if (this.checked) $row.addClass(active_class);
+            else $row.removeClass(active_class);
+        });
+    });
+</script>
+</body>
+</html>

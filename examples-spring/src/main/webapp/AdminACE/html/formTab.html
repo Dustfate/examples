@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!--浏览器兼容性设置-->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta charset="utf-8"/>
+    <title>Empty Page - Ace Admin</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
+
+    <!-- bootstrap & fontawesome -->
+    <link rel="stylesheet" href="../assets/css/bootstrap.css"/>
+    <link rel="stylesheet" href="../components/font-awesome/css/font-awesome.css"/>
+
+    <!-- page plugin css -->
+    <!--Google 代码 展示插件，仅用在本页面的帮助文档中，项目中请勿引用-->
+    <link href="../components/_mod/google-code-prettify/prettify.css" rel="stylesheet">
+
+    <!-- ace styles -->
+    <link rel="stylesheet" href="../assets/css/ace.css" class="ace-main-stylesheet" id="main-ace-style"/>
+
+    <!--[if lte IE 9]>
+    <link rel="stylesheet" href="../assets/css/ace-part2.css" class="ace-main-stylesheet"/>
+    <![endif]-->
+    <link rel="stylesheet" href="../assets/css/ace-skins.css"/>
+
+    <!--[if lte IE 9]>
+    <link rel="stylesheet" href="../assets/css/ace-ie.css"/>
+    <![endif]-->
+
+    <!--THS CSS 插件-->
+    <link rel="stylesheet" href="../assets/css/ths.css"/>
+
+    <!-- 自己写的CSS，请放在这里 -->
+    <style type="text/css">
+
+    </style>
+
+    <!-- HTML5shiv and Respond.js for IE8 to support HTML5 elements and media queries -->
+
+    <!--[if lte IE 8]>
+    <script src="../components/html5shiv/dist/html5shiv.min.js"></script>
+    <script src="../components/respond/dest/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body class="no-skin">
+
+<div class="main-container" id="main-container">
+    <div class="main-content">
+        <div class="main-content-inner fixed-page-header fixed-40">
+            <div id="breadcrumbs" class="breadcrumbs">
+                <ul class="breadcrumb">
+                    <li class="active"><i class="fa fa-arrow-right"></i> 各种Tab</li>
+                </ul><!-- /.breadcrumb -->
+
+            </div>
+        </div>
+        <div class="main-content-inner padding-page-content">
+            <div class="page-content">
+                <div class="row" >
+                    <div class=" col-xs-12">
+                        <form class="form-horizontal" role="form" id="form1" action="index.html" method="post">
+
+                            <div class="tabbable col-sm-6 no-padding-left">
+
+                                <ul id="myTab" class="nav nav-tabs">
+                                    <li class="active">
+                                        <a href="#home" data-toggle="tab">
+                                            <i class=" ace-icon fa fa-home bigger-120"></i>
+                                            主页</a>
+                                    </li>
+                                    <li>
+                                        <a href="#message" data-toggle="tab">测试字符长度很多怎么办
+                                            <span class="badge badge-info  line-height-1">4</span>
+                                        </a>
+                                    </li>
+                                    <li class="dropdown">
+                                        <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                                            <i class="ace-icon fa fa-folder bigger-110"></i>
+                                            Dropdown &nbsp;
+                                            <i class="ace-icon fa fa-caret-down bigger-110 width-auto"></i>
+                                        </a>
+
+                                        <ul class="dropdown-menu dropdown-info">
+                                            <li>
+                                                <a data-toggle="tab" href="#dropdown1">下拉1</a>
+                                            </li>
+
+                                            <li>
+                                                <a data-toggle="tab" href="#dropdown2">下拉2</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+
+                                <div class="tab-content min-height-200">
+                                    <div class="tab-pane in active" id="home">
+                                        home tab content
+                                    </div>
+                                    <div class="tab-pane" id="message">
+                                        测试字符长度很多怎么办
+                                    </div>
+                                    <div class="tab-pane" id="dropdown1">
+                                        dropdown1
+                                    </div>
+                                    <div class="tab-pane" id="dropdown2">
+                                        dropdown2
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="tabbable tabs-below col-sm-6 no-padding-right">
+                                <div class="tab-content min-height-200">
+                                    <div class="tab-pane in active" id="home1">
+                                        home tab content
+                                    </div>
+                                    <div class="tab-pane" id="message1">
+                                        测试字符长度很多怎么办
+                                    </div>
+                                    <div class="tab-pane" id="dropdown11">
+                                        dropdown1
+                                    </div>
+                                    <div class="tab-pane" id="dropdown21">
+                                        dropdown2
+                                    </div>
+                                </div>
+
+                                <ul id="myTab2" class="nav nav-tabs">
+                                    <li class="active">
+                                        <a href="#home1" data-toggle="tab">
+                                            <i class=" ace-icon fa fa-home bigger-120"></i>
+                                            主页</a>
+                                    </li>
+                                    <li>
+                                        <a href="#message1" data-toggle="tab">测试字符长度很多怎么办
+                                            <span class="badge badge-info">4</span>
+                                        </a>
+                                    </li>
+                                    <li class="dropdown">
+                                        <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                                            <i class="ace-icon fa fa-folder bigger-110"></i>
+                                            Dropdown &nbsp;
+                                            <i class="ace-icon fa fa-caret-down bigger-110 width-auto"></i>
+                                        </a>
+
+                                        <ul class="dropdown-menu dropdown-info">
+                                            <li>
+                                                <a data-toggle="tab" href="#dropdown11">下拉1</a>
+                                            </li>
+
+                                            <li>
+                                                <a data-toggle="tab" href="#dropdown21">下拉2</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+
+                            </div>
+                            <div class="space-10 col-sm-12"></div>
+                            <!-- #section:elements.tab.position -->
+                            <div class="tabbable col-sm-6 tabs-left no-padding-left">
+                                <ul class="nav nav-tabs" id="myTab3">
+                                    <li class="active">
+                                        <a data-toggle="tab" href="#home3">
+                                            <i class="pink ace-icon fa fa-tachometer bigger-110"></i>
+                                            竖着排列
+                                        </a>
+                                    </li>
+
+                                    <li>
+                                        <a data-toggle="tab" href="#profile3">
+                                            <i class="blue ace-icon fa fa-user bigger-110"></i>
+                                            <br>
+                                            <div style="margin-left: 2px">竖<br>着<br>排<br>列</div>
+
+                                        </a>
+                                    </li>
+
+                                    <li>
+                                        <a data-toggle="tab" href="#dropdown13">
+                                            <i class="ace-icon fa fa-rocket"></i>
+                                            竖着排列
+                                        </a>
+                                    </li>
+                                </ul>
+
+                                <div class="tab-content min-height-200">
+                                    <div id="home3" class="tab-pane in active">
+                                        <p>Raw denim you probably haven't heard of them jean shorts Austin.</p>
+                                        <p>Raw denim you probably haven't heard of them jean shorts Austin.</p>
+                                    </div>
+
+                                    <div id="profile3" class="tab-pane">
+                                        <p>Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid.</p>
+                                        <p>Raw denim you probably haven't heard of them jean shorts Austin.</p>
+                                    </div>
+
+                                    <div id="dropdown13" class="tab-pane">
+                                        <p>Etsy mixtape wayfarers, ethical wes anderson tofu before they sold out mcsweeney's organic lomo retro fanny pack lo-fi farm-to-table readymade.</p>
+                                        <p>Raw denim you probably haven't heard of them jean shorts Austin.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /section:elements.tab.position -->
+                                    <!-- #section:elements.tab.position -->
+                                    <div class="tabbable col-sm-6 tabs-right no-padding-right">
+                                        <ul class="nav nav-tabs" id="myTab4">
+                                            <li class="active">
+                                                <a data-toggle="tab" href="#home31">
+                                                    <i class="pink ace-icon fa fa-tachometer bigger-110"></i>
+                                                    Home
+                                                </a>
+                                            </li>
+
+                                            <li>
+                                                <a data-toggle="tab" href="#profile31">
+                                                    <i class="blue ace-icon fa fa-user bigger-110"></i>
+                                                    Profile
+                                                </a>
+                                            </li>
+
+                                            <li>
+                                                <a data-toggle="tab" href="#dropdown131">
+                                                    <i class="ace-icon fa fa-rocket"></i>
+                                                    More
+                                                </a>
+                                            </li>
+                                        </ul>
+
+                                        <div class="tab-content min-height-200">
+                                            <div id="home31" class="tab-pane in active">
+                                                <p>Raw denim you probably haven't heard of them jean shorts Austin.</p>
+                                                <p>Raw denim you probably haven't heard of them jean shorts Austin.</p>
+                                            </div>
+
+                                            <div id="profile31" class="tab-pane">
+                                                <p>Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid.</p>
+                                                <p>Raw denim you probably haven't heard of them jean shorts Austin.</p>
+                                            </div>
+
+                                            <div id="dropdown131" class="tab-pane">
+                                                <p>Etsy mixtape wayfarers, ethical wes anderson tofu before they sold out mcsweeney's organic lomo retro fanny pack lo-fi farm-to-table readymade.</p>
+                                                <p>Raw denim you probably haven't heard of them jean shorts Austin.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- /section:elements.tab.position -->
+
+
+                            <div class="space-8 col-sm-12"></div>
+                                <div class="well well-lg col-sm-12">
+                                    <h4 class="blue">
+                                        <i class="ace-icon fa fa-question-circle"></i>
+                                        帮助
+                                    </h4>
+                                    控制Tab位置(default:上方)主要是设置：<pre data-language="css" class="rainbow">class="tabs-right tabs-left tabs-below"</pre>
+                                    以及 UL 标签的位置
+                                    <hr>
+                                    当我们需要在一个隐藏的TAB pane里绘制一个统计图或者其他的element，却发现某些element并不能正确绘制的时候，请
+                                    在JS代码中draw/redraw the element （Tab pane show的时候），如下：
+                                    <pre data-language="javascript" class="rainbow"><span class="selector">$</span>(<span class="string">'#myTab a[data-toggle="tab"]'</span>).<span class="function call">on</span>(<span class="string">'shown'</span>, <span class="storage function">function</span> (e) {
+  <span class="comment">//if( $(e.target).attr('href') == "#home" ) drawChartNow();</span>
+  <span class="comment">//if($(e.target).is('#my-chart-tab')) drawChartNow();</span>
+})
+				</pre>
+
+                                </div>
+                        </form>
+                    </div>
+                </div><!-- /.row -->
+            </div>
+        </div><!--/.main-content-inner-->
+    </div><!-- /.main-content -->
+</div><!-- /.main-container -->
+
+<!-- basic scripts -->
+
+<!--[if !IE]> -->
+<script src="../components/jquery/dist/jquery.js"></script>
+<!-- <![endif]-->
+
+<!--[if IE]>
+<script src="../components/jquery.1x/dist/jquery.js"></script>
+<![endif]-->
+<script type="text/javascript">
+    if ('ontouchstart' in document.documentElement) document.write("<script src='../components/_mod/jquery.mobile.custom/jquery.mobile.custom.js'>" + "<" + "/script>");
+</script>
+<script src="../components/bootstrap/dist/js/bootstrap.js"></script>
+
+<!--Google 代码 展示插件，仅用在本页面的帮助文档中，项目中请勿引用-->
+<script src="../components/_mod/google-code-prettify/prettify.min.js"></script>
+
+<!-- page specific plugin scripts -->
+
+<!--ace script-->
+<script src="../assets/js/src/ace.js"></script>
+<script src="../assets/js/ace-elements.js"></script>
+
+<!-- 自己写的JS，请放在这里 -->
+<script type="text/javascript">
+    jQuery(function ($) {
+        $("pre").addClass("prettyprint");
+        prettyPrint();
+    });
+</script>
+</body>
+</html>
