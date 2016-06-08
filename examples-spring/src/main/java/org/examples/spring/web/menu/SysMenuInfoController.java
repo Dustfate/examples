@@ -54,14 +54,13 @@ public class SysMenuInfoController {
 		String columnName = StringUtil.underscoreName(request.getParameter("columns["+sortOrder+"][data]"));
 		logger.info("排序字段："+columnName);
 		logger.info("排序方式："+sortDir);
-		List<SysMenuInfo> menuList = sysMenuInfoService.findMenuInfoPageList(menuInfo, dataTablesOptions, columnName, sortDir);
-		int count = sysMenuInfoService.getCount(menuInfo);
+		Pager pageResult = sysMenuInfoService.findMenuInfoPageList(menuInfo, dataTablesOptions, columnName, sortDir);
 		
 		DataTablesOptions<SysMenuInfo> result = new DataTablesOptions<SysMenuInfo>();
 		result.setDraw(dataTablesOptions.getDraw());
-		result.setData(menuList);
-		result.setRecordsTotal(count);
-		result.setRecordsFiltered(count);
+		result.setData(pageResult.getList(SysMenuInfo.class));
+		result.setRecordsTotal(pageResult.getItemsTotal());
+		result.setRecordsFiltered(pageResult.getItemsTotal());
 		Object json = null;
 		try {
 			json = JSONObject.toJSON(result);

@@ -5,6 +5,8 @@ import java.util.List;
 import org.examples.spring.entity.menu.SysMenuInfo;
 import org.examples.spring.web.DataTablesOptions;
 
+import com.dexcoder.commons.pager.Pager;
+
 /**
  * 菜单信息管理
  * 
@@ -74,7 +76,7 @@ public interface SysMenuInfoService {
 	 *            查询条件
 	 * @return
 	 */
-	public List<SysMenuInfo> findMenuInfoPageList(SysMenuInfo menuInfo,
+	public Pager findMenuInfoPageList(SysMenuInfo menuInfo,
 			DataTablesOptions<SysMenuInfo> dataTablesOptions,
 			String columnName, String sortDir);
 

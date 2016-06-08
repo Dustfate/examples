@@ -1,6 +1,5 @@
 package org.examples.spring.manager.menu.impl;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.examples.spring.dao.menu.SysMenuInfoDao;
@@ -9,6 +8,8 @@ import org.examples.spring.manager.menu.SysMenuInfoService;
 import org.examples.spring.web.DataTablesOptions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.dexcoder.commons.pager.Pager;
 
 @Service("sysMenuInfoService")
 public class SysMenuInfoServiceImpl implements SysMenuInfoService {
@@ -56,14 +57,11 @@ public class SysMenuInfoServiceImpl implements SysMenuInfoService {
 	}
 
 	@Override
-	public List<SysMenuInfo> findMenuInfoTreeList(SysMenuInfo menuInfo){
+	public List<SysMenuInfo> findMenuInfoTreeList(SysMenuInfo menuInfo) {
 		List<SysMenuInfo> result = null;
 		try {
 			result = sysMenuInfoDao.findMenuInfoList(menuInfo);
-			
-			
-			
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -82,18 +80,18 @@ public class SysMenuInfoServiceImpl implements SysMenuInfoService {
 	}
 
 	@Override
-	public List<SysMenuInfo> findMenuInfoPageList(SysMenuInfo menuInfo,
+	public Pager findMenuInfoPageList(SysMenuInfo menuInfo,
 			DataTablesOptions<SysMenuInfo> dataTablesOptions,
 			String columnName, String sortDir) {
-		List<SysMenuInfo> result = null;
+		Pager pagerResult = null;
 		try {
-			result = sysMenuInfoDao.findMenuInfoPageList(menuInfo, dataTablesOptions,
-					columnName, sortDir);
+			pagerResult = sysMenuInfoDao.findMenuInfoPageList(menuInfo,
+					dataTablesOptions, columnName, sortDir);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
-		return result;
+		return pagerResult;
 	}
 
 	@Override

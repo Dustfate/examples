@@ -102,7 +102,7 @@ public class SysMenuInfoDaoImpl implements SysMenuInfoDao {
 		return list;
 	}
 
-	public List<SysMenuInfo> findMenuInfoPageList(SysMenuInfo menuInfo,
+	public Pager findMenuInfoPageList(SysMenuInfo menuInfo,
 			DataTablesOptions<SysMenuInfo> dataTablesOptions,
 			String columnName, String sortDir)
 			throws Exception {
@@ -127,12 +127,9 @@ public class SysMenuInfoDaoImpl implements SysMenuInfoDao {
 		if(!StringUtil.isEmpty(columnName))
 			sql.append(" order by ").append(columnName).append(" ").append(sortDir);
 		
-		List<SysMenuInfo> list = null;
 		jdbcDaoImpl.queryListForSql(sql.toString(), SysMenuInfo.class);
 		Pager pager = PageControl.getPager();
-		list = (List<SysMenuInfo>) pager.getList(SysMenuInfo.class);
-
-		return list;
+		return pager;
 	}
 
 	public List<SysMenuInfo> getCount(SysMenuInfo menuInfo) throws Exception {
