@@ -15,11 +15,12 @@
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<spring.version>4.2.5.RELEASE</spring.version>
+		<spring.version>4.3.0.RELEASE</spring.version>
 		<hibernate.version>5.1.0.Final</hibernate.version>
 		<struts2.version>2.3.24</struts2.version>
 		<druid-version>1.0.20</druid-version>
 		<shiro-version>1.2.5</shiro-version>
+		<tomcat.port>8089</tomcat.port>
 	</properties>
 
 	<dependencies>
