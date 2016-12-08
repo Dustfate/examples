@@ -11,7 +11,7 @@ public class ThreadJoinTest {
 		
 		try {
 			tj1.join();
-//			tj2.join();
+			tj2.join();
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
