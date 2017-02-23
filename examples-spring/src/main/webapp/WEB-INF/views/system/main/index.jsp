@@ -8,8 +8,8 @@
 	<title>首页</title>
 	<!-- Tell the browser to be responsive to screen width -->
 	<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-	<%@include file="../../../../AdminLTE-2.3.3/commons/head-css.jsp"%>
-	<%@include file="../../../../AdminLTE-2.3.3/commons/footer-js.jsp"%>
+	<%@include file="../../../../AdminLTE-2.3.11/commons/head-css.jsp"%>
+	<%@include file="../../../../AdminLTE-2.3.11/commons/footer-js.jsp"%>
 	
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
