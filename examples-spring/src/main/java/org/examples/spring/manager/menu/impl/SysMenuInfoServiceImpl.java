@@ -55,6 +55,30 @@ public class SysMenuInfoServiceImpl implements SysMenuInfoService {
 		}
 		return count;
 	}
+	
+	@Override
+	public List<SysMenuInfo> findAllParentMenu(SysMenuInfo menuInfo) {
+		List<SysMenuInfo> result = null;
+		try {
+			result = sysMenuInfoDao.listAllParentMenu(menuInfo);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+
+	@Override
+	public List<SysMenuInfo> findAllMenuByParentId(SysMenuInfo menuInfo) {
+		List<SysMenuInfo> result = null;
+		try {
+			result = sysMenuInfoDao.listAllMenuByParentId(menuInfo);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
 
 	@Override
 	public List<SysMenuInfo> findMenuInfoTreeList(SysMenuInfo menuInfo) {

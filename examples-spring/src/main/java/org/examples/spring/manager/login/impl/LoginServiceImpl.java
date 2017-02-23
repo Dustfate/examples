@@ -16,19 +16,39 @@ public class LoginServiceImpl implements LoginService {
 	private LoginDao loginDao;
 
 	@Override
-	public List<SysUserInfo> login(SysUserInfo userInfo) {
-		
-		return loginDao.login(userInfo);
+	public SysUserInfo login(SysUserInfo userInfo) {
+		SysUserInfo user = null;
+		try {
+			return loginDao.login(userInfo);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
 
 	@Override
 	public boolean checkUserName(SysUserInfo userInfo, String checkType) {
-		List<Map<String, Object>> list = loginDao.checkUserInfo(userInfo, checkType);
-		Integer count = 0;
-		if (null != list && list.size() > 0) {
-			count = Integer.parseInt(list.get(0).get("COUNT_NUM").toString());
+		List<Map<String, Object>> list = null;
+		try {
+			list = loginDao.checkUserInfo(userInfo, checkType);
+			Integer count = 0;
+			if (null != list && list.size() > 0) {
+				count = Integer.parseInt(list.get(0).get("COUNT_NUM").toString());
+			}
+			return count <= 0 ? true : false;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
 		}
-		return count <= 0 ? true : false;
+	}
+
+	@Override
+	public void updateLoginTime(SysUserInfo userInfo) {
+		try {
+			loginDao.updateLoginTime(userInfo);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 }

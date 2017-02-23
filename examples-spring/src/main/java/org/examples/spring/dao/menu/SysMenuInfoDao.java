@@ -14,6 +14,10 @@ import com.dexcoder.commons.pager.Pager;
  *
  */
 public interface SysMenuInfoDao {
+	
+	public List<SysMenuInfo> listAllParentMenu(SysMenuInfo menuInfo);
+	
+	public List<SysMenuInfo> listAllMenuByParentId(SysMenuInfo menuInfo);
 
 	public abstract Long saveMenuInfo(SysMenuInfo menuInfo) throws Exception;
 

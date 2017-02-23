@@ -4,6 +4,12 @@ import java.util.Date;
 
 import com.dexcoder.commons.pager.Pageable;
 
+/**
+ * 用户信息
+ * 
+ * @author Dusf
+ *
+ */
 public class SysUserInfo extends Pageable {
 
 	/**
@@ -11,14 +17,19 @@ public class SysUserInfo extends Pageable {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	private String userId;
-	private String userName;
-	private String passWord;
-	private String emailAddress;
-	private String phoneNumber;
-	private String realName;
-	private Date createDate;
-	private Date updateDate;
+	private String userId; 			// 用户编码
+	private String userName; 		// 用户名
+	private String passWord; 		// 密码
+	private String emailAddress;	// 邮箱地址
+	private String phoneNumber; 	// 手机号
+	private String cardId; 			// 身份证号
+	private String realName; 		// 真实姓名
+	private String status; 			// 状态
+	private String ip; 				// 用户登录IP地址
+	private String skin; 			// 皮肤
+	private Date createDate; 		// 创建时间
+	private Date updateDate; 		// 更新时间
+	private Date loginDate; 		// 最后登录时间
 
 	public String getUserId() {
 		return userId;
@@ -60,12 +71,44 @@ public class SysUserInfo extends Pageable {
 		this.phoneNumber = phoneNumber;
 	}
 
+	public String getCardId() {
+		return cardId;
+	}
+
+	public void setCardId(String cardId) {
+		this.cardId = cardId;
+	}
+
 	public String getRealName() {
 		return realName;
 	}
 
 	public void setRealName(String realName) {
 		this.realName = realName;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+	public String getIp() {
+		return ip;
+	}
+
+	public void setIp(String ip) {
+		this.ip = ip;
+	}
+
+	public String getSkin() {
+		return skin;
+	}
+
+	public void setSkin(String skin) {
+		this.skin = skin;
 	}
 
 	public Date getCreateDate() {
@@ -82,6 +125,14 @@ public class SysUserInfo extends Pageable {
 
 	public void setUpdateDate(Date updateDate) {
 		this.updateDate = updateDate;
+	}
+
+	public Date getLoginDate() {
+		return loginDate;
+	}
+
+	public void setLoginDate(Date loginDate) {
+		this.loginDate = loginDate;
 	}
 
 }

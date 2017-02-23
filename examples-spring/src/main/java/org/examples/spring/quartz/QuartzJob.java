@@ -10,10 +10,10 @@ import org.springframework.stereotype.Component;
 @Component
 public class QuartzJob {
 	
-	@Scheduled(cron = "0/1 * *  * * ? ") // 每1秒执行一次
-	public void bTask() {
-		DateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		System.out.println(sdf.format(new Date()) + "*********任务每1秒执行一次进入测试");
-	}
+//	@Scheduled(cron = "0/1 * *  * * ? ") // 每1秒执行一次
+//	public void bTask() {
+//		DateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+//		System.out.println(sdf.format(new Date()) + "*********任务每1秒执行一次进入测试");
+//	}
 	
 }

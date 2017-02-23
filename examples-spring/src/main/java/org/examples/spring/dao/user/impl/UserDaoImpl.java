@@ -6,7 +6,6 @@ import org.apache.log4j.Logger;
 import org.examples.spring.dao.BaseDao;
 import org.examples.spring.dao.user.UserDao;
 import org.examples.spring.entity.user.SysUserInfo;
-import org.examples.spring.entity.user.UserEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -39,44 +38,41 @@ public class UserDaoImpl implements UserDao {
 
 	@Override
 	public void createCollection() {
-		// TODO Auto-generated method stub
-
+		
 	}
 
 	@Override
-	public List<UserEntity> findList(int skip, int limit) {
-		// TODO Auto-generated method stub
+	public List<SysUserInfo> findList(int skip, int limit) {
+		
 		return null;
 	}
 
 	@Override
-	public List<UserEntity> findListByAge(int age) {
-		// TODO Auto-generated method stub
+	public List<SysUserInfo> findListByAge(int age) {
+		
 		return null;
 	}
 
 	@Override
-	public UserEntity findOne(String id) {
-		// TODO Auto-generated method stub
+	public SysUserInfo findOne(String id) {
+		
 		return null;
 	}
 
 	@Override
-	public UserEntity findOneByUsername(String username) {
-		// TODO Auto-generated method stub
+	public SysUserInfo findOneByUsername(String username) {
+		
 		return null;
 	}
 
 	@Override
-	public void insert(UserEntity entity) {
-		// TODO Auto-generated method stub
-
+	public void insert(SysUserInfo entity) {
+		
 	}
 
 	@Override
-	public void update(UserEntity entity) {
-		// TODO Auto-generated method stub
-
+	public void update(SysUserInfo entity) {
+		
 	}
 
 }

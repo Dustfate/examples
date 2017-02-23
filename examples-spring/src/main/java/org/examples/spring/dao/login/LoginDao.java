@@ -7,8 +7,9 @@ import org.examples.spring.entity.user.SysUserInfo;
 
 public interface LoginDao {
 
-	public List<SysUserInfo> login(SysUserInfo userInfo);
+	public SysUserInfo login(SysUserInfo userInfo) throws Exception;
 	
-	public List<Map<String, Object>> checkUserInfo(SysUserInfo userInfo, String checkType);
+	public List<Map<String, Object>> checkUserInfo(SysUserInfo userInfo, String checkType) throws Exception;
 	
+	public void updateLoginTime(SysUserInfo userInfo) throws Exception;
 }

@@ -2,7 +2,6 @@ package org.examples.spring.dao.menu.impl;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import org.apache.log4j.Logger;
 import org.examples.spring.dao.BaseDao;
@@ -37,6 +36,56 @@ public class SysMenuInfoDaoImpl implements SysMenuInfoDao {
 	private JdbcDaoImpl jdbcDaoImpl;
 	@Autowired
 	private PageControl pageControl;
+	
+	@Override
+	public List<SysMenuInfo> listAllParentMenu(SysMenuInfo menuInfo) {
+		List<Object> params = new ArrayList<Object>();
+		StringBuffer sql = new StringBuffer();
+		sql.append("SELECT * FROM SYS_MENU_INFO WHERE 1 = 1");
+		if (!StringUtil.isEmpty(menuInfo.getParentId())) {
+			sql.append(" AND PARENT_ID = ?");
+			params.add(menuInfo.getParentId());
+		}
+
+		if (!StringUtil.isEmpty(menuInfo.getIsEnable())) {
+			sql.append(" AND IS_ENABLE = ?");
+			params.add(menuInfo.getIsEnable());
+		}
+		
+		sql.append(" ORDER BY MENU_ORDER");
+		List<SysMenuInfo> list = null;
+		try {
+			list = jdbcDaoImpl.queryListForSql(sql.toString(), params.toArray(), SysMenuInfo.class);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		logger.info(list.size());
+		return list;
+	}
+
+	@Override
+	public List<SysMenuInfo> listAllMenuByParentId(SysMenuInfo menuInfo) {
+		List<Object> params = new ArrayList<Object>();
+		StringBuffer sql = new StringBuffer();
+		sql.append("SELECT MENU_ID, MENU_NAME, PARENT_ID, MENU_URL, MENU_ORDER, MENU_ICON, MENU_TYPE, IS_ENABLE, CREATE_TIME, UPDATE_TIME ");
+		sql.append(" FROM SYS_MENU_INFO ");
+		sql.append(" where 1=1");
+		
+		if (!StringUtil.isEmpty(menuInfo.getParentId())) {
+			sql.append(" AND PARENT_ID = ? ");
+			params.add(menuInfo.getParentId());
+		}
+
+		List<SysMenuInfo> list = null;
+		try {
+			list = jdbcDaoImpl
+					.queryListForSql(sql.toString(), params.toArray(), SysMenuInfo.class);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		logger.info(list.size());
+		return list;
+	}
 
 	@Override
 	public Long saveMenuInfo(SysMenuInfo menuInfo) {

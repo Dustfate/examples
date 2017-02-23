@@ -46,10 +46,24 @@ public interface SysMenuInfoService {
 	 * @return
 	 */
 	public abstract int updateMenuInfo(SysMenuInfo menuInfo);
-	
+
 
 	/**
+	 * 查询所有根菜单
+	 * @return
+	 */
+	public List<SysMenuInfo> findAllParentMenu(SysMenuInfo menuInfo);
+
+	/**
+	 * 根据父菜单ID查询
+	 * @param menuInfo
+	 * @return
+	 */
+	public List<SysMenuInfo> findAllMenuByParentId(SysMenuInfo menuInfo);
+	
+	/**
 	 * 获取菜单树
+	 * 
 	 * @param menuInfo
 	 * @return
 	 */
@@ -76,8 +90,7 @@ public interface SysMenuInfoService {
 	 *            查询条件
 	 * @return
 	 */
-	public Pager findMenuInfoPageList(SysMenuInfo menuInfo,
-			DataTablesOptions<SysMenuInfo> dataTablesOptions,
+	public Pager findMenuInfoPageList(SysMenuInfo menuInfo, DataTablesOptions<SysMenuInfo> dataTablesOptions,
 			String columnName, String sortDir);
 
 	/**
