@@ -123,7 +123,7 @@
 						{
 							"dom": "t<'bottom'lip>",
 							"language" : {
-								url : "${pageContext.request.contextPath}/AdminLTE-2.3.3/language/zh_cn.txt"
+								url : "${pageContext.request.contextPath}/AdminLTE-2.3.11/language/zh_cn.txt"
 							},
 							"orderClasses" : false,
 							"processing" : true, 												//显示加载效果
