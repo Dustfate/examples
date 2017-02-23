@@ -123,7 +123,7 @@ public class StringUtil {
 	 * @param symbol
 	 * @return
 	 */
-	public static String joinString(List array, String symbol) {
+	public static String joinString(List<Object> array, String symbol) {
 		String result = "";
 		if (array != null) {
 			for (int i = 0; i < array.size(); i++) {
@@ -145,10 +145,10 @@ public class StringUtil {
 	}
 
 	/**
-	 * 截取字符串　超出的字符用symbol代替 　　
+	 * 截取字符串 超出的字符用symbol代替
 	 * 
 	 * @param len
-	 *            　字符串长度　长度计量单位为一个GBK汉字　　两个英文字母计算为一个单位长度
+	 *            字符串长度 长度计量单位为一个GBK汉字 两个英文字母计算为一个单位长度
 	 * @param str
 	 * @param symbol
 	 * @return
@@ -186,10 +186,10 @@ public class StringUtil {
 	}
 
 	/**
-	 * 截取字符串　超出的字符用symbol代替 　　
+	 * 截取字符串 超出的字符用symbol代替
 	 * 
 	 * @param len
-	 *            　字符串长度　长度计量单位为一个GBK汉字　　两个英文字母计算为一个单位长度
+	 *            字符串长度 长度计量单位为一个GBK汉字 两个英文字母计算为一个单位长度
 	 * @param str
 	 * @param symbol
 	 * @return12
@@ -362,7 +362,8 @@ public class StringUtil {
 	}
 
 	/**
-	 * 自定义的分隔字符串函数 例如: 1,2,3 =>[1,2,3] 3个元素 ,2,3=>[,2,3] 3个元素 ,2,3,=>[,2,3,] 4个元素 ,,,=>[,,,] 4个元素
+	 * 自定义的分隔字符串函数 例如: 1,2,3 =>[1,2,3] 3个元素 ,2,3=>[,2,3] 3个元素 ,2,3,=>[,2,3,]
+	 * 4个元素 ,,,=>[,,,] 4个元素
 	 * 
 	 * 5.22算法修改，为提高速度不用正则表达式 两个间隔符,,返回""元素
 	 * 
@@ -411,7 +412,7 @@ public class StringUtil {
 	public static String linkedHashMapToString(LinkedHashMap<String, String> map) {
 		if (map != null && map.size() > 0) {
 			String result = "";
-			Iterator it = map.keySet().iterator();
+			Iterator<String> it = map.keySet().iterator();
 			while (it.hasNext()) {
 				String name = (String) it.next();
 				String value = (String) map.get(name);
@@ -433,7 +434,7 @@ public class StringUtil {
 	@SuppressWarnings("unchecked")
 	public static LinkedHashMap<String, String> toLinkedHashMap(String str) {
 		if (str != null && !str.equals("") && str.indexOf("=") > 0) {
-			LinkedHashMap result = new LinkedHashMap();
+			LinkedHashMap<String, String> result = new LinkedHashMap<String, String>();
 
 			String name = null;
 			String value = null;
@@ -657,7 +658,8 @@ public class StringUtil {
 	}
 
 	/**
-	 * 过滤用户输入的URL地址（防治用户广告） 目前只针对以http或www开头的URL地址 本方法调用的正则表达式，不建议用在对性能严格的地方例如:循环及list页面等
+	 * 过滤用户输入的URL地址（防治用户广告） 目前只针对以http或www开头的URL地址
+	 * 本方法调用的正则表达式，不建议用在对性能严格的地方例如:循环及list页面等
 	 * 
 	 * @author fengliang
 	 * @param str
@@ -1031,11 +1033,17 @@ public class StringUtil {
 	 */
 
 	/*
-	 * String aaa="abcdefghijklmn"; String[] bbb=StringProcessor.midString(aaa, "b","l"); org.jeecgframework.core.util.LogUtil.info("bbb[0]:"+bbb[0]);//cdefghijk org.jeecgframework.core.util.LogUtil.info("bbb[1]:"+bbb[1]);//lmn ★这个方法是得到第二个参数和第三个参数之间的字符串,赋给元素0;然后把元素0代表的字符串之后的,赋给元素1
+	 * String aaa="abcdefghijklmn"; String[] bbb=StringProcessor.midString(aaa,
+	 * "b","l");
+	 * org.jeecgframework.core.util.LogUtil.info("bbb[0]:"+bbb[0]);//cdefghijk
+	 * org.jeecgframework.core.util.LogUtil.info("bbb[1]:"+bbb[1]);//lmn
+	 * ★这个方法是得到第二个参数和第三个参数之间的字符串,赋给元素0;然后把元素0代表的字符串之后的,赋给元素1
 	 */
 
 	/*
-	 * String aaa="abcdefgllhijklmn5465"; String[] bbb=StringProcessor.midString(aaa, "b","l"); //ab cdefg llhijklmn5465 // 元素0 元素1
+	 * String aaa="abcdefgllhijklmn5465"; String[]
+	 * bbb=StringProcessor.midString(aaa, "b","l"); //ab cdefg llhijklmn5465 //
+	 * 元素0 元素1
 	 */
 	public static String[] midString(String s, String b, String e) {
 		int i = s.indexOf(b) + b.length();
@@ -1126,7 +1134,7 @@ public class StringUtil {
 		}
 		return str;
 	}
-	
+
 	// 字符串的替换
 	public static String replace(String strSource, String strOld, String strNew) {
 		if (strSource == null) {
@@ -1205,7 +1213,8 @@ public class StringUtil {
 	}
 
 	/**
-	 * ************************************************************************* 用要通过URL传输的内容进行编码
+	 * *************************************************************************
+	 * 用要通过URL传输的内容进行编码
 	 * 
 	 * @param 源字符串
 	 * @return 经过编码的内容
@@ -1231,7 +1240,8 @@ public class StringUtil {
 	 * 
 	 * @author 李锋 2007.4.18
 	 * @param 传入
-	 *            &#31119;test&#29031;&#27004;&#65288;&#21271;&#22823;&#38376;&# 24635 ;&#24215;&#65289;&#31119;
+	 *            &#31119;test&#29031;&#27004;&#65288;&#21271;&#22823;&#38376;&#
+	 *            24635 ;&#24215;&#65289;&#31119;
 	 * @return 经过解码的内容
 	 ************************************************************************* 
 	 */
@@ -1275,7 +1285,9 @@ public class StringUtil {
 	}
 
 	/**
-	 * 泛型方法(通用)，把list转换成以“,”相隔的字符串 调用时注意类型初始化（申明类型） 如：List<Integer> intList = new ArrayList<Integer>(); 调用方法：StringUtil.listTtoString(intList); 效率：list中4条信息，1000000次调用时间为850ms左右
+	 * 泛型方法(通用)，把list转换成以“,”相隔的字符串 调用时注意类型初始化（申明类型） 如：List<Integer> intList =
+	 * new ArrayList<Integer>(); 调用方法：StringUtil.listTtoString(intList);
+	 * 效率：list中4条信息，1000000次调用时间为850ms左右
 	 * 
 	 * @author fengliang
 	 * @serialData 2008-01-09
@@ -1362,7 +1374,8 @@ public class StringUtil {
 					break;
 				else {
 					for (int m = 0; m < forNum; m++) {
-						if (m * j > content.length() || (m + 1) * j > content.length() || (m + 2) * j > content.length())
+						if (m * j > content.length() || (m + 1) * j > content.length()
+								|| (m + 2) * j > content.length())
 							break;
 						startStr = content.substring(m * j, (m + 1) * j);
 						nextStr = content.substring((m + 1) * j, (m + 2) * j);
@@ -1465,14 +1478,15 @@ public class StringUtil {
 	 * @param split2
 	 *            key与value之间的分隔符（例：=）
 	 * @param dupLink
-	 *            重复参数名的参数值之间的连接符，连接后的字符串作为该参数的参数值，可为null null：不允许重复参数名出现，则靠后的参数值会覆盖掉靠前的参数值。
+	 *            重复参数名的参数值之间的连接符，连接后的字符串作为该参数的参数值，可为null
+	 *            null：不允许重复参数名出现，则靠后的参数值会覆盖掉靠前的参数值。
 	 * @return map
 	 * @author sky
 	 */
 	@SuppressWarnings("unchecked")
 	public static Map<String, String> parseQuery(String query, char split1, char split2, String dupLink) {
 		if (!isEmpty(query) && query.indexOf(split2) > 0) {
-			Map<String, String> result = new HashMap();
+			Map<String, String> result = new HashMap<String, String>();
 
 			String name = null;
 			String value = null;
@@ -1524,7 +1538,7 @@ public class StringUtil {
 	 * @return String
 	 */
 	@SuppressWarnings("unchecked")
-	public static String listToStringSlipStr(List list, String slipStr) {
+	public static String listToStringSlipStr(List<Object> list, String slipStr) {
 		StringBuffer returnStr = new StringBuffer();
 		if (list != null && list.size() > 0) {
 			for (int i = 0; i < list.size(); i++) {
@@ -1761,6 +1775,7 @@ public class StringUtil {
 
 	/**
 	 * html 必须是格式良好的
+	 * 
 	 * @param str
 	 * @return
 	 * @throws Exception
@@ -1779,27 +1794,30 @@ public class StringUtil {
 		htmlWriter.close();
 		return writer.toString();
 	}
-	
+
 	/**
 	 * 首字母大写
+	 * 
 	 * @param realName
 	 * @return
 	 */
 	public static String firstUpperCase(String realName) {
-		return StringUtils.replaceChars(realName, realName.substring(0, 1),realName.substring(0, 1).toUpperCase());
+		return StringUtils.replaceChars(realName, realName.substring(0, 1), realName.substring(0, 1).toUpperCase());
 	}
 
 	/**
 	 * 首字母小写
+	 * 
 	 * @param realName
 	 * @return
 	 */
 	public static String firstLowerCase(String realName) {
-		return StringUtils.replaceChars(realName, realName.substring(0, 1),realName.substring(0, 1).toLowerCase());
+		return StringUtils.replaceChars(realName, realName.substring(0, 1), realName.substring(0, 1).toLowerCase());
 	}
-	
+
 	/**
 	 * 驼峰转下划线
+	 * 
 	 * @param name
 	 * @return
 	 */
@@ -1819,31 +1837,33 @@ public class StringUtil {
 		}
 		return result.toString();
 	}
-	
+
 	/**
 	 * 判断这个类是不是java自带的类
+	 * 
 	 * @param clazz
 	 * @return
 	 */
 	public static boolean isJavaClass(Class<?> clazz) {
 		boolean isBaseClass = false;
-		if(clazz.isArray()){
+		if (clazz.isArray()) {
 			isBaseClass = false;
-		}else if (clazz.isPrimitive()||clazz.getPackage()==null
-				|| clazz.getPackage().getName().equals("java.lang")
+		} else if (clazz.isPrimitive() || clazz.getPackage() == null || clazz.getPackage().getName().equals("java.lang")
 				|| clazz.getPackage().getName().equals("java.math")
 				|| clazz.getPackage().getName().equals("java.util")) {
-			isBaseClass =  true;
+			isBaseClass = true;
 		}
 		return isBaseClass;
 	}
-	
+
 	/**
 	 * 判断这个类是不是java自带的类
+	 * 
 	 * @param clazz
 	 * @return
 	 */
 	public static String getEmptyString() {
 		return "";
 	}
+	
 }

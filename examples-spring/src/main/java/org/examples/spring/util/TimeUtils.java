@@ -112,10 +112,10 @@ public class TimeUtils {
 	 */
 	public static String getAgo(String ago, String line) {
 
-		if (StrUtils.equals("one", line)) {
+		if (StringUtil.equals("one", line)) {
 			return ago;
 		}
-		if (StrUtils.equals("two", line)) {
+		if (StringUtil.equals("two", line)) {
 			return "<br>" + ago;
 		}
 

@@ -5,19 +5,20 @@
 	xmlns:mvc="http://www.springframework.org/schema/mvc"
 	xmlns:task="http://www.springframework.org/schema/task"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans 
-	http://www.springframework.org/schema/beans/spring-beans-4.2.xsd 
+	http://www.springframework.org/schema/beans/spring-beans-4.3.xsd 
 	http://www.springframework.org/schema/tx 
-	http://www.springframework.org/schema/tx/spring-tx-4.2.xsd
+	http://www.springframework.org/schema/tx/spring-tx-4.3.xsd
 	http://www.springframework.org/schema/context
-    http://www.springframework.org/schema/context/spring-context-4.2.xsd
+    http://www.springframework.org/schema/context/spring-context-4.3.xsd
 	http://www.springframework.org/schema/mvc
-	http://www.springframework.org/schema/mvc/spring-mvc-4.2.xsd
+	http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd
 	http://www.springframework.org/schema/task
-	http://www.springframework.org/schema/task/spring-task-4.2.xsd">
+	http://www.springframework.org/schema/task/spring-task-4.3.xsd">
 
 	<context:component-scan
 		base-package="org.examples.spring.dao,org.examples.spring.manager,org.examples.spring.web,org.examples.spring.quartz" />
 	<mvc:annotation-driven />
+	
 	<context:annotation-config />
 
 	<!-- 启动Spring MVC的注解功能，完成请求和注解POJO的映射 -->
@@ -115,6 +116,14 @@
 			</value>
 		</property>
 	</bean>
+	
+	<!-- 访问拦截  -->  
+<!--   	<mvc:interceptors> -->
+<!-- 		<mvc:interceptor> -->
+<!-- 			<mvc:mapping path="/**/**"/> -->
+<!-- 			<bean class="org.examples.spring.inteceptor.LoginHandlerInterceptor"/> -->
+<!-- 		</mvc:interceptor> -->
+<!-- 	</mvc:interceptors> -->
 
 	<!-- 允许对静态资源文件的访问 -->
 	<mvc:default-servlet-handler />

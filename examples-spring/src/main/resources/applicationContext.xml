@@ -5,19 +5,25 @@
 	xmlns:mvc="http://www.springframework.org/schema/mvc"
 	xmlns:aop="http://www.springframework.org/schema/aop"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans
-	http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
+	http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
 	http://www.springframework.org/schema/tx
-	http://www.springframework.org/schema/tx/spring-tx-4.2.xsd
+	http://www.springframework.org/schema/tx/spring-tx-4.3.xsd
 	http://www.springframework.org/schema/context
-    http://www.springframework.org/schema/context/spring-context-4.2.xsd
+    http://www.springframework.org/schema/context/spring-context-4.3.xsd
 	http://www.springframework.org/schema/mvc
-	http://www.springframework.org/schema/mvc/spring-mvc-4.2.xsd
+	http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd
 	http://www.springframework.org/schema/aop
-	http://www.springframework.org/schema/aop/spring-aop-4.2.xsd">
+	http://www.springframework.org/schema/aop/spring-aop-4.3.xsd">
 
-	<!-- <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"> 
-		<property name="locations"> <list> <value>classpath:jdbc.properties</value> 
-		</list> </property> </bean> -->
+	<!--
+	<bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"> 
+		<property name="locations">
+			<list>
+				<value>classpath:jdbc.properties</value> 
+			</list>
+		</property>
+	</bean>
+	-->
 		
 	<!-- 启用@Aspect支持 -->
     <aop:aspectj-autoproxy/>
@@ -43,8 +49,10 @@
 		<!-- 获取连接最大等待时间 -->
 		<property name="maxWait" value="60000" />
 
-		<!-- <property name="poolPreparedStatements" value="true" /> <property 
-			name="maxPoolPreparedStatementPerConnectionSize" value="33" /> -->
+		<!--
+		<property name="poolPreparedStatements" value="true" />
+		<property name="maxPoolPreparedStatementPerConnectionSize" value="33" />
+		-->
 
 		<property name="validationQuery" value="${validationQuery}" />
 		<property name="testOnBorrow" value="false" />
@@ -115,4 +123,26 @@
 		</property>
 	</bean>
 
+	<!-- ================ Shiro start ================ -->
+	<!-- 项目自定义的Realm -->
+	<bean id="ShiroRealm" class="org.examples.spring.inteceptor.shiro.ShiroRealm"></bean>
+	
+	<bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
+		<property name="realm" ref="ShiroRealm" />
+	</bean>
+
+	<!-- Shiro Filter -->
+	<bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
+		<property name="securityManager" ref="securityManager" />
+		<property name="loginUrl" value="/login/to_login" />
+		<property name="successUrl" value="/main/index" />
+		<property name="unauthorizedUrl" value="/login/login" />
+		<property name="filterChainDefinitions">
+			<value>
+				/login/login = anon
+				/** = authc
+			</value>
+		</property>
+	</bean>
+	<!-- ================ Shiro end ================ -->
 </beans>

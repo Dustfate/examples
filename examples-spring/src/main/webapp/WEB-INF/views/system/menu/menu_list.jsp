@@ -25,8 +25,7 @@
 		Page Header <small>Optional description</small>
 	</h1>
 	<ol class="breadcrumb" style="margin-bottom: 10px;">
-		<li><a href="#" onclick="goHomePage();"><i
-				class="fa fa-dashboard"></i>首页</a></li>
+		<li><a href="#" onclick="goHomePage();"><i class="fa fa-dashboard"></i>首页</a></li>
 		<li class="active">菜单管理</li>
 	</ol>
 </section>
@@ -38,44 +37,39 @@
 			<form class="form-horizontal" role="form" id="form1" action="index.html" method="post">
 				<div class="form-group">
 					<label class="col-sm-1 control-label no-padding-right" for="txtName">名称：</label>
-					<div class="col-sm-4">
+					<div class="col-sm-7">
 						<span class="input-icon width-100"> 
 							<input id="menuName" type="text" class="form-control" data-validation-engine="validate[required]" placeholder="菜单名称" />
 						</span>
 					</div>
-					
-					<div class="col-sm-6 col-lg-8 col-md-5 align-right">
-						<div class="space-4 hidden-lg hidden-md hidden-sm"></div>
+					<div class="col-sm-3"></div>
+					<div class="col-sm-1 col-xs-1 align-right">
 						<button type="button" class="btn btn-info btn-default-ths" id="btnSearch">
-							<i class="ace-icon fa fa-search"></i> 搜索
+							<i class="ace-icon fa fa-search"></i> 搜索 
 						</button>
-						<button type="button" class="btn btn-purple btn-default-ths" id="btnSearchAdv">
-							<i class="ace-icon fa fa-search-plus"></i> 高级搜索
-						</button>
+
 					</div>
 				</div>
 				
 				<hr class="no-margin">
-				<hr class="no-margin">
 				
 				<div class="page-toolbar text-right list-toolbar">
-                	<button type="button" class="btn btn-social-icon btn-dropbox" id="btnAdd">
+                	<button type="button" class="btn btn-dropbox" id="btnAdd">
                     	<i class="fa fa-plus"></i> 添加
                     </button>
-                    <button type="button" class="btn btn-social-icon btn-foursquare" id="btnDelete">
+                    <button type="button" class="btn btn-foursquare" id="btnDelete">
                     	<i class="fa fa-trash-o"></i> 删除
                     </button>
-               		<button type="button" class="btn btn-social-icon btn-facebook" id="btnExport">
+               		<button type="button" class="btn btn-facebook" id="btnExport">
                     	<i class="fa fa-file-excel-o"></i> 导出
                		</button>
                	</div>
 				
 				<div class="box">
-					<!--
-					<div class="box-header">
-						<h3 class="box-title">Data Table With Full Features</h3>
-					</div>
-					/.box-header -->
+					<!--/.box-header -->
+<!-- 					<div class="box-header"> -->
+<!-- 						<h3 class="box-title">Data Table With Full Features</h3> -->
+<!-- 					</div> -->
 					<div class="box-body">
 						<table id="menuList" class="table table-bordered table-striped table-hover">
 							<thead>
@@ -89,20 +83,19 @@
 									<th>操作</th>
 								</tr>
 							</thead>
-
-							<!-- 
-							<tfoot>
-								<tr>
-									<th>编号</th>
-									<th>菜单名称</th>
-									<th>菜单图标</th>
-									<th>菜单地址</th>
-									<th>菜单类型</th>
-									<th>是否启用</th>
-									<th>操作</th>
-								</tr>
-							</tfoot>
-						 -->
+							
+<!-- 							<tfoot> -->
+<!-- 								<tr> -->
+<!-- 									<th>编号</th> -->
+<!-- 									<th>菜单名称</th> -->
+<!-- 									<th>菜单图标</th> -->
+<!-- 									<th>菜单地址</th> -->
+<!-- 									<th>菜单类型</th> -->
+<!-- 									<th>是否启用</th> -->
+<!-- 									<th>操作</th> -->
+<!-- 								</tr> -->
+<!-- 							</tfoot> -->
+							
 						</table>
 					</div>
 					<!-- /.box-body -->

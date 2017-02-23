@@ -69,7 +69,6 @@ public class TextUtils {
 	 * @return
 	 */
 	public static String substringForByte(String text, int length, boolean isConvertSpecialChars) {
-
 		if (StrUtils.isBlank(text) || length < 1) {
 			return text;
 		}

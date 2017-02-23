@@ -98,7 +98,7 @@ public class ClassUtils {
 			return null;
 		}
 		for (PropertyDescriptor pd : propertyDescriptors) {
-			if (StrUtils.equals(pd.getName(), name)) {
+			if (StringUtil.equals(pd.getName(), name)) {
 				return pd;
 			}
 		}
@@ -226,25 +226,27 @@ public class ClassUtils {
 	 */
 	public static Object toTargetTypeValue(Object value, Class<?> targetType) {
 		String typeName = targetType.getName();
-		if (StrUtils.equals(typeName, boolean.class.getName()) || StrUtils.equals(typeName, Boolean.class.getName())) {
+		if (StringUtil.equals(typeName, boolean.class.getName())
+				|| StringUtil.equals(typeName, Boolean.class.getName())) {
 			return Boolean.valueOf(value.toString());
 		}
-		if (StrUtils.equals(typeName, int.class.getName()) || StrUtils.equals(typeName, Integer.class.getName())) {
+		if (StringUtil.equals(typeName, int.class.getName()) || StringUtil.equals(typeName, Integer.class.getName())) {
 			return Integer.valueOf(value.toString());
 		}
-		if (StrUtils.equals(typeName, long.class.getName()) || StrUtils.equals(typeName, Long.class.getName())) {
+		if (StringUtil.equals(typeName, long.class.getName()) || StringUtil.equals(typeName, Long.class.getName())) {
 			return Long.valueOf(value.toString());
 		}
-		if (StrUtils.equals(typeName, short.class.getName()) || StrUtils.equals(typeName, Short.class.getName())) {
+		if (StringUtil.equals(typeName, short.class.getName()) || StringUtil.equals(typeName, Short.class.getName())) {
 			return Short.valueOf(value.toString());
 		}
-		if (StrUtils.equals(typeName, float.class.getName()) || StrUtils.equals(typeName, Float.class.getName())) {
+		if (StringUtil.equals(typeName, float.class.getName()) || StringUtil.equals(typeName, Float.class.getName())) {
 			return Float.valueOf(value.toString());
 		}
-		if (StrUtils.equals(typeName, double.class.getName()) || StrUtils.equals(typeName, Double.class.getName())) {
+		if (StringUtil.equals(typeName, double.class.getName())
+				|| StringUtil.equals(typeName, Double.class.getName())) {
 			return Double.valueOf(value.toString());
 		}
-		if (StrUtils.equals(typeName, byte.class.getName()) || StrUtils.equals(typeName, Byte.class.getName())) {
+		if (StringUtil.equals(typeName, byte.class.getName()) || StringUtil.equals(typeName, Byte.class.getName())) {
 			return Byte.valueOf(value.toString());
 		}
 		return value;
