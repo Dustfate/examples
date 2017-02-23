@@ -41,18 +41,18 @@ public class SysMenuInfoDaoImpl implements SysMenuInfoDao {
 	public List<SysMenuInfo> listAllParentMenu(SysMenuInfo menuInfo) {
 		List<Object> params = new ArrayList<Object>();
 		StringBuffer sql = new StringBuffer();
-		sql.append("SELECT * FROM SYS_MENU_INFO WHERE 1 = 1");
+		sql.append("SELECT * FROM SYS_MENU_INFO WHERE 1 = 1 ");
 		if (!StringUtil.isEmpty(menuInfo.getParentId())) {
-			sql.append(" AND PARENT_ID = ?");
+			sql.append("AND PARENT_ID = ? ");
 			params.add(menuInfo.getParentId());
 		}
 
 		if (!StringUtil.isEmpty(menuInfo.getIsEnable())) {
-			sql.append(" AND IS_ENABLE = ?");
+			sql.append("AND IS_ENABLE = ? ");
 			params.add(menuInfo.getIsEnable());
 		}
 		
-		sql.append(" ORDER BY MENU_ORDER");
+		sql.append("ORDER BY MENU_ORDER");
 		List<SysMenuInfo> list = null;
 		try {
 			list = jdbcDaoImpl.queryListForSql(sql.toString(), params.toArray(), SysMenuInfo.class);
@@ -68,18 +68,17 @@ public class SysMenuInfoDaoImpl implements SysMenuInfoDao {
 		List<Object> params = new ArrayList<Object>();
 		StringBuffer sql = new StringBuffer();
 		sql.append("SELECT MENU_ID, MENU_NAME, PARENT_ID, MENU_URL, MENU_ORDER, MENU_ICON, MENU_TYPE, IS_ENABLE, CREATE_TIME, UPDATE_TIME ");
-		sql.append(" FROM SYS_MENU_INFO ");
-		sql.append(" where 1=1");
+		sql.append("FROM SYS_MENU_INFO ");
+		sql.append("WHERE 1=1 ");
 		
 		if (!StringUtil.isEmpty(menuInfo.getParentId())) {
-			sql.append(" AND PARENT_ID = ? ");
+			sql.append("AND PARENT_ID = ? ");
 			params.add(menuInfo.getParentId());
 		}
 
 		List<SysMenuInfo> list = null;
 		try {
-			list = jdbcDaoImpl
-					.queryListForSql(sql.toString(), params.toArray(), SysMenuInfo.class);
+			list = jdbcDaoImpl.queryListForSql(sql.toString(), params.toArray(), SysMenuInfo.class);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -122,28 +121,27 @@ public class SysMenuInfoDaoImpl implements SysMenuInfoDao {
 		List<Object> params = new ArrayList<Object>();
 		StringBuffer sql = new StringBuffer();
 		sql.append("SELECT MENU_ID, MENU_NAME, PARENT_ID, MENU_URL, MENU_ORDER, MENU_ICON, MENU_TYPE, IS_ENABLE, CREATE_TIME, UPDATE_TIME ");
-		sql.append(" FROM SYS_MENU_INFO ");
-		sql.append(" where 1=1");
+		sql.append("FROM SYS_MENU_INFO ");
+		sql.append("WHERE 1=1 ");
 
 		if (!StringUtil.isEmpty(menuInfo.getMenuName())) {
-			sql.append(" AND MENU_NAME LIKE ? ");
+			sql.append("AND MENU_NAME LIKE ? ");
 			params.add("'%" + menuInfo.getMenuName() + "%'");
 		}
-
+		
 		if (!StringUtil.isEmpty(menuInfo.getIsEnable())) {
-			sql.append(" AND IS_ENABLE = ? ");
+			sql.append("AND IS_ENABLE = ? ");
 			params.add(menuInfo.getIsEnable());
 		}
 		
 		if (!StringUtil.isEmpty(menuInfo.getParentId())) {
-			sql.append(" AND PARENT_ID = ? ");
+			sql.append("AND PARENT_ID = ? ");
 			params.add(menuInfo.getParentId());
 		}
 
 		List<SysMenuInfo> list = null;
 		try {
-			list = jdbcDaoImpl
-					.queryListForSql(sql.toString(), params.toArray(), SysMenuInfo.class);
+			list = jdbcDaoImpl.queryListForSql(sql.toString(), params.toArray(), SysMenuInfo.class);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -160,21 +158,22 @@ public class SysMenuInfoDaoImpl implements SysMenuInfoDao {
 		List<Object> params = new ArrayList<Object>();
 		StringBuffer sql = new StringBuffer();
 		sql.append("SELECT MENU_ID, MENU_NAME, PARENT_ID, MENU_URL, MENU_ORDER, MENU_ICON, MENU_TYPE, IS_ENABLE, CREATE_TIME, UPDATE_TIME ");
-		sql.append(" FROM SYS_MENU_INFO ");
-		sql.append(" where 1=1");
+		sql.append("FROM SYS_MENU_INFO ");
+		sql.append("WHERE 1=1 ");
 		
 		if (!StringUtil.isEmpty(menuInfo.getMenuName())) {
-			sql.append(" AND MENU_NAME LIKE ? ");
+			sql.append("AND MENU_NAME LIKE ? ");
 			params.add("'%" + menuInfo.getMenuName() + "%'");
 		}
 
 		if (!StringUtil.isEmpty(menuInfo.getIsEnable())) {
-			sql.append(" AND IS_ENABLE = ? ");
+			sql.append("AND IS_ENABLE = ? ");
 			params.add(menuInfo.getIsEnable());
 		}
 		
-		if(!StringUtil.isEmpty(columnName))
-			sql.append(" order by ").append(columnName).append(" ").append(sortDir);
+		if(!StringUtil.isEmpty(columnName)){
+			sql.append("ORDER BY ").append(columnName).append(" ").append(sortDir);
+		}
 		
 		jdbcDaoImpl.queryListForSql(sql.toString(), SysMenuInfo.class);
 		Pager pager = PageControl.getPager();
@@ -186,21 +185,19 @@ public class SysMenuInfoDaoImpl implements SysMenuInfoDao {
 		List<Object> params = new ArrayList<Object>();
 		StringBuffer sql = new StringBuffer();
 		sql.append("SELECT MENU_ID, MENU_NAME, PARENT_ID, MENU_URL, MENU_ORDER, MENU_ICON, MENU_TYPE, IS_ENABLE, CREATE_TIME, UPDATE_TIME ");
-		sql.append(" FROM SYS_MENU_INFO ");
-		sql.append(" where 1=1");
+		sql.append("FROM SYS_MENU_INFO ");
+		sql.append("WHERE 1=1 ");
 		if (!StringUtil.isEmpty(menuInfo.getMenuName())) {
-			sql.append(" AND MENU_NAME LIKE ? ");
+			sql.append("AND MENU_NAME LIKE ? ");
 			params.add("'%" + menuInfo.getMenuName() + "%'");
 		}
-
+		
 		if (!StringUtil.isEmpty(menuInfo.getIsEnable())) {
-			sql.append(" AND ISENABLE = ? ");
+			sql.append("AND ISENABLE = ? ");
 			params.add(menuInfo.getIsEnable());
 		}
-
-		List<SysMenuInfo> list = jdbcDaoImpl.queryListForSql(sql.toString(),
-				SysMenuInfo.class);
-
+		
+		List<SysMenuInfo> list = jdbcDaoImpl.queryListForSql(sql.toString(), SysMenuInfo.class);
 		return list;
 	}
 

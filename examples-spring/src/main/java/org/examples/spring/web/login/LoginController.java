@@ -135,7 +135,7 @@ public class LoginController extends BaseController {
 		SysMenuInfo menuInfo = new SysMenuInfo();
 		menuInfo.setIsEnable("1");
 		menuInfo.setParentId("0");
-		List<SysMenuInfo> menuList = sysMenuInfoService.findAllParentMenu(menuInfo);
+		List<SysMenuInfo> menuList = sysMenuInfoService.findMenuInfoList(menuInfo);
 		
 		mv.addObject("menuList", menuList);
 		
