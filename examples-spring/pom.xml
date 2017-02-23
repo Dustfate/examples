@@ -15,11 +15,11 @@
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<spring.version>4.3.0.RELEASE</spring.version>
-		<hibernate.version>5.1.0.Final</hibernate.version>
+		<spring.version>4.3.6.RELEASE</spring.version>
+<!-- 		<hibernate.version>5.1.0.Final</hibernate.version> -->
 		<struts2.version>2.3.24</struts2.version>
 		<druid-version>1.0.20</druid-version>
-		<shiro-version>1.2.5</shiro-version>
+		<shiro-version>1.4.0-RC2</shiro-version>
 		<tomcat.port>8089</tomcat.port>
 	</properties>
 
@@ -33,7 +33,7 @@
 		<dependency>
 			<groupId>commons-io</groupId>
 			<artifactId>commons-io</artifactId>
-			<version>2.4</version>
+			<version>2.5</version>
 		</dependency>
 		<dependency>
 			<groupId>commons-lang</groupId>
@@ -209,17 +209,30 @@
 		</dependency>
 		<!-- Spring end -->
 
+		<!-- mybatis -->
+		<dependency>
+		    <groupId>org.mybatis</groupId>
+		    <artifactId>mybatis</artifactId>
+		    <version>3.4.2</version>
+		</dependency>
+		<dependency>
+		    <groupId>org.mybatis</groupId>
+		    <artifactId>mybatis-spring</artifactId>
+		    <version>1.3.1</version>
+		</dependency>
+		<!-- mybatis -->
+
 		<!-- hibernate5 -->
-		<dependency>
-			<groupId>org.hibernate</groupId>
-			<artifactId>hibernate-core</artifactId>
-			<version>${hibernate.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.hibernate</groupId>
-			<artifactId>hibernate-c3p0</artifactId>
-			<version>${hibernate.version}</version>
-		</dependency>
+<!-- 		<dependency> -->
+<!-- 			<groupId>org.hibernate</groupId> -->
+<!-- 			<artifactId>hibernate-core</artifactId> -->
+<!-- 			<version>${hibernate.version}</version> -->
+<!-- 		</dependency> -->
+<!-- 		<dependency> -->
+<!-- 			<groupId>org.hibernate</groupId> -->
+<!-- 			<artifactId>hibernate-c3p0</artifactId> -->
+<!-- 			<version>${hibernate.version}</version> -->
+<!-- 		</dependency> -->
 		<!-- end -->
 
 		<!-- jackson -->
