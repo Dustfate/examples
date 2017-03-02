@@ -24,7 +24,7 @@ public class SysUserInfo extends Pageable {
 	private String phoneNumber; 	// 手机号
 	private String cardId; 			// 身份证号
 	private String realName; 		// 真实姓名
-	private String status; 			// 状态
+	private Integer status; 		// 状态
 	private String ip; 				// 用户登录IP地址
 	private String skin; 			// 皮肤
 	private Date createDate; 		// 创建时间
@@ -87,11 +87,11 @@ public class SysUserInfo extends Pageable {
 		this.realName = realName;
 	}
 
-	public String getStatus() {
+	public Integer getStatus() {
 		return status;
 	}
 
-	public void setStatus(String status) {
+	public void setStatus(Integer status) {
 		this.status = status;
 	}
 

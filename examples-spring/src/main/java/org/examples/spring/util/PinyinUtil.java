@@ -51,8 +51,7 @@ public class PinyinUtil {
 	 *            多音字拼音之间的分隔符
 	 * @return
 	 */
-	public static String[] stringToPinyin(String src, boolean isPolyphone,
-			String separator) {
+	public static String[] stringToPinyin(String src, boolean isPolyphone, String separator) {
 		// 判断字符串是否为空
 		if ("".equals(src) || null == src) {
 			return null;
@@ -78,8 +77,7 @@ public class PinyinUtil {
 	 * @param src
 	 * @return
 	 */
-	public static String charToPinyin(char src, boolean isPolyphone,
-			String separator) {
+	public static String charToPinyin(char src, boolean isPolyphone, String separator) {
 		// 创建汉语拼音处理类
 		HanyuPinyinOutputFormat defaultFormat = new HanyuPinyinOutputFormat();
 
@@ -92,8 +90,7 @@ public class PinyinUtil {
 		if (src > 128) {
 			try {
 				// 转换得出结果
-				String[] strs = PinyinHelper.toHanyuPinyinStringArray(src,
-						defaultFormat);
+				String[] strs = PinyinHelper.toHanyuPinyinStringArray(src, defaultFormat);
 
 				// 是否查出多音字，默认是查出多音字的第一个字符
 				if (isPolyphone && null != separator) {
@@ -128,9 +125,7 @@ public class PinyinUtil {
 	 * @param separator
 	 * @return
 	 */
-	@SuppressWarnings("deprecation")
 	public static String hanziToPinyin(String hanzi, String separator) {
-
 		// 创建汉语拼音处理类
 		HanyuPinyinOutputFormat defaultFormat = new HanyuPinyinOutputFormat();
 
@@ -142,9 +137,7 @@ public class PinyinUtil {
 		String pinyingStr = "";
 
 		try {
-			pinyingStr = PinyinHelper.toHanYuPinyinString(hanzi, defaultFormat,
-					separator, true);
-
+			pinyingStr = PinyinHelper.toHanYuPinyinString(hanzi, defaultFormat, separator, true);
 		} catch (BadHanyuPinyinOutputFormatCombination e) {
 			e.printStackTrace();
 		}
@@ -318,8 +311,7 @@ public class PinyinUtil {
 	 * 
 	 * @return
 	 */
-	public static String[] getHeadByString(String src, boolean isCapital,
-			String separator) {
+	public static String[] getHeadByString(String src, boolean isCapital, String separator) {
 		char[] chars = src.toCharArray();
 		String[] headString = new String[chars.length];
 		int i = 0;
@@ -437,8 +429,7 @@ public class PinyinUtil {
 		for (int i = 0; i < nameChar.length; i++) {
 			if (nameChar[i] > 128) {
 				try {
-					pinyinName += PinyinHelper.toHanyuPinyinStringArray(
-							nameChar[i], defaultFormat)[0].charAt(0);
+					pinyinName += PinyinHelper.toHanyuPinyinStringArray(nameChar[i], defaultFormat)[0].charAt(0);
 				} catch (BadHanyuPinyinOutputFormatCombination e) {
 					e.printStackTrace();
 				}
@@ -465,8 +456,7 @@ public class PinyinUtil {
 		for (int i = 0; i < nameChar.length; i++) {
 			if (nameChar[i] > 128) {
 				try {
-					pinyinName += PinyinHelper.toHanyuPinyinStringArray(
-							nameChar[i], defaultFormat)[0];
+					pinyinName += PinyinHelper.toHanyuPinyinStringArray(nameChar[i], defaultFormat)[0];
 				} catch (BadHanyuPinyinOutputFormatCombination e) {
 					e.printStackTrace();
 				}
@@ -523,13 +513,11 @@ public class PinyinUtil {
 				// 是中文或者a-z或者A-Z转换拼音(我的需求，是保留中文或者a-z或者A-Z)
 				if (String.valueOf(c).matches("[\\u4E00-\\u9FA5]+")) {
 					try {
-						temp[i] = PinyinHelper.toHanyuPinyinStringArray(
-								srcChar[i], hanYuPinOutputFormat);
+						temp[i] = PinyinHelper.toHanyuPinyinStringArray(srcChar[i], hanYuPinOutputFormat);
 					} catch (BadHanyuPinyinOutputFormatCombination e) {
 						e.printStackTrace();
 					}
-				} else if (((int) c >= 65 && (int) c <= 90)
-						|| ((int) c >= 97 && (int) c <= 122)) {
+				} else if (((int) c >= 65 && (int) c <= 90) || ((int) c >= 97 && (int) c <= 122)) {
 					temp[i] = new String[] { String.valueOf(srcChar[i]) };
 				} else {
 					temp[i] = new String[] { "" };

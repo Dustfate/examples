@@ -2,10 +2,8 @@ package org.examples.spring.enums;
 
 /**
  * 枚举接口
- * 
- * User: liyd
- * Date: 14-1-13
- * Time: 下午4:13
+ * @author Dusf
+ *
  */
 public interface IEnum {
 

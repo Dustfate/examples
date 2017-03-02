@@ -71,7 +71,8 @@ public class UploadUtils {
 	 * 文件上传
 	 * 
 	 * @param request
-	 * @return infos info[0] 验证文件域返回错误信息 info[1] 上传文件错误信息 info[2] savePath info[3] saveUrl info[4] fileUrl
+	 * @return infos info[0] 验证文件域返回错误信息 info[1] 上传文件错误信息 info[2] savePath
+	 *         info[3] saveUrl info[4] fileUrl
 	 */
 	@SuppressWarnings("unchecked")
 	public String[] uploadFile(HttpServletRequest request) {
@@ -98,6 +99,7 @@ public class UploadUtils {
 
 	/**
 	 * 上传验证,并初始化文件目录
+	 * 
 	 * @param request
 	 * @return
 	 */
@@ -163,9 +165,7 @@ public class UploadUtils {
 	 * @param maxSize
 	 * @return
 	 */
-	@SuppressWarnings("unchecked")
 	private Map<String, Object> initFields(HttpServletRequest request) {
-
 		// 存储表单字段和非表单字段
 		Map<String, Object> map = new HashMap<String, Object>();
 
@@ -251,12 +251,15 @@ public class UploadUtils {
 			fileUrl = saveUrl + newFileName;
 			try {
 				File uploadedFile = new File(savePath, newFileName);
-
 				item.write(uploadedFile);
 
 				/*
-				 * FileOutputStream fos = new FileOutputStream(uploadFile); // 文件全在内存中 if (item.isInMemory()) { fos.write(item.get()); } else { InputStream is = item.getInputStream(); byte[] buffer =
-				 * new byte[1024]; int len; while ((len = is.read(buffer)) > 0) { fos.write(buffer, 0, len); } is.close(); } fos.close(); item.delete();
+				 * FileOutputStream fos = new FileOutputStream(uploadFile); //
+				 * 文件全在内存中 if (item.isInMemory()) { fos.write(item.get()); }
+				 * else { InputStream is = item.getInputStream(); byte[] buffer
+				 * = new byte[1024]; int len; while ((len = is.read(buffer)) >
+				 * 0) { fos.write(buffer, 0, len); } is.close(); } fos.close();
+				 * item.delete();
 				 */
 			} catch (IOException e) {
 				e.printStackTrace();

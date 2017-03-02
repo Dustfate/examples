@@ -11,13 +11,12 @@ import org.springframework.stereotype.Service;
 
 @Service("loginService")
 public class LoginServiceImpl implements LoginService {
-
+	
 	@Autowired
 	private LoginDao loginDao;
-
+	
 	@Override
 	public SysUserInfo login(SysUserInfo userInfo) {
-		SysUserInfo user = null;
 		try {
 			return loginDao.login(userInfo);
 		} catch (Exception e) {
@@ -25,7 +24,7 @@ public class LoginServiceImpl implements LoginService {
 			return null;
 		}
 	}
-
+	
 	@Override
 	public boolean checkUserName(SysUserInfo userInfo, String checkType) {
 		List<Map<String, Object>> list = null;
@@ -41,7 +40,7 @@ public class LoginServiceImpl implements LoginService {
 			return false;
 		}
 	}
-
+	
 	@Override
 	public void updateLoginTime(SysUserInfo userInfo) {
 		try {
@@ -50,5 +49,5 @@ public class LoginServiceImpl implements LoginService {
 			e.printStackTrace();
 		}
 	}
-
+	
 }

@@ -431,7 +431,6 @@ public class StringUtil {
 	 * @param str
 	 * @return
 	 */
-	@SuppressWarnings("unchecked")
 	public static LinkedHashMap<String, String> toLinkedHashMap(String str) {
 		if (str != null && !str.equals("") && str.indexOf("=") > 0) {
 			LinkedHashMap<String, String> result = new LinkedHashMap<String, String>();
@@ -624,7 +623,9 @@ public class StringUtil {
 		try {
 			ByteArrayInputStream in = new ByteArrayInputStream(xml.getBytes("UTF8"));
 			XMLDecoder decoder = new XMLDecoder(new BufferedInputStream(in));
-			return decoder.readObject();
+			Object obj = decoder.readObject();
+			decoder.close();
+			return obj;
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -1483,11 +1484,9 @@ public class StringUtil {
 	 * @return map
 	 * @author sky
 	 */
-	@SuppressWarnings("unchecked")
 	public static Map<String, String> parseQuery(String query, char split1, char split2, String dupLink) {
 		if (!isEmpty(query) && query.indexOf(split2) > 0) {
 			Map<String, String> result = new HashMap<String, String>();
-
 			String name = null;
 			String value = null;
 			String tempValue = "";
@@ -1537,7 +1536,6 @@ public class StringUtil {
 	 * @param slipStr
 	 * @return String
 	 */
-	@SuppressWarnings("unchecked")
 	public static String listToStringSlipStr(List<Object> list, String slipStr) {
 		StringBuffer returnStr = new StringBuffer();
 		if (list != null && list.size() > 0) {

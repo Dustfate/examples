@@ -21,8 +21,7 @@ import org.apache.commons.beanutils.PropertyUtilsBean;
 @SuppressWarnings("unchecked")
 public class MyBeanUtils extends PropertyUtilsBean {
 
-	private static void convert(Object dest, Object orig)
-			throws IllegalAccessException, InvocationTargetException {
+	private static void convert(Object dest, Object orig) throws IllegalAccessException, InvocationTargetException {
 
 		// Validate existence of the specified beans
 		if (dest == null) {
@@ -34,8 +33,7 @@ public class MyBeanUtils extends PropertyUtilsBean {
 
 		// Copy the properties, converting as necessary
 		if (orig instanceof DynaBean) {
-			DynaProperty origDescriptors[] = ((DynaBean) orig).getDynaClass()
-					.getDynaProperties();
+			DynaProperty origDescriptors[] = ((DynaBean) orig).getDynaClass().getDynaProperties();
 			for (int i = 0; i < origDescriptors.length; i++) {
 				String name = origDescriptors[i].getName();
 				if (PropertyUtils.isWriteable(dest, name)) {
@@ -48,11 +46,11 @@ public class MyBeanUtils extends PropertyUtilsBean {
 				}
 			}
 		} else if (orig instanceof Map) {
-			Iterator names = ((Map) orig).keySet().iterator();
+			Iterator<?> names = ((Map<Object, Object>) orig).keySet().iterator();
 			while (names.hasNext()) {
 				String name = (String) names.next();
 				if (PropertyUtils.isWriteable(dest, name)) {
-					Object value = ((Map) orig).get(name);
+					Object value = ((Map<Object, Object>) orig).get(name);
 					try {
 						getInstance().setSimpleProperty(dest, name, value);
 					} catch (Exception e) {
@@ -63,8 +61,7 @@ public class MyBeanUtils extends PropertyUtilsBean {
 		} else
 		/* if (orig is a standard JavaBean) */
 		{
-			PropertyDescriptor origDescriptors[] = PropertyUtils
-					.getPropertyDescriptors(orig);
+			PropertyDescriptor origDescriptors[] = PropertyUtils.getPropertyDescriptors(orig);
 			for (int i = 0; i < origDescriptors.length; i++) {
 				String name = origDescriptors[i].getName();
 				// String type =
@@ -72,11 +69,9 @@ public class MyBeanUtils extends PropertyUtilsBean {
 				if ("class".equals(name)) {
 					continue; // No point in trying to set an object's class
 				}
-				if (PropertyUtils.isReadable(orig, name)
-						&& PropertyUtils.isWriteable(dest, name)) {
+				if (PropertyUtils.isReadable(orig, name) && PropertyUtils.isWriteable(dest, name)) {
 					try {
-						Object value = PropertyUtils.getSimpleProperty(orig,
-								name);
+						Object value = PropertyUtils.getSimpleProperty(orig, name);
 						getInstance().setSimpleProperty(dest, name, value);
 					} catch (java.lang.IllegalArgumentException ie) {
 						; // Should not happen
@@ -96,21 +91,17 @@ public class MyBeanUtils extends PropertyUtilsBean {
 	 * @throws NoSuchMethodException
 	 *             copy
 	 */
-	public static void copyBeanNotNull2Bean(Object databean, Object tobean)
-			throws Exception {
-		PropertyDescriptor origDescriptors[] = PropertyUtils
-				.getPropertyDescriptors(databean);
+	public static void copyBeanNotNull2Bean(Object databean, Object tobean) throws Exception {
+		PropertyDescriptor origDescriptors[] = PropertyUtils.getPropertyDescriptors(databean);
 		for (int i = 0; i < origDescriptors.length; i++) {
 			String name = origDescriptors[i].getName();
 			// String type = origDescriptors[i].getPropertyType().toString();
 			if ("class".equals(name)) {
 				continue; // No point in trying to set an object's class
 			}
-			if (PropertyUtils.isReadable(databean, name)
-					&& PropertyUtils.isWriteable(tobean, name)) {
+			if (PropertyUtils.isReadable(databean, name) && PropertyUtils.isWriteable(tobean, name)) {
 				try {
-					Object value = PropertyUtils.getSimpleProperty(databean,
-							name);
+					Object value = PropertyUtils.getSimpleProperty(databean, name);
 					if (value != null) {
 						getInstance().setSimpleProperty(tobean, name, value);
 					}
@@ -136,14 +127,13 @@ public class MyBeanUtils extends PropertyUtilsBean {
 		convert(dest, orig);
 	}
 
-	public static void copyBean2Map(Map map, Object bean) {
+	public static void copyBean2Map(Map<Object, Object> map, Object bean) {
 		PropertyDescriptor[] pds = PropertyUtils.getPropertyDescriptors(bean);
 		for (int i = 0; i < pds.length; i++) {
 			PropertyDescriptor pd = pds[i];
 			String propname = pd.getName();
 			try {
-				Object propvalue = PropertyUtils.getSimpleProperty(bean,
-						propname);
+				Object propvalue = PropertyUtils.getSimpleProperty(bean, propname);
 				map.put(propname, propvalue);
 			} catch (IllegalAccessException e) {
 				// e.printStackTrace();
@@ -165,14 +155,14 @@ public class MyBeanUtils extends PropertyUtilsBean {
 	 * @throws IllegalAccessException
 	 * @throws InvocationTargetException
 	 */
-	public static void copyMap2Bean(Object bean, Map properties)
+	public static void copyMap2Bean(Object bean, Map<Object, Object> properties)
 			throws IllegalAccessException, InvocationTargetException {
 		// Do nothing unless both arguments have been specified
 		if ((bean == null) || (properties == null)) {
 			return;
 		}
 		// Loop through the property name/value pairs to be set
-		Iterator names = properties.keySet().iterator();
+		Iterator<Object> names = properties.keySet().iterator();
 		while (names.hasNext()) {
 			String name = (String) names.next();
 			// Identify the property name and value(s) to be assigned
@@ -181,7 +171,7 @@ public class MyBeanUtils extends PropertyUtilsBean {
 			}
 			Object value = properties.get(name);
 			try {
-				Class clazz = PropertyUtils.getPropertyType(bean, name);
+				Class<?> clazz = PropertyUtils.getPropertyType(bean, name);
 				if (null == clazz) {
 					continue;
 				}
@@ -208,14 +198,14 @@ public class MyBeanUtils extends PropertyUtilsBean {
 	 * @throws IllegalAccessException
 	 * @throws InvocationTargetException
 	 */
-	public static void copyMap2Bean_Nobig(Object bean, Map properties)
+	public static void copyMap2Bean_Nobig(Object bean, Map<String, Object> properties)
 			throws IllegalAccessException, InvocationTargetException {
 		// Do nothing unless both arguments have been specified
 		if ((bean == null) || (properties == null)) {
 			return;
 		}
 		// Loop through the property name/value pairs to be set
-		Iterator names = properties.keySet().iterator();
+		Iterator<?> names = properties.keySet().iterator();
 		while (names.hasNext()) {
 			String name = (String) names.next();
 			// Identify the property name and value(s) to be assigned
@@ -229,17 +219,17 @@ public class MyBeanUtils extends PropertyUtilsBean {
 				if (value == null) { // 不光Date类型，好多类型在null时会出错
 					continue; // 如果为null不用设 (对象如果有特殊初始值也可以保留？)
 				}
-				Class clazz = PropertyUtils.getPropertyType(bean, name);
+				Class<?> clazz = PropertyUtils.getPropertyType(bean, name);
 				if (null == clazz) { // 在bean中这个属性不存在
 					continue;
 				}
 				String className = clazz.getName();
 				// 临时对策（如果不处理默认的类型转换时会出错）
 				if (className.equalsIgnoreCase("java.util.Date")) {
-					value = new java.util.Date(
-							((java.sql.Timestamp) value).getTime());// wait to
-																	// do：貌似有时区问题,
-																	// 待进一步确认
+					value = new java.util.Date(((java.sql.Timestamp) value).getTime());// wait
+																						// to
+																						// do：貌似有时区问题,
+																						// 待进一步确认
 				}
 				// if (className.equalsIgnoreCase("java.sql.Timestamp")) {
 				// if (value == null || value.equals("")) {
@@ -265,15 +255,14 @@ public class MyBeanUtils extends PropertyUtilsBean {
 	 * @throws IllegalAccessException
 	 * @throws InvocationTargetException
 	 */
-	public static void copyMap2Bean(Object bean, Map properties,
-			String defaultValue) throws IllegalAccessException,
-			InvocationTargetException {
+	public static void copyMap2Bean(Object bean, Map<Object, Object> properties, String defaultValue)
+			throws IllegalAccessException, InvocationTargetException {
 		// Do nothing unless both arguments have been specified
 		if ((bean == null) || (properties == null)) {
 			return;
 		}
 		// Loop through the property name/value pairs to be set
-		Iterator names = properties.keySet().iterator();
+		Iterator<?> names = properties.keySet().iterator();
 		while (names.hasNext()) {
 			String name = (String) names.next();
 			// Identify the property name and value(s) to be assigned
@@ -282,7 +271,7 @@ public class MyBeanUtils extends PropertyUtilsBean {
 			}
 			Object value = properties.get(name);
 			try {
-				Class clazz = PropertyUtils.getPropertyType(bean, name);
+				Class<?> clazz = PropertyUtils.getPropertyType(bean, name);
 				if (null == clazz) {
 					continue;
 				}

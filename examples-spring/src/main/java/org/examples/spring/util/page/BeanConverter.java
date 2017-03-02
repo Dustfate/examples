@@ -31,15 +31,9 @@ public class BeanConverter {
 	 * @return t list
 	 */
 	public static <T> List<T> mapToBean(List<Map<String, Object>> mapList, Class<T> beanClass) {
-
 		List<T> beanList = new ArrayList<T>(mapList.size());
-		if (mapList == null) {
-			return beanList;
-		}
 		for (Map<String, Object> map : mapList) {
-
 			T t = mapToBean(map, beanClass);
-
 			beanList.add(t);
 		}
 		return beanList;
@@ -54,7 +48,6 @@ public class BeanConverter {
 	 * @return
 	 */
 	public static <T> T mapToBean(Map<String, Object> map, Class<T> beanClass) {
-
 		T bean = (T) ClassUtils.newInstance(beanClass);
 		if (map == null) {
 			return bean;

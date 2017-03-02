@@ -20,10 +20,14 @@ public class SqlUtil {
     /**
      * 分页SQL
      */
-    public static final String MYSQL_SQL = "select * from ( {0}) sel_tab00 limit {1},{2}";         //mysql
-    public static final String POSTGRE_SQL = "select * from ( {0}) sel_tab00 limit {2} offset {1}";//postgresql
-    public static final String ORACLE_SQL = "select * from (select row_.*,rownum rownum_ from ({0}) row_ where rownum <= {1}) where rownum_>{2}"; //oracle
-    public static final String SQLSERVER_SQL = "select * from ( select row_number() over(order by tempColumn) tempRowNumber, * from (select top {1} tempColumn = 0, {0}) t ) tt where tempRowNumber > {2}"; //sqlserver
+  //mysql
+    public static final String MYSQL_SQL = "select * from ( {0}) sel_tab00 limit {1},{2}";
+  //postgresql
+    public static final String POSTGRE_SQL = "select * from ( {0}) sel_tab00 limit {2} offset {1}";
+  //oracle
+    public static final String ORACLE_SQL = "select * from (select row_.*,rownum rownum_ from ({0}) row_ where rownum <= {1}) where rownum_>{2}";
+  //sqlserver
+    public static final String SQLSERVER_SQL = "select * from ( select row_number() over(order by tempColumn) tempRowNumber, * from (select top {1} tempColumn = 0, {0}) t ) tt where tempRowNumber > {2}";
 
     //add-begin--Author:luobaoli  Date:20150620 for：增加各个数据库获取表的SQL和获取指定表列的SQL
     /**
@@ -48,14 +52,14 @@ public class SqlUtil {
      * @param params
      * @return
      */
-    public static String getFullSql(String sql,Map params){
+    public static String getFullSql(String sql,Map<Object, Object> params){
         StringBuilder sqlB =  new StringBuilder();
         sqlB.append("SELECT t.* FROM ( ");
         sqlB.append(sql+" ");
         sqlB.append(") t ");
         if (params!=null&&params.size() >= 1) {
             sqlB.append("WHERE 1=1  ");
-            Iterator it = params.keySet().iterator();
+            Iterator<?> it = params.keySet().iterator();
             while (it.hasNext()) {
                 String key = String.valueOf(it.next());
                 String value = String.valueOf(params.get(key));
@@ -74,13 +78,11 @@ public class SqlUtil {
      * @param params
      * @return
      */
-    public static String getCountSql(String sql, Map params) {
-        String querySql = getFullSql(sql,params);
+    public static String getCountSql(String sql, Map<Object, Object> params) {
+        String querySql = getFullSql(sql, params);
         querySql = "SELECT COUNT(*) FROM ("+querySql+") t2";
         return querySql;
     }
-
-    
     
     private static int getAfterSelectInsertPoint(String sql) {
         int selectIndex = sql.toLowerCase().indexOf("select");

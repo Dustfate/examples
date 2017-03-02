@@ -1,7 +1,5 @@
 package org.examples.spring.web.menu;
 
-import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.log4j.Logger;
@@ -31,7 +29,7 @@ public class SysMenuInfoController {
 	private SysMenuInfoService sysMenuInfoService;
 	@Autowired
 	private  HttpServletRequest request;
-
+	
 	@RequestMapping(value = "/to_menu_list")
 	public ModelAndView toMenuList() {
 		ModelAndView mv = new ModelAndView();
@@ -66,37 +64,37 @@ public class SysMenuInfoController {
 			json = JSONObject.toJSON(result);
 		} catch (Exception e) {
 			result.setError(e.getMessage());
-			e.printStackTrace();
 			json = JSONObject.toJSON(result);
+			e.printStackTrace();
 		}
 		
 		logger.info("执行菜单列表页。。。");
 		return json;
 	}
-
+	
 	public SysMenuInfo getMenuInfo() {
 		return menuInfo;
 	}
-
+	
 	public void setMenuInfo(SysMenuInfo menuInfo) {
 		this.menuInfo = menuInfo;
 	}
-
+	
 	public Pager getPager() {
 		return pager;
 	}
-
+	
 	public void setPager(Pager pager) {
 		this.pager = pager;
 	}
-
+	
 	public String getCurPageNumber() {
 		return curPageNumber;
 	}
-
+	
 	public void setCurPageNumber(String curPageNumber) {
 		this.curPageNumber = curPageNumber;
 	}
-
+	
 	
 }

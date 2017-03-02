@@ -13,27 +13,21 @@ import org.springframework.util.StringUtils;
 
 /**
  * 类描述：时间操作定义类
+ * 
  * @author dusf
  *
  */
 public class DateUtils extends PropertyEditorSupport {
 	// 各种时间格式
-	public static final SimpleDateFormat yyyy_MM_dd = new SimpleDateFormat(
-			"yyyy-MM-dd");
+	public static final SimpleDateFormat yyyy_MM_dd = new SimpleDateFormat("yyyy-MM-dd");
 	// 各种时间格式
-	public static final SimpleDateFormat yyyyMMdd = new SimpleDateFormat(
-			"yyyyMMdd");
+	public static final SimpleDateFormat yyyyMMdd = new SimpleDateFormat("yyyyMMdd");
 	// 各种时间格式
-	public static final SimpleDateFormat date_sdf_wz = new SimpleDateFormat(
-			"yyyy年MM月dd日");
-	public static final SimpleDateFormat yyyy_MM_dd_HH_mm = new SimpleDateFormat(
-			"yyyy-MM-dd HH:mm");
-	public static final SimpleDateFormat yyyyMMddHHmmss = new SimpleDateFormat(
-			"yyyyMMddHHmmss");
-	public static final SimpleDateFormat HH_mm = new SimpleDateFormat(
-			"HH:mm");
-	public static final SimpleDateFormat yyyy_MM_dd_HH_mm_ss = new SimpleDateFormat(
-			"yyyy-MM-dd HH:mm:ss");
+	public static final SimpleDateFormat date_sdf_wz = new SimpleDateFormat("yyyy年MM月dd日");
+	public static final SimpleDateFormat yyyy_MM_dd_HH_mm = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+	public static final SimpleDateFormat yyyyMMddHHmmss = new SimpleDateFormat("yyyyMMddHHmmss");
+	public static final SimpleDateFormat HH_mm = new SimpleDateFormat("HH:mm");
+	public static final SimpleDateFormat yyyy_MM_dd_HH_mm_ss = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 	// 以毫秒表示的时间
 	private static final long DAY_IN_MILLIS = 24 * 3600 * 1000;
 	private static final long HOUR_IN_MILLIS = 3600 * 1000;
@@ -99,10 +93,10 @@ public class DateUtils extends PropertyEditorSupport {
 	 * @return
 	 */
 	public static String timestamptoStr(Timestamp time) {
-		Date date = null;
-		if (null != time) {
-			date = new Date(time.getTime());
-		}
+		// Date date = null;
+		// if (null != time) {
+		// date = new Date(time.getTime());
+		// }
 		return date2Str(yyyy_MM_dd);
 	}
 
@@ -200,9 +194,6 @@ public class DateUtils extends PropertyEditorSupport {
 	 */
 	public static String getDate(String format) {
 		Date date = new Date();
-		if (null == date) {
-			return null;
-		}
 		SimpleDateFormat sdf = new SimpleDateFormat(format);
 		return sdf.format(date);
 	}
@@ -518,8 +509,7 @@ public class DateUtils extends PropertyEditorSupport {
 	 * @throws ParseException
 	 * @throws AIDateFormatException
 	 */
-	public static Date parseDate(String src, String pattern)
-			throws ParseException {
+	public static Date parseDate(String src, String pattern) throws ParseException {
 		return getSDFormat(pattern).parse(src);
 
 	}
@@ -535,8 +525,7 @@ public class DateUtils extends PropertyEditorSupport {
 	 * @throws ParseException
 	 * @throws AIDateFormatException
 	 */
-	public static Calendar parseCalendar(String src, String pattern)
-			throws ParseException {
+	public static Calendar parseCalendar(String src, String pattern) throws ParseException {
 
 		Date date = parseDate(src, pattern);
 		Calendar cal = Calendar.getInstance();
@@ -544,8 +533,7 @@ public class DateUtils extends PropertyEditorSupport {
 		return cal;
 	}
 
-	public static String formatAddDate(String src, String pattern, int amount)
-			throws ParseException {
+	public static String formatAddDate(String src, String pattern, int amount) throws ParseException {
 		Calendar cal;
 		cal = parseCalendar(src, pattern);
 		cal.add(Calendar.DATE, amount);
@@ -563,8 +551,7 @@ public class DateUtils extends PropertyEditorSupport {
 	 * @throws ParseException
 	 * @throws AIDateFormatException
 	 */
-	public static Timestamp parseTimestamp(String src, String pattern)
-			throws ParseException {
+	public static Timestamp parseTimestamp(String src, String pattern) throws ParseException {
 		Date date = parseDate(src, pattern);
 		return new Timestamp(date.getTime());
 	}
@@ -590,23 +577,18 @@ public class DateUtils extends PropertyEditorSupport {
 		if (flag == 'y') {
 			return (calSrc.get(calSrc.YEAR) - calDes.get(calDes.YEAR));
 		}
-
 		if (flag == 'd') {
 			return (int) (millisDiff / DAY_IN_MILLIS);
 		}
-
 		if (flag == 'h') {
 			return (int) (millisDiff / HOUR_IN_MILLIS);
 		}
-
 		if (flag == 'm') {
 			return (int) (millisDiff / MINUTE_IN_MILLIS);
 		}
-
 		if (flag == 's') {
 			return (int) (millisDiff / SECOND_IN_MILLIS);
 		}
-
 		return 0;
 	}
 
@@ -622,12 +604,10 @@ public class DateUtils extends PropertyEditorSupport {
 				} else if (text.indexOf(":") > 0 && text.length() == 19) {
 					setValue(this.yyyy_MM_dd_HH_mm_ss.parse(text));
 				} else {
-					throw new IllegalArgumentException(
-							"Could not parse date, date format is error ");
+					throw new IllegalArgumentException("Could not parse date, date format is error ");
 				}
 			} catch (ParseException ex) {
-				IllegalArgumentException iae = new IllegalArgumentException(
-						"Could not parse date: " + ex.getMessage());
+				IllegalArgumentException iae = new IllegalArgumentException("Could not parse date: " + ex.getMessage());
 				iae.initCause(ex);
 				throw iae;
 			}

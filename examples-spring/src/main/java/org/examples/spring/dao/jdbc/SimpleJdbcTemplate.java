@@ -33,7 +33,6 @@ public class SimpleJdbcTemplate {
 		simpleJdbcInsert=new SimpleJdbcInsert(dataSource);
 	}
 
-
 	/**
 	 * 根据sql语句，返回对象集合
 	 * @param sql语句(参数用冒号加参数名，例如select * from tb where id=:id)
@@ -41,7 +40,7 @@ public class SimpleJdbcTemplate {
 	 * @param parameters参数集合(key为参数名，value为参数值)
 	 * @return bean对象集合
 	 */
-	public List find(final String sql,Class clazz,Map parameters){
+	public List<Object> find(final String sql,Class<Object> clazz,Map<Object, Object> parameters){
 		try{
 			Assert.hasText(sql,"sql语句不正确!");
 			Assert.notNull(clazz,"集合中对象类型不能为空!");
@@ -62,7 +61,7 @@ public class SimpleJdbcTemplate {
 	 * @param parameters参数集合(key为参数名，value为参数值)
 	 * @return bean对象
 	 */
-	public Object findForObject(final String sql,Class clazz,Map parameters){
+	public Object findForObject(final String sql, Class<Object> clazz, Map<Object, Object> parameters){
 		try{
 			Assert.hasText(sql,"sql语句不正确!");
 			Assert.notNull(clazz,"集合中对象类型不能为空!");
@@ -85,12 +84,12 @@ public class SimpleJdbcTemplate {
 	 * @param parameters参数集合(key为参数名，value为参数值)
 	 * @return bean对象
 	 */
-	public long findForLong(final String sql,Map parameters){
+	public long findForLong(final String sql, Map<String, ?> parameters){
 		try{
 			Assert.hasText(sql,"sql语句不正确!");
 
 			if(parameters!=null){
-				return namedJdbcTemplate.queryForObject(sql, parameters,Long.class);
+				return namedJdbcTemplate.queryForObject(sql, parameters, Long.class);
 			}else{
 				return jdbcTemplate.queryForObject(sql,Long.class);
 			}
@@ -106,7 +105,7 @@ public class SimpleJdbcTemplate {
 	 * @param parameters参数集合(key为参数名，value为参数值)
 	 * @return bean对象
 	 */
-	public Map findForMap(final String sql,Map parameters){
+	public Map<String, Object> findForMap(final String sql,Map<Object, Object> parameters){
 		try{
 			Assert.hasText(sql,"sql语句不正确!");
 			if(parameters!=null){
@@ -126,7 +125,7 @@ public class SimpleJdbcTemplate {
 	 * @param parameters参数集合(key为参数名，value为参数值)
 	 * @return bean对象
 	 */
-	public List<Map<String,Object>> findForListMap(final String sql,Map parameters){
+	public List<Map<String,Object>> findForListMap(final String sql, Map<String, Object> parameters){
 		try{
 			Assert.hasText(sql,"sql语句不正确!");
 			if(parameters!=null){
@@ -162,7 +161,7 @@ public class SimpleJdbcTemplate {
 	 * @param sql
 	 * @param parameters
 	 */
-	public int executeForMap(final String sql,Map parameters){
+	public int executeForMap(final String sql, Map<String, Object> parameters){
 		Assert.hasText(sql,"sql语句不正确!");
 		if(parameters!=null){
 			return jdbcTemplate.update(sql, parameters);
@@ -190,7 +189,7 @@ public class SimpleJdbcTemplate {
         return updateCounts;
 	}
 
-	protected BeanPropertyRowMapper resultBeanMapper(Class clazz) {
+	protected BeanPropertyRowMapper resultBeanMapper(Class<Object> clazz) {
 		return BeanPropertyRowMapper.newInstance(clazz);
 	}
 

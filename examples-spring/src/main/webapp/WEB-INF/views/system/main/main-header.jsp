@@ -36,7 +36,8 @@
 											<!-- User Image -->
 											<img src="${ctx }/AdminLTE-2.3.11/dist/img/user2-160x160.jpg"
 												class="img-circle" alt="User Image">
-										</div> <!-- Message title and timestamp -->
+										</div> 
+										<!-- Message title and timestamp -->
 										<h4>
 											Support Team <small><i class="fa fa-clock-o"></i> 5
 												mins</small>
@@ -74,10 +75,8 @@
 				</li>
 				<!-- Tasks Menu -->
 				<li class="dropdown tasks-menu">
-					<!-- Menu Toggle Button --> <a href="#" class="dropdown-toggle"
-					data-toggle="dropdown"> <i class="fa fa-flag-o"></i><span
-						class="label label-danger">9</span>
-				</a>
+					<!-- Menu Toggle Button --> 
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown"> <i class="fa fa-flag-o"></i><span class="label label-danger">9</span> </a>
 					<ul class="dropdown-menu">
 						<li class="header">You have 9 tasks</li>
 						<li>
@@ -93,8 +92,7 @@
 										<!-- The progress bar -->
 										<div class="progress xs">
 											<!-- Change the css width attribute to simulate progress -->
-											<div class="progress-bar progress-bar-aqua"
-												style="width: 20%" role="progressbar" aria-valuenow="20"
+											<div class="progress-bar progress-bar-aqua" style="width: 20%" role="progressbar" aria-valuenow="20"
 												aria-valuemin="0" aria-valuemax="100">
 												<span class="sr-only">20% Complete</span>
 											</div>
